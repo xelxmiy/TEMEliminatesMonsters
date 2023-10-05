@@ -12,9 +12,16 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="C:\Users\a.belski\.nuget\packages\monogame.extended\3.8.0\contentFiles\any\netstandard2.0\CppNet.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
+    <PackageReference Include="MonoGame.Extended.Tiled" Version="3.8.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Build\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />
