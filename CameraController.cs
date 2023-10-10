@@ -12,7 +12,7 @@ namespace TEMEliminatesMonsters
 {
     internal class CameraController
     {
-        private const float MovementSpeed = 400;
+        private const float MovementSpeed = 400f;
 
         private int _previousMouseX, _previousMouseY;
 
@@ -28,9 +28,11 @@ namespace TEMEliminatesMonsters
         public void Update(GameTime gameTime) 
         {
             MouseState MouseState = Mouse.GetState();
+
             if (MouseState.RightButton == ButtonState.Pressed)
             {
-                _camera.Move(GetMovementDirection() * MovementSpeed * gameTime.GetElapsedSeconds());
+                // TODO: fix this camera so that the movement speed changes based on the delta of the mouse movement
+                _camera.Move(GetMovementDirection() * MovementSpeed * gameTime.GetElapsedSeconds()); 
             }
 
             _previousMouseX = MouseState.X;
