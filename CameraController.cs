@@ -1,42 +1,43 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.DirectoryServices;
 
 namespace TEMEliminatesMonsters
 {
     internal class CameraController
     {
-        private const float MovementSpeed = 400f;
+        private const float MovementSpeed = 50f;
 
         private int _previousMouseX, _previousMouseY;
 
         private OrthographicCamera _camera;
 
-        public CameraController(OrthographicCamera camera, int mouseX, int mouseY) 
+        public static MouseState state;
+        public static Vector2 MousePosition { get { return new Vector2(state.X, state.Y); } }
+
+
+        public CameraController(OrthographicCamera camera, int mouseX, int mouseY)
         {
             _camera = camera;
             _previousMouseX = mouseX;
             _previousMouseY = mouseY;
         }
 
-        public void Update(GameTime gameTime) 
+        public void Update(GameTime gameTime)
         {
-            MouseState MouseState = Mouse.GetState();
+            state = Mouse.GetState();
 
-            if (MouseState.RightButton == ButtonState.Pressed)
+            Debug.WriteLine($"Camera Pos {_camera.Center}");
+
+            if (state.RightButton == ButtonState.Pressed)
             {
-                // TODO: fix this camera so that the movement speed changes based on the delta of the mouse movement
-                _camera.Move(GetMovementDirection() * MovementSpeed * gameTime.GetElapsedSeconds()); 
+                _camera.Move(GetMovementDirection() * MovementSpeed * gameTime.GetElapsedSeconds());
             }
 
-            _previousMouseX = MouseState.X;
-            _previousMouseY = MouseState.Y;
+            _previousMouseX = (int)MousePosition.X;
+            _previousMouseY = (int)MousePosition.Y;
         }
 
         /// <summary>
@@ -45,16 +46,15 @@ namespace TEMEliminatesMonsters
         /// <returns></returns>
         private Vector2 GetMovementDirection()
         {
-            Vector2 movementDirection = Vector2.Zero;
-            int MouseX = Mouse.GetState().X;
-            int MouseY = Mouse.GetState().Y;
-            Vector2 Difference = Vector2.Subtract(new Vector2(_previousMouseX, _previousMouseY), new Vector2(MouseX, MouseY));
+            Vector2 Difference = new Vector2(_previousMouseX, _previousMouseY) - MousePosition;
 
-            if (Difference == Vector2.Zero) return Vector2.Zero;
+            float MouseSpeed = Vector2.Distance(new Vector2(_previousMouseX, _previousMouseY), MousePosition);
 
-            movementDirection = Vector2.Normalize(Difference);
+            if (Difference == Vector2.Zero) return Vector2.Zero; //can't normalize the zero vector be :(
 
-            return movementDirection;
+            Vector2 movementDirection = Vector2.Normalize(Difference);
+
+            return movementDirection * MouseSpeed;
         }
     }
 }
