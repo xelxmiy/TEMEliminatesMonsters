@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
+    <PackageReference Include="MonoGame.Extended.Content.Pipeline" Version="3.8.0" />
     <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
     <PackageReference Include="MonoGame.Extended.Tiled" Version="3.8.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
@@ -23,8 +24,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Build\" />
-    <Folder Include="Content\bin\Windows\Content\" />
     <Folder Include="Entities\ResourceNodes\Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Extended.Content.Pipeline">
+      <HintPath>..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Content.Pipeline.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

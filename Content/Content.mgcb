@@ -10,15 +10,16 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\packages\MonoGame.Extended.Content.Pipeline.0.6.372\tools\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../Downloads/Assets/Map.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:../../../Downloads/Assets/Map.xml;Map.xml
+#begin ../Assets/TemTiled/TemMap.tmx
+/importer:
+/processor:
+/build:../Assets/TemTiled/TemMap.tmx;TemMap.tmx
 
-#begin ../../../Downloads/Assets/zombie.png
+#begin ../Assets/zombie.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -28,5 +29,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../../Downloads/Assets/zombie.png;zombie.png
+/build:../Assets/zombie.png;zombie.png
 

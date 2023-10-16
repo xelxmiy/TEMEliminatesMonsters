@@ -1,0 +1,50 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "TemMap.tmx",
+    "expandedProjectPaths": [
+        "Assets",
+        ".",
+        "Assets/TileSets"
+    ],
+    "fileStates": {
+        "Assets/TileSets/BasicTiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
+        },
+        "Assets/TileSets/Metal.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "TemMap.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 657.9999999999999,
+                "y": 586.6666666666665
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/zelzm/Downloads/Desktop/TemTiled",
+    "last.imagePath": "C:/Users/zelzm/Downloads/Desktop/TemTiled/Assets/Images",
+    "map.height": 30,
+    "map.lastUsedExportFilter": "Tiled map files (*.tmx *.xml)",
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": null,
+    "map.width": 2,
+    "openFiles": [
+        "TemMap.tmx",
+        "Assets/TileSets/BasicTiles.tsx",
+        "Assets/TileSets/Metal.tsx"
+    ],
+    "project": "TEMProject.tiled-project",
+    "recentFiles": [
+        "Assets/TileSets/Metal.tsx",
+        "Assets/TileSets/BasicTiles.tsx",
+        "TemMap.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.useTransparentColor": true
+}

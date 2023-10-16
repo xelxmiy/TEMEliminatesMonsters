@@ -36,7 +36,7 @@ namespace TEMEliminatesMonsters
         }
         protected override void LoadContent()
         {
-            //_tiledMap = Content.Load<TiledMap>("Map");
+            _tiledMap = Content.Load<TiledMap>("TemMap");
             _zombie = Content.Load<Texture2D>("zombie");
             
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
