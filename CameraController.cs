@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using MonoGame.Extended.ViewportAdapters;
+using System;
 using System.Diagnostics;
 using System.DirectoryServices;
 
@@ -12,32 +14,55 @@ namespace TEMEliminatesMonsters
 
         private int _previousMouseX, _previousMouseY;
 
+        private int _previousScrollValue;
+
         private OrthographicCamera _camera;
 
         public static MouseState state;
         public static Vector2 MousePosition { get { return new Vector2(state.X, state.Y); } }
 
 
-        public CameraController(OrthographicCamera camera, int mouseX, int mouseY)
+        public CameraController(OrthographicCamera camera, int minZoom = 1, int maxZoom = 10)
         {
             _camera = camera;
-            _previousMouseX = mouseX;
-            _previousMouseY = mouseY;
+            _camera.MaximumZoom = maxZoom;
+            _camera.MinimumZoom = minZoom;
+            _previousMouseX = Mouse.GetState().X;
+            _previousMouseY = Mouse.GetState().Y;
         }
 
         public void Update(GameTime gameTime)
         {
             state = Mouse.GetState();
 
-            Debug.WriteLine($"Camera Pos {_camera.Center}");
+            Debug.WriteLine($"Camera Pos {_camera.Center} Camera Zoom: {_camera.Zoom}");
 
             if (state.RightButton == ButtonState.Pressed)
             {
                 _camera.Move(GetMovementDirection() * MovementSpeed * gameTime.GetElapsedSeconds());
             }
+            if (state.ScrollWheelValue != _previousScrollValue)
+            {
+                Zoom(state.ScrollWheelValue);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.K))
+            {
+                _camera.LookAt(TEM._zombiePosition);
+            }
 
             _previousMouseX = (int)MousePosition.X;
             _previousMouseY = (int)MousePosition.Y;
+            _previousScrollValue = state.ScrollWheelValue;
+            
+        }
+
+        private void Zoom(float value)
+        {
+            value = value / 360f + 1;
+            if (value >= _camera.MinimumZoom && value <= _camera.MaximumZoom)
+            {
+                _camera.Zoom = value;
+            }           
         }
 
         /// <summary>
