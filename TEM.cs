@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using System;
+using TEMEliminatesMonsters.TileMap;
 
 namespace TEMEliminatesMonsters
 {
@@ -13,15 +14,21 @@ namespace TEMEliminatesMonsters
         private SpriteBatch _spriteBatch;
         private CameraController _cameraController;
         private OrthographicCamera _camera;
-        private Texture2D _zombie;
+        public Texture2D _zombie;
 
-        public static Vector2 _zombiePosition;
+        public TileMap.TileMap _map;
+
+        public Vector2 _zombiePosition;
+
+        public static TEM Instance { get; private set; }
 
         public TEM()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            //_map = new(10,10);
+            Instance = this;
         }
 
         protected override void Initialize()
@@ -46,7 +53,7 @@ namespace TEMEliminatesMonsters
         {
             base.Update(gameTime);
             _cameraController.Update(gameTime);
-            //_zombiePosition.X += 1;
+            _zombiePosition.X += 1;
         }
 
         protected override void Draw(GameTime gameTime)
@@ -54,6 +61,10 @@ namespace TEMEliminatesMonsters
             GraphicsDevice.Clear(Color.LightBlue);
             var transformMatrix = _camera.GetViewMatrix();
             _spriteBatch.Begin(transformMatrix: transformMatrix);
+            //foreach (Tile tile in _map._tileMap) 
+            //{
+            //    _spriteBatch.Draw(tile._texture, tile._position, Color.White);
+            //}
             _spriteBatch.DrawCircle(new(new(), 5f),64,Color.Black, 1);
             _spriteBatch.Draw(_zombie, _zombiePosition , Color.White);
             _spriteBatch.End();

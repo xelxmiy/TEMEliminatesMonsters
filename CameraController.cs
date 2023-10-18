@@ -47,7 +47,7 @@ namespace TEMEliminatesMonsters
             }
             if (Keyboard.GetState().IsKeyDown(Keys.K))
             {
-                _camera.LookAt(TEM._zombiePosition);
+                _camera.LookAt(TEM.Instance._zombiePosition);
             }
 
             _previousMouseX = (int)MousePosition.X;
