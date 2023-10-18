@@ -61,10 +61,10 @@ namespace TEMEliminatesMonsters
             GraphicsDevice.Clear(Color.LightBlue);
             var transformMatrix = _camera.GetViewMatrix();
             _spriteBatch.Begin(transformMatrix: transformMatrix);
-            //foreach (Tile tile in _map._tileMap) 
-            //{
-            //    _spriteBatch.Draw(tile._texture, tile._position, Color.White);
-            //}
+            foreach (Tile tile in _map._tileMap) 
+            {
+                _spriteBatch.Draw(tile._texture, tile._position, Color.White);
+            }
             _spriteBatch.DrawCircle(new(new(), 5f),64,Color.Black, 1);
             _spriteBatch.Draw(_zombie, _zombiePosition , Color.White);
             _spriteBatch.End();
