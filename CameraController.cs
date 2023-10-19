@@ -5,6 +5,7 @@ using MonoGame.Extended.ViewportAdapters;
 using System;
 using System.Diagnostics;
 using System.DirectoryServices;
+using TEMEliminatesMonsters.KeyEvents;
 
 namespace TEMEliminatesMonsters
 {
@@ -29,13 +30,17 @@ namespace TEMEliminatesMonsters
             _camera.MinimumZoom = minZoom;
             _previousMouseX = Mouse.GetState().X;
             _previousMouseY = Mouse.GetState().Y;
+            KeyboardEventManager.GetEvent(Keys.F) += () =>
+            {
+                _camera.LookAt(TEM.Instance._zombiePosition);
+            };
         }
 
         public void Update(GameTime gameTime)
         {
             state = Mouse.GetState();
 
-            Debug.WriteLine($"Camera Pos {_camera.Center} Camera Zoom: {_camera.Zoom}");
+            //Debug.WriteLine($"Camera Pos {_camera.Center} Camera Zoom: {_camera.Zoom}");
 
             if (state.RightButton == ButtonState.Pressed)
             {
@@ -45,11 +50,6 @@ namespace TEMEliminatesMonsters
             {
                 Zoom(state.ScrollWheelValue);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.K))
-            {
-                _camera.LookAt(TEM.Instance._zombiePosition);
-            }
-
             _previousMouseX = (int)MousePosition.X;
             _previousMouseY = (int)MousePosition.Y;
             _previousScrollValue = state.ScrollWheelValue;

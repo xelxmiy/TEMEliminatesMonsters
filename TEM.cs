@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using System;
+using System.Diagnostics;
+using TEMEliminatesMonsters.KeyEvents;
 using TEMEliminatesMonsters.TileMap;
 
 namespace TEMEliminatesMonsters
@@ -24,11 +26,17 @@ namespace TEMEliminatesMonsters
 
         public TEM()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);;
+            KeyboardEventManager.GetEvent(Keys.F11) += GoFullScreen;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             //_map = new(10,10);
             Instance = this;
+        }
+
+        public void GoFullScreen() 
+        {
+            _graphics.ToggleFullScreen();
         }
 
         protected override void Initialize()
@@ -37,7 +45,7 @@ namespace TEMEliminatesMonsters
 
             _zombiePosition = new();
 
-            BoxingViewportAdapter viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
+            BoxingViewportAdapter viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1920, 1080);
             
             _camera = new OrthographicCamera(viewportAdapter);
             _cameraController = new(_camera);
@@ -52,6 +60,7 @@ namespace TEMEliminatesMonsters
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            KeyboardEventChecker.Update();
             _cameraController.Update(gameTime);
             _zombiePosition.X += 1;
         }
@@ -61,10 +70,10 @@ namespace TEMEliminatesMonsters
             GraphicsDevice.Clear(Color.LightBlue);
             var transformMatrix = _camera.GetViewMatrix();
             _spriteBatch.Begin(transformMatrix: transformMatrix);
-            foreach (Tile tile in _map._tileMap) 
-            {
-                _spriteBatch.Draw(tile._texture, tile._position, Color.White);
-            }
+            //foreach (Tile tile in _map._tileMap) 
+            //{
+            //    _spriteBatch.Draw(tile._texture, tile._position, Color.White);
+            //}
             _spriteBatch.DrawCircle(new(new(), 5f),64,Color.Black, 1);
             _spriteBatch.Draw(_zombie, _zombiePosition , Color.White);
             _spriteBatch.End();
