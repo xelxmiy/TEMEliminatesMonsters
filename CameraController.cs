@@ -6,10 +6,11 @@ using System;
 using System.Diagnostics;
 using System.DirectoryServices;
 using TEMEliminatesMonsters.KeyEvents;
+using TEMEliminatesMonsters.Updateables;
 
 namespace TEMEliminatesMonsters
 {
-    internal class CameraController
+    internal class CameraController : Updateables.IUpdateable
     {
         private const float MovementSpeed = 50f;
 
@@ -30,6 +31,7 @@ namespace TEMEliminatesMonsters
             _camera.MinimumZoom = minZoom;
             _previousMouseX = Mouse.GetState().X;
             _previousMouseY = Mouse.GetState().Y;
+            Updateables.IUpdateable m = this; m.AddSelfToUpdateables();
             KeyboardEventManager.GetEvent(Keys.F) += () =>
             {
                 _camera.LookAt(TEM.Instance._zombiePosition);
