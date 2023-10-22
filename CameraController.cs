@@ -31,7 +31,7 @@ namespace TEMEliminatesMonsters
             _camera.MinimumZoom = minZoom;
             _previousMouseX = Mouse.GetState().X;
             _previousMouseY = Mouse.GetState().Y;
-            Updateables.IUpdateable m = this; m.AddSelfToUpdateables();
+            (this as Updateables.IUpdateable).AddSelfToUpdateables();
             KeyboardEventManager.GetEvent(Keys.F) += () =>
             {
                 _camera.LookAt(TEM.Instance._zombiePosition);

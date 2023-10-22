@@ -12,7 +12,7 @@ namespace TEMEliminatesMonsters.KeyEvents
 
         public KeyboardEventChecker() 
         {
-            Updateables.IUpdateable m = this; m.AddSelfToUpdateables();
+            (this as Updateables.IUpdateable).AddSelfToUpdateables();
         }
 
         public KeyboardState GetState()
