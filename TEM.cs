@@ -1,8 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using TEMEliminatesMonsters.KeyEvents;
 using TEMEliminatesMonsters.Updateables;
 
@@ -20,6 +25,9 @@ namespace TEMEliminatesMonsters
         public KeyboardEventChecker _keyEventChecker;
         public TileMap.TileMap _map;
         public Vector2 _zombiePosition;
+
+        public Dictionary<string, Texture2D> Tiles = new();
+
         public static TEM Instance { get; private set; }
 
         public TEM()
@@ -62,6 +70,13 @@ namespace TEMEliminatesMonsters
             _zombie = Content.Load<Texture2D>("zombie");
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
+            {
+                Debug.WriteLine(file);
+                Texture2D texture = Content.Load<Texture2D>(file);
+                Tiles.Add(file, texture);
+            }
         }
 
         protected override void Update(GameTime gameTime)
@@ -75,8 +90,9 @@ namespace TEMEliminatesMonsters
         {
             GraphicsDevice.Clear(Color.LightBlue);
             var transformMatrix = _camera.GetViewMatrix();
-            _spriteBatch.Begin(transformMatrix: transformMatrix);
+            _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
             _spriteBatch.DrawCircle(new(new(), 5f), 64, Color.Black, 1);
+            _spriteBatch.Draw(Tiles["Metal_Blocked-1-1"], new(0,0), null, Color.White, 0f, new(0,0), new Vector2(4), SpriteEffects.None, 0f);
             _spriteBatch.Draw(_zombie, _zombiePosition, Color.White);
             _spriteBatch.End();
 
