@@ -33,7 +33,7 @@ namespace TEMEliminatesMonsters
         public TEM()
         {
             _graphics = new GraphicsDeviceManager(this);
-
+            
             Content.RootDirectory = "Content";
 
             IsMouseVisible = true;
@@ -58,6 +58,8 @@ namespace TEMEliminatesMonsters
             _cameraController = new(_camera);
 
             InitializeKeyEvents();
+
+            _map = new(Tiles["Metal_Blocked-1-1"], 10, 10);
         }
 
         public void InitializeKeyEvents() 
@@ -92,7 +94,8 @@ namespace TEMEliminatesMonsters
             var transformMatrix = _camera.GetViewMatrix();
             _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
             _spriteBatch.DrawCircle(new(new(), 5f), 64, Color.Black, 1);
-            _spriteBatch.Draw(Tiles["Metal_Blocked-1-1"], new(0,0), null, Color.White, 0f, new(0,0), new Vector2(4), SpriteEffects.None, 0f);
+            //_spriteBatch.Draw(Tiles["Metal_Blocked-1-1"], new(0,0), null, Color.White, 0f, new(0,0), new Vector2(4), SpriteEffects.None, 0f);
+            _map.Render(_spriteBatch);
             _spriteBatch.Draw(_zombie, _zombiePosition, Color.White);
             _spriteBatch.End();
 
