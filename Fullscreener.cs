@@ -14,12 +14,20 @@ namespace TEMEliminatesMonsters
         GraphicsDeviceManager _graphics;
         GameWindow _window;
 
+        /// <summary>
+        /// initializes the Fullscreener
+        /// </summary>
+        /// <param name="graphicsDeviceManager">this game's Graphics Device Manager</param>
+        /// <param name="gameWindow">this game's Game Window</param>
         public Fullscreener(GraphicsDeviceManager graphicsDeviceManager, GameWindow gameWindow) 
         {
             _graphics = graphicsDeviceManager;
             _window = gameWindow;
         }
 
+        /// <summary>
+        /// toggles full screen
+        /// </summary>
         public void ToggleFullscreen()
         {
             bool oldIsFullscreen = _isFullscreen;
@@ -35,6 +43,10 @@ namespace TEMEliminatesMonsters
 
             ApplyFullscreenChange(oldIsFullscreen);
         }
+
+        /// <summary>
+        /// toggles borderless fulscreen
+        /// </summary>
         public void ToggleBorderless()
         {
             bool oldIsFullscreen = _isFullscreen;
@@ -45,6 +57,10 @@ namespace TEMEliminatesMonsters
             ApplyFullscreenChange(oldIsFullscreen);
         }
 
+        /// <summary>
+        /// toggles fullscreen change
+        /// </summary>
+        /// <param name="oldIsFullscreen">if the current state is non-borderless fullscreen</param>
         private void ApplyFullscreenChange(bool oldIsFullscreen)
         {
             if (_isFullscreen)
@@ -63,12 +79,18 @@ namespace TEMEliminatesMonsters
                 UnsetFullscreen();
             }
         }
+        /// <summary>
+        /// applies a hardware switch to the game's graphics
+        /// </summary>
         private void ApplyHardwareMode()
         {
             _graphics.HardwareModeSwitch = !_isBorderless;
             _graphics.ApplyChanges();
         }
         
+        /// <summary>
+        /// sets the game to fullscreen
+        /// </summary>
         private void SetFullscreen()
         {
             _width = _window.ClientBounds.Width;
@@ -81,6 +103,10 @@ namespace TEMEliminatesMonsters
             _graphics.IsFullScreen = true;
             _graphics.ApplyChanges();
         }
+
+        /// <summary>
+        /// removes fulscreen
+        /// </summary>
         private void UnsetFullscreen()
         {
             _graphics.PreferredBackBufferWidth = _width;

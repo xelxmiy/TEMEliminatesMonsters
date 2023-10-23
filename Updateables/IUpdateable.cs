@@ -9,8 +9,15 @@ namespace TEMEliminatesMonsters.Updateables
 {
     public interface IUpdateable
     {
+        /// <summary>
+        /// Runs every frame, updates objects
+        /// </summary>
+        /// <param name="gameTime">Game uptime</param>
         public abstract void Update(GameTime gameTime);
 
+        /// <summary>
+        /// adds this objects to the UpdateableManager so it can be updated
+        /// </summary>
         public void AddSelfToUpdateables() 
         {
             UpdateableManager.Updateables.Add(this);

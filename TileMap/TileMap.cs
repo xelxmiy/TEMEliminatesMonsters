@@ -13,16 +13,33 @@ namespace TEMEliminatesMonsters.TileMap
 
         public Tile[,] _tileMap;
 
+        /// <summary>
+        /// creates a new tilemap without a set tile
+        /// </summary>
+        /// <param name="length">length of tilemap</param>
+        /// <param name="width">width of tilemap</param>
         public TileMap(int length, int width) : this(null, length, width) { }
-
+        /// <summary>
+        /// Creates a new Tilemap from a Tile Grid
+        /// </summary>
+        /// <param name="tileMap"></param>
         public TileMap(Tile[,] tileMap) => _tileMap = tileMap;
 
+        /// <summary>
+        /// Creates a new Tilemap
+        /// </summary>
+        /// <param name="singleTileTexture">Tile this tilemap is made of</param>
+        /// <param name="length">length of tilemap</param>
+        /// <param name="width">width of tilemap</param>
         public TileMap(Texture2D singleTileTexture, int length, int width) 
         {
             _tileMap = new Tile[length,width];
             InitializeTileMap(singleTileTexture);   
         }
-
+        /// <summary>
+        /// Initialized the tiles in the tilemap
+        /// </summary>
+        /// <param name="tiles">the tile this tilemap is composed of</param>
         private void InitializeTileMap(Texture2D tiles = null) 
         {
             tiles ??= TEM.Instance.Tiles["Metal-1-1"];
@@ -36,7 +53,10 @@ namespace TEMEliminatesMonsters.TileMap
                 }
             }  
         }
-
+        /// <summary>
+        /// draws this tilemap to the screen
+        /// </summary>
+        /// <param name="spriteBatch">the SpriteBatch responsible for drawing</param>
         public void Render(SpriteBatch spriteBatch) 
         {
             foreach (Tile tile in _tileMap) 

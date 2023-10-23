@@ -11,6 +11,10 @@ namespace TEMEliminatesMonsters.Updateables
     {
         public static List<IUpdateable> Updateables { get; set; } = new();
 
+        /// <summary>
+        /// Runs every frame, updates all Updateable objects
+        /// </summary>
+        /// <param name="gameTime">Game uptime</param>
         public static void UpdateAll(GameTime gameTime) 
         {
             foreach (IUpdateable updateable in Updateables) 
