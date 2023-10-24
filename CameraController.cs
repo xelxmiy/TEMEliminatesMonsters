@@ -12,7 +12,9 @@ namespace TEMEliminatesMonsters
 {
     internal class CameraController : Updateables.IUpdateable
     {
-        private const float MovementSpeed = 50f;
+        private const float _baseMovementSpeed = 150f;
+
+        private float _movementSpeed;
 
         private int _previousMouseX, _previousMouseY;
 
@@ -29,8 +31,9 @@ namespace TEMEliminatesMonsters
         /// <param name="camera">Camera object</param>
         /// <param name="minZoom">Maximum screen zoom for this camera</param>
         /// <param name="maxZoom">Minimum screen zoom for this camera</param>
-        public CameraController(OrthographicCamera camera, int minZoom = 1, int maxZoom = 10)
+        public CameraController(OrthographicCamera camera, int minZoom = 1, int maxZoom = 5)
         {
+            _movementSpeed = _baseMovementSpeed;
             _camera = camera;
             _camera.MaximumZoom = maxZoom;
             _camera.MinimumZoom = minZoom;
@@ -51,9 +54,13 @@ namespace TEMEliminatesMonsters
         {
             state = Mouse.GetState();
 
+            Debug.WriteLineIf(state.ScrollWheelValue - _previousScrollValue != 0, $"{state.ScrollWheelValue - _previousScrollValue}");
+
+            Debug.WriteLine(_camera.Zoom);
+
             if (state.RightButton == ButtonState.Pressed)
             {
-                _camera.Move(GetMovementDirection() * MovementSpeed * gameTime.GetElapsedSeconds());
+                _camera.Move(GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds());
             }
             if (state.ScrollWheelValue != _previousScrollValue)
             {
@@ -71,10 +78,11 @@ namespace TEMEliminatesMonsters
         /// <param name="value">The Amount to zoom in</param>
         private void Zoom(float value)
         {
-            value = value / 360f + 1;
-            if (value >= _camera.MinimumZoom && value <= _camera.MaximumZoom)
+            value /= 960;
+            if ((_camera.Zoom + value) <= _camera.MaximumZoom && (_camera.Zoom + value) >= _camera.MinimumZoom)
             {
-                _camera.Zoom = value;
+                _camera.Zoom += value;
+                _movementSpeed = _baseMovementSpeed / _camera.Zoom;
             }
         }
 
