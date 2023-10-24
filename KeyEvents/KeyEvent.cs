@@ -10,11 +10,18 @@ namespace TEMEliminatesMonsters.KeyEvents
     {
         private event Action @event;
 
+        /// <summary>
+        /// invokes the encapsulated event
+        /// </summary>
         public void Invoke()
         {
             @event?.Invoke();
         }
 
+        /// <summary>
+        /// returns a refrence to the encapsulated event
+        /// </summary>
+        /// <returns></returns>
         public ref Action GetEvent() 
         {
             return ref @event;

@@ -10,11 +10,18 @@ namespace TEMEliminatesMonsters.KeyEvents
     {
         KeyboardState _currentKeyState, _previousKeyState;
 
+        /// <summary>
+        /// Creates a KeyboardEventChecker
+        /// </summary>
         public KeyboardEventChecker() 
         {
             (this as Updateables.IUpdateable).AddSelfToUpdateables();
         }
 
+        /// <summary>
+        /// returns the current keyboard state and updates the previous and current key states
+        /// </summary>
+        /// <returns>The current keyboard state</returns>
         public KeyboardState GetState()
         {
             _previousKeyState = _currentKeyState;
@@ -22,15 +29,29 @@ namespace TEMEliminatesMonsters.KeyEvents
             return _currentKeyState;
         }
 
+        /// <summary>
+        /// returns if the provided key is pressed
+        /// </summary>
+        /// <param name="key">Key to check against</param>
+        /// <returns>If the provided key is pressed</returns>
         public bool IsPressed(Keys key)
         {
             return _currentKeyState.IsKeyDown(key);
         }
 
+        /// <summary>
+        /// returns if the key was pressed this frame
+        /// </summary>
+        /// <param name="key">Key to check against</param>
+        /// <returns>if the key was pressed this frame</returns>
         public bool HasBeenPressed(Keys key)
         {
             return _currentKeyState.IsKeyDown(key) && !_previousKeyState.IsKeyDown(key);
         }
+        /// <summary>
+        /// Checks against all keys to see which keys have been pressed this frame and invokes the corresponding events
+        /// </summary>
+        /// <param name="gameTime">The current gametime</param>
         public void Update(GameTime gameTime)
         {
             GetState();

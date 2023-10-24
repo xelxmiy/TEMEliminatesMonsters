@@ -23,7 +23,12 @@ namespace TEMEliminatesMonsters
         public static MouseState state;
         public static Vector2 MousePosition { get { return new Vector2(state.X, state.Y); } }
 
-
+        /// <summary>
+        /// Creates a new CameraController
+        /// </summary>
+        /// <param name="camera">Camera object</param>
+        /// <param name="minZoom">Maximum screen zoom for this camera</param>
+        /// <param name="maxZoom">Minimum screen zoom for this camera</param>
         public CameraController(OrthographicCamera camera, int minZoom = 1, int maxZoom = 10)
         {
             _camera = camera;
@@ -38,11 +43,13 @@ namespace TEMEliminatesMonsters
             };
         }
 
+        /// <summary>
+        /// Updates the cameras position based on the mouse movement
+        /// </summary>
+        /// <param name="gameTime">The current gametime</param>
         public void Update(GameTime gameTime)
         {
             state = Mouse.GetState();
-
-            //Debug.WriteLine($"Camera Pos {_camera.Center} Camera Zoom: {_camera.Zoom}");
 
             if (state.RightButton == ButtonState.Pressed)
             {
@@ -50,21 +57,25 @@ namespace TEMEliminatesMonsters
             }
             if (state.ScrollWheelValue != _previousScrollValue)
             {
-                Zoom(state.ScrollWheelValue);
+                Zoom(state.ScrollWheelValue - _previousScrollValue);
             }
             _previousMouseX = (int)MousePosition.X;
             _previousMouseY = (int)MousePosition.Y;
             _previousScrollValue = state.ScrollWheelValue;
-            
+
         }
 
+        /// <summary>
+        /// Zooms in/out
+        /// </summary>
+        /// <param name="value">The Amount to zoom in</param>
         private void Zoom(float value)
         {
             value = value / 360f + 1;
             if (value >= _camera.MinimumZoom && value <= _camera.MaximumZoom)
             {
                 _camera.Zoom = value;
-            }           
+            }
         }
 
         /// <summary>
