@@ -35,7 +35,7 @@ namespace TEMEliminatesMonsters
         public TEM()
         {
             _graphics = new GraphicsDeviceManager(this);
-            
+
             Content.RootDirectory = "Content";
 
             IsMouseVisible = true;
@@ -67,13 +67,13 @@ namespace TEMEliminatesMonsters
 
             InitializeKeyEvents();
 
-            _map = new(Tiles["Metal_Blocked-1-1"], 10, 10);
+            _map = new(Tiles["Metal-1-1"], 3, 10, 10);
         }
 
         /// <summary>
         /// Adds methods to key press events
         /// </summary>
-        public void InitializeKeyEvents() 
+        public void InitializeKeyEvents()
         {
             KeyboardEventManager.GetEvent(Keys.F11) += GoFullScreen;
         }

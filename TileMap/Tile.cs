@@ -7,6 +7,8 @@ namespace TEMEliminatesMonsters.TileMap
 {
     public class Tile
     {
+        public static readonly float _GlobalTileSizeModifier = 2f;
+
         public Texture2D _texture;
 
         public Vector2 _position;
@@ -32,9 +34,9 @@ namespace TEMEliminatesMonsters.TileMap
         {
             if (_texture == null) 
             {
-                throw new NullReferenceException($"{this} Encounterd Issue: Texture is null!");
+                return;
             }
-            spriteBatch.Draw(_texture, _position*3, null, Color.White, 0f, new(0, 0), new Vector2(3), SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, _position*_GlobalTileSizeModifier, null, Color.White, 0f, new(0, 0), new Vector2(_GlobalTileSizeModifier), SpriteEffects.None, 0f);
         }
 
         /// <summary>
