@@ -1,18 +1,14 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Tiled;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TEMEliminatesMonsters.TileMap
 {
     public class TileMap
     {
 
-        public Tile[][,] _tileGrid;
+        private Tile[][,] _tileGrid;
+
+        private const int _tileSize = 32;
 
         /// <summary>
         /// creates a new tilemap without a set tile
@@ -52,36 +48,73 @@ namespace TEMEliminatesMonsters.TileMap
         /// <param name="tiles">the tile this tilemap is composed of</param>
         private void InitializeTileMap(Texture2D tiles = null)
         {
-            tiles ??= TEM.Instance.Tiles["Metal-1-1"];
+            tiles ??= TEM.Instance.Tiles["Metal-1-1"]; // 
             //intialize all tiles
-            int id = 0;            
-            foreach (Tile[,] allLayers in _tileGrid) 
+            int id = 0;
+            foreach (Tile[,] allLayers in _tileGrid)
             {
                 for (int l = 0; l < allLayers.GetLength(0); l++)
                 {
                     for (int w = 0; w < allLayers.GetLength(1); w++)
                     {
-                        allLayers[l, w] = new(null, new(l * 32, w * 32), id);
+                        allLayers[l, w] = new(null, new(l * _tileSize, w * _tileSize), id);
                         id++;
                     }
                 }
             }
             //initialize base layer
-            Tile[,] baseLayer = _tileGrid[0];
+            Tile[,] baseLayer = GetTileLayer(0);
             for (int l = 0; l < baseLayer.GetLength(0); l++)
             {
                 for (int w = 0; w < baseLayer.GetLength(1); w++)
                 {
-                    baseLayer[l, w] = new(tiles, new(l * 32, w * 32), id);
-                    id++;
+                    baseLayer[l, w] = new(tiles, new(l * 32, w * 32));
                 }
             }
         }
 
         /// <summary>
-        /// draws this tilemap to the screen
+        /// Returns a layer of the tilemap
         /// </summary>
-        /// <param name="spriteBatch">the SpriteBatch responsible for drawing</param>
+        /// <param name="layer">Layer number</param>
+        /// <returns>A layer of the tilemap</returns>
+        /// <exception cref="IndexOutOfRangeException">Occurs on Invalid layers</exception>
+        public Tile[,] GetTileLayer(int layer) 
+        {
+            if (layer >= _tileGrid.Length || layer < 0) 
+            {
+                throw new IndexOutOfRangeException($"{nameof(layer)} cannot be less than 0 or greater than {_tileGrid.Length -1}!");
+            }
+            return _tileGrid[layer];
+        }
+        /// <summary>
+        /// Replaces the Texture tile in the tilegrid
+        /// </summary>
+        /// <param name="texture">Texture replacement</param>
+        /// <param name="layer">Layer of replaced tile</param>
+        /// <param name="x">x of replaced tile</param>
+        /// <param name="y">y of replaced tile</param>
+        public void SetTile(Texture2D texture, int layer, int x, int y) 
+        {
+            _tileGrid[layer][x,y]._texture = texture;
+        }
+
+        /// <summary>
+        /// Replaces a tile in the tilegrid
+        /// </summary>
+        /// <param name="tile">Tile replacement</param>
+        /// <param name="layer">layer of replaced tile</param>
+        /// <param name="x">x of replaced tile</param>
+        /// <param name="y">y of replaced tile</param>
+        public void SetTile(Tile tile, int layer, int x, int y) 
+        {
+            _tileGrid[layer][x,y] = tile;
+        }
+
+        /// <summary>
+        /// Draws this tilemap to the screen
+        /// </summary>
+        /// <param name="spriteBatch">The SpriteBatch responsible for drawing</param>
         public void Render(SpriteBatch spriteBatch)
         {
             foreach (Tile[,] tileLayer in _tileGrid)

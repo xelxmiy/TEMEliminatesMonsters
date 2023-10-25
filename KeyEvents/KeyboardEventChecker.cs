@@ -1,14 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using TEMEliminatesMonsters.Updateables;
 
 namespace TEMEliminatesMonsters.KeyEvents
 {
     public class KeyboardEventChecker : Updateables.IUpdateable
     {
-        KeyboardState _currentKeyState, _previousKeyState;
+        private KeyboardState _currentKeyState, _previousKeyState;
+
+        private readonly List<Keys> _allKeys;
 
         /// <summary>
         /// Creates a KeyboardEventChecker
@@ -16,6 +20,8 @@ namespace TEMEliminatesMonsters.KeyEvents
         public KeyboardEventChecker() 
         {
             (this as Updateables.IUpdateable).AddSelfToUpdateables();
+            _allKeys = ((Keys[])Enum.GetValues(typeof(Keys))).ToList();
+            
         }
 
         /// <summary>
@@ -55,12 +61,12 @@ namespace TEMEliminatesMonsters.KeyEvents
         public void Update(GameTime gameTime)
         {
             GetState();
-            foreach (Keys key in Enum.GetValues(typeof(Keys)))
+            foreach (Keys key in _allKeys)
             {
                 if (HasBeenPressed(key))
                 {
                     KeyboardEventManager.GetEvent(key)?.Invoke();
-                    Debug.WriteLine($"{key} event Invoked!");
+                    Debug.WriteLine($"{key} _event Invoked!");
                 }
             }
         }

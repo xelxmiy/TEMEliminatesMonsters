@@ -13,7 +13,7 @@ namespace TEMEliminatesMonsters.TileMap
 
         public Vector2 _position;
 
-        private int? _id;
+        private readonly int? _id;
         /// <summary>
         /// initializes this tile
         /// </summary>
@@ -24,6 +24,7 @@ namespace TEMEliminatesMonsters.TileMap
         {
             _texture = texture;
             _position = position;
+            ID ??= _id;
             _id = ID;
         }
         /// <summary>
@@ -45,8 +46,9 @@ namespace TEMEliminatesMonsters.TileMap
         /// <returns>returns the tile's Id</returns>
         public override string ToString() 
         {
+            if (_id == null)
+                return $"Tile ID not set! Falback: {base.ToString()}";
             return "Tile" + _id ;
         }
-
     }
 }

@@ -20,7 +20,7 @@ namespace TEMEliminatesMonsters
 
         private int _previousScrollValue;
 
-        private OrthographicCamera _camera;
+        private readonly OrthographicCamera _camera;
 
         public static MouseState state;
         public static Vector2 MousePosition { get { return new Vector2(state.X, state.Y); } }

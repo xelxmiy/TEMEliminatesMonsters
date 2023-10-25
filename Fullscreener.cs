@@ -11,8 +11,8 @@ namespace TEMEliminatesMonsters
         bool _isBorderless = false;
         int _width = 0;
         int _height = 0;
-        GraphicsDeviceManager _graphics;
-        GameWindow _window;
+        private readonly GraphicsDeviceManager _graphics;
+        private readonly GameWindow _window;
 
         /// <summary>
         /// initializes the Fullscreener

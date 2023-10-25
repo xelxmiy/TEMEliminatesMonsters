@@ -14,18 +14,20 @@ namespace TEMEliminatesMonsters
 {
     public class TEM : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private CameraController _cameraController;
         private OrthographicCamera _camera;
         private Fullscreener _fullscreener;
+        private TileMap.TileMap _map;
 
         public Texture2D _zombie;
-        public KeyboardEventChecker _keyEventChecker;
-        public TileMap.TileMap _map;
         public Vector2 _zombiePosition;
-
         public Dictionary<string, Texture2D> Tiles = new();
+        public int _tileMapSize = 64;
+       
+
+        public static KeyboardEventChecker _keyEventChecker;
 
         public static TEM Instance { get; private set; }
 
@@ -60,18 +62,18 @@ namespace TEMEliminatesMonsters
             _keyEventChecker = new();
             _fullscreener = new(_graphics, Window);
             _zombiePosition = new();
-            BoxingViewportAdapter viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1920, 1080);
+            BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, 1920, 1080);
 
             _camera = new OrthographicCamera(viewportAdapter);
             _cameraController = new(_camera);
 
             InitializeKeyEvents();
 
-            _map = new(Tiles["Metal-1-1"], 3, 10, 10);
+            _map = new(Tiles["Metal-1-1"], 3, _tileMapSize, _tileMapSize);
         }
 
         /// <summary>
-        /// Adds methods to key press events
+        /// Adds methods to key press events 
         /// </summary>
         public void InitializeKeyEvents()
         {
