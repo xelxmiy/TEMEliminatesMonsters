@@ -70,7 +70,7 @@ namespace TEMEliminatesMonsters
 
             InitializeKeyEvents();
 
-            _map = new(Tiles[$"{TileTextures.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
+            _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
         }
 
         /// <summary>
@@ -91,9 +91,10 @@ namespace TEMEliminatesMonsters
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
-            {
+            { 
                 Debug.WriteLine(file);
-                Texture2D texture = Content.Load<Texture2D>(file);
+                string s = "Tiles\\" + file;
+                Texture2D texture = Content.Load<Texture2D>(s);
                 Tiles.Add(file, texture);
             }
         }

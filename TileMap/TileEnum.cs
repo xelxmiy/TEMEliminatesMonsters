@@ -9,7 +9,7 @@ namespace TEMEliminatesMonsters.TileMap
 
     //this enum is so i can load Maps from a file for set maps, and later so i can use it to randomly generate worlds.
     //there's probably a better way to do this as i have to manually add textures to this and name the files the same thing every time
-    public enum TileTextures : uint
+    public enum TileTexture : uint
     {
         Metal_TopLeft = 0,
         Metal_TopMiddle = 1,

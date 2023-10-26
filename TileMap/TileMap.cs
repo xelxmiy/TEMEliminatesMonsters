@@ -48,7 +48,7 @@ namespace TEMEliminatesMonsters.TileMap
         /// <param name="tiles">the tile this tilemap is composed of</param>
         private void InitializeTileMap(Texture2D tiles = null)
         {
-            tiles ??= TEM.Instance.Tiles[$"{TileTextures.Metal_MiddleMiddle}"]; // 
+            tiles ??= TEM.Instance.Tiles[$"{TileTexture.Metal_MiddleMiddle}"]; // 
             //intialize all tiles
             int id = 0;
             foreach (Tile[,] allLayers in _tileGrid)
@@ -69,7 +69,7 @@ namespace TEMEliminatesMonsters.TileMap
                 for (int w = 0; w < baseLayer.GetLength(1); w++)
                 {
 
-                    Texture2D tex = TEM.Instance.Tiles[$"{(TileTextures)Random.Shared.Next(1,18)}"];
+                    Texture2D tex = TEM.Instance.Tiles[$"{(TileTexture)Random.Shared.Next(1,18)}"];
                     baseLayer[l, w] = new(tex, new(l * 32, w * 32));
                 }
             }
