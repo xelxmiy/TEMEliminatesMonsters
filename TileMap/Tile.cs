@@ -13,7 +13,8 @@ namespace TEMEliminatesMonsters.TileMap
 
         public Vector2 _position;
 
-        private readonly int? _id;
+        public readonly int? _id;
+
         /// <summary>
         /// initializes this tile
         /// </summary>

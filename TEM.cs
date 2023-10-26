@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using TEMEliminatesMonsters.KeyEvents;
+using TEMEliminatesMonsters.TileMap;
 using TEMEliminatesMonsters.Updateables;
 
 namespace TEMEliminatesMonsters
@@ -69,7 +70,7 @@ namespace TEMEliminatesMonsters
 
             InitializeKeyEvents();
 
-            _map = new(Tiles["Metal-1-1"], 3, _tileMapSize, _tileMapSize);
+            _map = new(Tiles[$"{TileTextures.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
         }
 
         /// <summary>

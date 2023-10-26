@@ -54,10 +54,6 @@ namespace TEMEliminatesMonsters
         {
             state = Mouse.GetState();
 
-            Debug.WriteLineIf(state.ScrollWheelValue - _previousScrollValue != 0, $"{state.ScrollWheelValue - _previousScrollValue}");
-
-            Debug.WriteLine(_camera.Zoom);
-
             if (state.RightButton == ButtonState.Pressed)
             {
                 _camera.Move(GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds());
