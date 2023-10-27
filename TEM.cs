@@ -71,6 +71,24 @@ namespace TEMEliminatesMonsters
             InitializeKeyEvents();
 
             _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
+
+            _map.SetTile(Tiles[$"{(TileTexture)0}"], 1 ,0 , 0);
+            _map.SetTile(Tiles[$"{(TileTexture)1}"], 1 ,0 , 1);
+            _map.SetTile(Tiles[$"{(TileTexture)2}"], 1 ,0 , 2);
+            _map.SetTile(Tiles[$"{(TileTexture)3}"], 1 ,1 , 0);
+            _map.SetTile(Tiles[$"{(TileTexture)4}"], 1 ,1 , 1);
+            _map.SetTile(Tiles[$"{(TileTexture)5}"], 1 ,1 , 2);
+            _map.SetTile(Tiles[$"{(TileTexture)6}"], 1 ,2 , 0);
+            _map.SetTile(Tiles[$"{(TileTexture)7}"], 1 ,2 , 1);
+            _map.SetTile(Tiles[$"{(TileTexture)8}"], 1 ,2 , 2);
+
+            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,20 , 0);
+            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,20 , 1);
+            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,20 , 2);
+            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,19 , 3);
+            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,21 , 3);
+
+
         }
 
         /// <summary>

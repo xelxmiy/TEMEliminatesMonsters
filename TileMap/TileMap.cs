@@ -69,7 +69,7 @@ namespace TEMEliminatesMonsters.TileMap
                 for (int w = 0; w < baseLayer.GetLength(1); w++)
                 {
 
-                    Texture2D tex = TEM.Instance.Tiles[$"{(TileTexture)Random.Shared.Next(1,18)}"];
+                    Texture2D tex = TEM.Instance.Tiles[$"{TileTexture.Metal_MiddleMiddle}"];
                     baseLayer[l, w] = new(tex, new(l * 32, w * 32));
                 }
             }
