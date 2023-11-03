@@ -1,52 +1,66 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace TEMEliminatesMonsters.TileMap
 {
     public class Tile
     {
+        public static readonly float _GlobalTileSizeModifier = 1f;
+
         public Texture2D _texture;
-
-        private int _width;
-
-        private int _height;
 
         public Vector2 _position;
 
-        private int? _id;
+        public readonly int? _id; 
+        public int _width, _height;
 
-        public Tile(Texture2D texture, Vector2 position, int width, int height, int? ID = null)
+        /// <summary>
+        /// initializes this tile
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="position"></param>
+        /// <param name="ID"></param>
+        public Tile(Texture2D texture, Vector2 position, int? ID = null)
         {
+            ID ??= _id;
+            _id = ID;
             _texture = texture;
-            _width = width;
-            _height = height;
+            if (_texture != null)
+            {
+                _width = _texture.Width;
+                _height = _texture.Height;
+                if (_width != _height) 
+                {
+                    throw new Exception($"Tile width must be equal to length! TILE: {ID }");
+                } 
+            }
             _position = position;
-            this._id = ID;
         }
-
-        public Tile(Texture2D texture, Vector2 position, int? ID = null) : this(texture, position, texture.Width, texture.Height, ID) { }
-
-        public Tile(Texture2D texture, Vector2 position, int size, int? ID = null) : this(texture, position, size, size, ID) { }
-
+        /// <summary>
+        /// draws this tile to the screen
+        /// </summary>
+        /// <param name="spriteBatch">the SpriteBatch responsible for drawing</param>
         public void Render(SpriteBatch spriteBatch)
         {
-            _texture = TEM.Instance._zombie;
             if (_texture == null) 
             {
-                throw new NullReferenceException($"{this} Encounterd Issue: Texture is null!");
+                return;
             }
-            spriteBatch.Draw(_texture, _position, color: default);
+            spriteBatch.Draw(_texture, _position*_GlobalTileSizeModifier, null, Color.White, 0f, new(0, 0), new Vector2(_GlobalTileSizeModifier), SpriteEffects.None, 0f);
         }
 
+        /// <summary>
+        /// returns the Tile's Id
+        /// </summary>
+        /// <returns>returns the tile's Id</returns>
         public override string ToString() 
         {
+            if (_id == null)
+                return $"Tile ID not set! Falback: {base.ToString()}";
             return "Tile" + _id ;
         }
-
     }
 }

@@ -4,9 +4,45 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-2.png</File>
     <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/zombie.png</File>
   </SourceFiles>
   <DestFiles>
+    <File>Metal_Blocked-0-0.png</File>
+    <File>Metal_Blocked-0-1.png</File>
+    <File>Metal_Blocked-0-2.png</File>
+    <File>Metal_Blocked-1-0.png</File>
+    <File>Metal_Blocked-1-1.png</File>
+    <File>Metal_Blocked-1-2.png</File>
+    <File>Metal_Blocked-2-0.png</File>
+    <File>Metal_Blocked-2-1.png</File>
+    <File>Metal_Blocked-2-2.png</File>
+    <File>Metal-0-0.png</File>
+    <File>Metal-0-1.png</File>
+    <File>Metal-0-2.png</File>
+    <File>Metal-1-0.png</File>
+    <File>Metal-1-1.png</File>
+    <File>Metal-1-2.png</File>
+    <File>Metal-2-0.png</File>
+    <File>Metal-2-1.png</File>
+    <File>Metal-2-2.png</File>
     <File>zombie.png</File>
   </DestFiles>
 </SourceFileCollection>

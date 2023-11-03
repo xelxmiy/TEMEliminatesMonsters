@@ -14,10 +14,221 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../Assets/TemTiled/TemMap.tmx
-/importer:
-/processor:
-/build:../Assets/TemTiled/TemMap.tmx;TemMap.tmx
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-0.png;Metal_Blocked-0-0.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-1.png;Metal_Blocked-0-1.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-2.png;Metal_Blocked-0-2.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-0.png;Metal_Blocked-1-0.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-1.png;Metal_Blocked-1-1.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-2.png;Metal_Blocked-1-2.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-0.png;Metal_Blocked-2-0.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-1.png;Metal_Blocked-2-1.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-2.png;Metal_Blocked-2-2.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-0.png;Metal-0-0.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-1.png;Metal-0-1.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-2.png;Metal-0-2.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-0.png;Metal-1-0.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-1.png;Metal-1-1.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-2.png;Metal-1-2.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-0.png;Metal-2-0.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-1.png;Metal-2-1.png
+
+#begin ../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-2.png;Metal-2-2.png
 
 #begin ../Assets/zombie.png
 /importer:TextureImporter

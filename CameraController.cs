@@ -6,63 +6,80 @@ using System;
 using System.Diagnostics;
 using System.DirectoryServices;
 using TEMEliminatesMonsters.KeyEvents;
+using TEMEliminatesMonsters.Updateables;
 
 namespace TEMEliminatesMonsters
 {
-    internal class CameraController
+    internal class CameraController : Updateables.IUpdateable
     {
-        private const float MovementSpeed = 50f;
+        private const float _baseMovementSpeed = 150f;
+
+        private float _movementSpeed;
 
         private int _previousMouseX, _previousMouseY;
 
         private int _previousScrollValue;
 
-        private OrthographicCamera _camera;
+        private readonly OrthographicCamera _camera;
 
         public static MouseState state;
         public static Vector2 MousePosition { get { return new Vector2(state.X, state.Y); } }
 
-
-        public CameraController(OrthographicCamera camera, int minZoom = 1, int maxZoom = 10)
+        /// <summary>
+        /// Creates a new CameraController
+        /// </summary>
+        /// <param name="camera">Camera object</param>
+        /// <param name="minZoom">Maximum screen zoom for this camera</param>
+        /// <param name="maxZoom">Minimum screen zoom for this camera</param>
+        public CameraController(OrthographicCamera camera, int minZoom = 1, int maxZoom = 5)
         {
+            _movementSpeed = _baseMovementSpeed;
             _camera = camera;
             _camera.MaximumZoom = maxZoom;
             _camera.MinimumZoom = minZoom;
             _previousMouseX = Mouse.GetState().X;
             _previousMouseY = Mouse.GetState().Y;
+            (this as Updateables.IUpdateable).AddSelfToUpdateables();
             KeyboardEventManager.GetEvent(Keys.F) += () =>
             {
                 _camera.LookAt(TEM.Instance._zombiePosition);
             };
         }
 
+        /// <summary>
+        /// Updates the cameras position based on the mouse movement
+        /// </summary>
+        /// <param name="gameTime">The current gametime</param>
         public void Update(GameTime gameTime)
         {
             state = Mouse.GetState();
 
-            //Debug.WriteLine($"Camera Pos {_camera.Center} Camera Zoom: {_camera.Zoom}");
-
             if (state.RightButton == ButtonState.Pressed)
             {
-                _camera.Move(GetMovementDirection() * MovementSpeed * gameTime.GetElapsedSeconds());
+                _camera.Move(GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds());
             }
             if (state.ScrollWheelValue != _previousScrollValue)
             {
-                Zoom(state.ScrollWheelValue);
+                Zoom(state.ScrollWheelValue - _previousScrollValue);
             }
             _previousMouseX = (int)MousePosition.X;
             _previousMouseY = (int)MousePosition.Y;
             _previousScrollValue = state.ScrollWheelValue;
-            
+
         }
 
+        /// <summary>
+        /// Zooms in/out
+        /// </summary>
+        /// <param name="value">The Amount to zoom in</param>
         private void Zoom(float value)
         {
-            value = value / 360f + 1;
-            if (value >= _camera.MinimumZoom && value <= _camera.MaximumZoom)
+            value /= 960;
+            if ((_camera.Zoom + value) <= _camera.MaximumZoom && (_camera.Zoom + value) >= _camera.MinimumZoom)
             {
-                _camera.Zoom = value;
-            }           
+                _camera.Zoom += value;
+                _movementSpeed = _baseMovementSpeed / _camera.Zoom;
+            }
         }
 
         /// <summary>
