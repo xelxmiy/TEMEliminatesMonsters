@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using System;
 using System.Diagnostics;
 
@@ -7,13 +8,14 @@ namespace TEMEliminatesMonsters.TileMap
 {
     public class Tile
     {
-        public static readonly float _GlobalTileSizeModifier = 2f;
+        public static readonly float _GlobalTileSizeModifier = 1f;
 
         public Texture2D _texture;
 
         public Vector2 _position;
 
-        public readonly int? _id;
+        public readonly int? _id; 
+        public int _width, _height;
 
         /// <summary>
         /// initializes this tile
@@ -23,10 +25,19 @@ namespace TEMEliminatesMonsters.TileMap
         /// <param name="ID"></param>
         public Tile(Texture2D texture, Vector2 position, int? ID = null)
         {
-            _texture = texture;
-            _position = position;
             ID ??= _id;
             _id = ID;
+            _texture = texture;
+            if (_texture != null)
+            {
+                _width = _texture.Width;
+                _height = _texture.Height;
+                if (_width != _height) 
+                {
+                    throw new Exception($"Tile width must be equal to length! TILE: {ID }");
+                } 
+            }
+            _position = position;
         }
         /// <summary>
         /// draws this tile to the screen

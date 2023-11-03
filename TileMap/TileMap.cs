@@ -1,5 +1,10 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace TEMEliminatesMonsters.TileMap
 {
@@ -70,7 +75,7 @@ namespace TEMEliminatesMonsters.TileMap
                 {
 
                     Texture2D tex = TEM.Instance.Tiles[$"{TileTexture.Metal_MiddleMiddle}"];
-                    baseLayer[l, w] = new(tex, new(l * 32, w * 32));
+                    baseLayer[l, w] = new(tex, new(l * _tileSize, w * _tileSize));
                 }
             }
         }
@@ -81,11 +86,11 @@ namespace TEMEliminatesMonsters.TileMap
         /// <param name="layer">Layer number</param>
         /// <returns>A layer of the tilemap</returns>
         /// <exception cref="IndexOutOfRangeException">Occurs on Invalid layers</exception>
-        public Tile[,] GetTileLayer(int layer) 
+        public Tile[,] GetTileLayer(int layer)
         {
-            if (layer >= _tileGrid.Length || layer < 0) 
+            if (layer >= _tileGrid.Length || layer < 0)
             {
-                throw new IndexOutOfRangeException($"{nameof(layer)} cannot be less than 0 or greater than {_tileGrid.Length -1}!");
+                throw new IndexOutOfRangeException($"{nameof(layer)} cannot be less than 0 or greater than {_tileGrid.Length - 1}!");
             }
             return _tileGrid[layer];
         }
@@ -96,9 +101,9 @@ namespace TEMEliminatesMonsters.TileMap
         /// <param name="layer">Layer of replaced tile</param>
         /// <param name="x">x of replaced tile</param>
         /// <param name="y">y of replaced tile</param>
-        public void SetTile(Texture2D texture, int layer, int x, int y) 
+        public void SetTile(Texture2D texture, int layer, int x, int y)
         {
-            _tileGrid[layer][x,y]._texture = texture;
+            _tileGrid[layer][x, y]._texture = texture;
         }
 
         /// <summary>
@@ -108,9 +113,9 @@ namespace TEMEliminatesMonsters.TileMap
         /// <param name="layer">layer of replaced tile</param>
         /// <param name="x">x of replaced tile</param>
         /// <param name="y">y of replaced tile</param>
-        public void SetTile(Tile tile, int layer, int x, int y) 
+        public void SetTile(Tile tile, int layer, int x, int y)
         {
-            _tileGrid[layer][x,y] = tile;
+            _tileGrid[layer][x, y] = tile;
         }
 
         /// <summary>
@@ -121,9 +126,20 @@ namespace TEMEliminatesMonsters.TileMap
         {
             foreach (Tile[,] tileLayer in _tileGrid)
             {
-                foreach (Tile tile in tileLayer)
+                //belive it or not, using 'var' is standard for Monogame projects 
+                var cameraBounds = TEM.Instance._camera.BoundingRectangle;
+                var tSize = (_tileSize * Tile._GlobalTileSizeModifier);
+                //calculates all tiles in frame, much faster than culling not in frame tiles for large (1000*1000) size boards
+                for (int x = (int)Math.Floor(cameraBounds.X / tSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tSize); x++)
                 {
-                    tile.Render(spriteBatch);
+                    for (int y = (int)Math.Floor(cameraBounds.Y / tSize); y <= (int)Math.Floor((cameraBounds.Height + cameraBounds.Y) / tSize); y++)
+                    {
+                        if (x >= 0 && x <= tileLayer.GetLength(0) -1 && y >= 0 && y <= tileLayer.GetLength(1) -1)
+                        {
+                            
+                            tileLayer[x, y].Render(spriteBatch);
+                        }
+                    }
                 }
             }
         }

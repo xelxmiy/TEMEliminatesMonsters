@@ -18,14 +18,14 @@ namespace TEMEliminatesMonsters
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private CameraController _cameraController;
-        private OrthographicCamera _camera;
         private Fullscreener _fullscreener;
         private TileMap.TileMap _map;
 
+        public OrthographicCamera _camera;
         public Texture2D _zombie;
         public Vector2 _zombiePosition;
         public Dictionary<string, Texture2D> Tiles = new();
-        public int _tileMapSize = 64;
+        public int _tileMapSize = 2048;
        
 
         public static KeyboardEventChecker _keyEventChecker;
@@ -81,13 +81,6 @@ namespace TEMEliminatesMonsters
             _map.SetTile(Tiles[$"{(TileTexture)6}"], 1 ,2 , 0);
             _map.SetTile(Tiles[$"{(TileTexture)7}"], 1 ,2 , 1);
             _map.SetTile(Tiles[$"{(TileTexture)8}"], 1 ,2 , 2);
-
-            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,20 , 0);
-            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,20 , 1);
-            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,20 , 2);
-            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,19 , 3);
-            _map.SetTile(Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"], 1 ,21 , 3);
-
 
         }
 
