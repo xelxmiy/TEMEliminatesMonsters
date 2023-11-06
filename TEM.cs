@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using TEMEliminatesMonsters.KeyEvents;
 using TEMEliminatesMonsters.TileMap;
+using TEMEliminatesMonsters.TileMap.Tiles;
 using TEMEliminatesMonsters.Updateables;
 
 namespace TEMEliminatesMonsters
@@ -25,7 +26,7 @@ namespace TEMEliminatesMonsters
         public Texture2D _zombie;
         public Vector2 _zombiePosition;
         public Dictionary<string, Texture2D> Tiles = new();
-        public int _tileMapSize = 2048;
+        public int _tileMapSize = 32;
        
 
         public static KeyboardEventChecker _keyEventChecker;
@@ -72,15 +73,16 @@ namespace TEMEliminatesMonsters
 
             _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
 
-            _map.SetTile(Tiles[$"{(TileTexture)0}"], 1 ,0 , 0);
-            _map.SetTile(Tiles[$"{(TileTexture)1}"], 1 ,0 , 1);
-            _map.SetTile(Tiles[$"{(TileTexture)2}"], 1 ,0 , 2);
-            _map.SetTile(Tiles[$"{(TileTexture)3}"], 1 ,1 , 0);
-            _map.SetTile(Tiles[$"{(TileTexture)4}"], 1 ,1 , 1);
-            _map.SetTile(Tiles[$"{(TileTexture)5}"], 1 ,1 , 2);
-            _map.SetTile(Tiles[$"{(TileTexture)6}"], 1 ,2 , 0);
-            _map.SetTile(Tiles[$"{(TileTexture)7}"], 1 ,2 , 1);
-            _map.SetTile(Tiles[$"{(TileTexture)8}"], 1 ,2 , 2);
+            //this won't be done like this in reality, this is just for testing
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)0}"], new(0, 0)), 0, 0 ,0);
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)1}"], new(1, 0)), 0, 1 ,0);
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)2}"], new(2, 0)), 0, 2, 0);
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)3}"], new(0, 1)), 0, 0, 1);
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)4}"], new(1, 1)), 0, 1, 1);
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)5}"], new(2, 1)), 0, 2, 1);
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)6}"], new(0, 2)), 0, 0, 2);
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)7}"], new(1, 2)), 0, 1, 2);
+            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)8}"], new(2, 2)), 0, 2, 2);
 
         }
 

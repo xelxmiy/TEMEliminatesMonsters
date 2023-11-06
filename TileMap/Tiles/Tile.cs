@@ -4,9 +4,9 @@ using MonoGame.Extended;
 using System;
 using System.Diagnostics;
 
-namespace TEMEliminatesMonsters.TileMap
+namespace TEMEliminatesMonsters.TileMap.Tiles
 {
-    public class Tile
+    public abstract class Tile
     {
         public static readonly float _GlobalTileSizeModifier = 1f;
 
@@ -14,7 +14,8 @@ namespace TEMEliminatesMonsters.TileMap
 
         public Vector2 _position;
 
-        public readonly int? _id; 
+        public readonly int? _id;
+
         public int _width, _height;
 
         /// <summary>
@@ -32,10 +33,10 @@ namespace TEMEliminatesMonsters.TileMap
             {
                 _width = _texture.Width;
                 _height = _texture.Height;
-                if (_width != _height) 
+                if (_width != _height)
                 {
-                    throw new Exception($"Tile width must be equal to length! TILE: {ID }");
-                } 
+                    throw new Exception($"Tile width must be equal to length! TILE: {ID}");
+                }
             }
             _position = position;
         }
@@ -45,22 +46,22 @@ namespace TEMEliminatesMonsters.TileMap
         /// <param name="spriteBatch">the SpriteBatch responsible for drawing</param>
         public void Render(SpriteBatch spriteBatch)
         {
-            if (_texture == null) 
+            if (_texture == null)
             {
                 return;
             }
-            spriteBatch.Draw(_texture, _position*_GlobalTileSizeModifier, null, Color.White, 0f, new(0, 0), new Vector2(_GlobalTileSizeModifier), SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, _position * _GlobalTileSizeModifier, null, Color.White, 0f, new(0, 0), new Vector2(_GlobalTileSizeModifier), SpriteEffects.None, 0f);
         }
 
         /// <summary>
         /// returns the Tile's Id
         /// </summary>
         /// <returns>returns the tile's Id</returns>
-        public override string ToString() 
+        public override string ToString()
         {
             if (_id == null)
                 return $"Tile ID not set! Falback: {base.ToString()}";
-            return "Tile" + _id ;
+            return "Tile" + _id;
         }
     }
 }
