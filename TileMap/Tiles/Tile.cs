@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace TEMEliminatesMonsters.TileMap.Tiles
 {
@@ -61,7 +62,7 @@ namespace TEMEliminatesMonsters.TileMap.Tiles
         {
             if (_id == null)
                 return $"Tile ID not set! Falback: {base.ToString()}";
-            return "Tile" + _id;
+            return $"Tile {_id} has texture {_texture.Name} and is a {GetType().Name}";
         }
     }
 }

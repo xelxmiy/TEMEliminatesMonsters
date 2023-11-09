@@ -74,16 +74,7 @@ namespace TEMEliminatesMonsters
             _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
 
             //this won't be done like this in reality, this is just for testing
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)0}"], new(0, 0)), 0, 0 ,0);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)1}"], new(1, 0)), 0, 1 ,0);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)2}"], new(2, 0)), 0, 2, 0);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)3}"], new(0, 1)), 0, 0, 1);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)4}"], new(1, 1)), 0, 1, 1);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)5}"], new(2, 1)), 0, 2, 1);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)6}"], new(0, 2)), 0, 0, 2);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)7}"], new(1, 2)), 0, 1, 2);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)8}"], new(2, 2)), 0, 2, 2);
-
+            _map.SetTile(new SolidTile(Tiles[$"{(TileTexture)0}"], new(0, 0)), 1, 0 ,0);
         }
 
         /// <summary>

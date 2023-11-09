@@ -19,9 +19,9 @@ namespace TEMEliminatesMonsters.TileMap
         /// <summary>
         /// creates a new tilemap without a set tile
         /// </summary>
-        /// <param name="length">length of tilemap</param>
         /// <param name="width">width of tilemap</param>
-        public TileMap(int length, int width) : this(null, 1, length, width) { }
+        /// <param name="width">width of tilemap</param>
+        public TileMap(int width, int height) : this(null, 1, width, height) { }
         /// <summary>
         /// Creates a new Tilemap from a Tile Grid
         /// </summary>
@@ -32,9 +32,9 @@ namespace TEMEliminatesMonsters.TileMap
         /// Creates a new Tilemap
         /// </summary>
         /// <param name="defaultTexture">Tile this tilemap is made of</param>
-        /// <param name="length">length of tilemap</param>
+        /// <param name="length">width of tilemap</param>
         /// <param name="width">width of tilemap</param>
-        public TileMap(Texture2D defaultTexture, int layers, int length, int width)
+        public TileMap(Texture2D defaultTexture, int layers, int width, int height)
         {
             if (!(layers > 0))
             {
@@ -43,7 +43,7 @@ namespace TEMEliminatesMonsters.TileMap
             _tileGrid = new Tile[layers][,];
             for (int i = 0; i < layers; i++)
             {
-                _tileGrid[i] = new Tile[length, width];
+                _tileGrid[i] = new Tile[width, height];
             }
             InitializeTileMap(defaultTexture);
         }
@@ -58,22 +58,22 @@ namespace TEMEliminatesMonsters.TileMap
             int layer = 0;
             foreach (Tile[,] allLayers in _tileGrid)
             { 
-                for (int l = 0; l < allLayers.GetLength(0); l++)
+                for (int w = 0; w < allLayers.GetLength(0); w++)
                 {
-                    for (int w = 0; w < allLayers.GetLength(1); w++)
+                    for (int h = 0; h < allLayers.GetLength(1); h++)
                     {
-                        allLayers[l, w] = new SolidTile(null, new(l * _tileSize, w * _tileSize), Convert.ToInt32($"{layer:000}{l:000}{w:000}", 16));
+                        allLayers[w, h] = new SolidTile(null, new(w * _tileSize, h * _tileSize), Convert.ToInt32($"{layer:000}{w:000}{h:000}", 16));
                     }
                 }
                 layer++;
             }
-            //initia
+            //initialize base layer
             Tile[,] baseLayer = GetTileLayer(0);
-            for (int l = 0; l < baseLayer.GetLength(0); l++)
+            for (int w = 0; w < baseLayer.GetLength(0); w++)
             {
-                for (int w = 0; w < baseLayer.GetLength(1); w++)
+                for (int h = 0; h < baseLayer.GetLength(1); h++)
                 {
-                    baseLayer[l, w] = new GroundTile(defaultTexture, new(l * _tileSize, w * _tileSize), Convert.ToInt32($"000{l:000}{w:000}",16)) ;
+                    baseLayer[w, h] = new GroundTile(defaultTexture, new(w * _tileSize, h * _tileSize), Convert.ToInt32($"000{w:000}{h:000}",16)) ;
                 }
             }
         }
@@ -97,17 +97,17 @@ namespace TEMEliminatesMonsters.TileMap
         /// </summary>
         /// <param name="texture">Texture replacement</param>
         /// <param name="layer">Layer of replaced tile</param>
-        /// <param name="x">x of replaced tile</param>
-        /// <param name="y">y of replaced tile</param>
-        public void SetTile(Texture2D texture, int layer, int x, int y)
+        /// <param name="w">w of replaced tile</param>
+        /// <param name="h">h of replaced tile</param>
+        public void SetTile(Texture2D texture, int layer, int w, int h)
         {
-            if (_tileGrid[layer][x, y] != null)
+            if (_tileGrid[layer][w, h] != null)
             {
-                _tileGrid[layer][x, y]._texture = texture;
+                _tileGrid[layer][w, h]._texture = texture;
             }
             else 
             {
-                Debug.WriteLine($"TILE AT {layer},  {x} , {y} IS NULL, CANNOT SET TILE");
+                Debug.WriteLine($"TILE AT {layer},  {w} , {h} IS NULL, CANNOT SET TILE");
             }
         }
 
@@ -116,11 +116,11 @@ namespace TEMEliminatesMonsters.TileMap
         /// </summary>
         /// <param name="tile">Tile replacement</param>
         /// <param name="layer">layer of replaced tile</param>
-        /// <param name="x">x of replaced tile</param>
-        /// <param name="y">y of replaced tile</param>
-        public void SetTile(Tile tile, int layer, int x, int y)
+        /// <param name="w">w of replaced tile</param>
+        /// <param name="h">h of replaced tile</param>
+        public void SetTile(Tile tile, int layer, int w, int h)
         {
-            _tileGrid[layer][x, y] = tile;
+            _tileGrid[layer][w, h] = tile;
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace TEMEliminatesMonsters.TileMap
                     {
                         if (x >= 0 && x <= tileLayer.GetLength(0) - 1 && y >= 0 && y <= tileLayer.GetLength(1) - 1)
                         {
-                            tileLayer[x, y]?.Render(spriteBatch);
+                            tileLayer[x, y].Render(spriteBatch);
                         }
                     }
                 }
