@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[3.8.0, )"
             },
+            "MonoGame.Extended.Collisions": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
             "MonoGame.Extended.Content.Pipeline": {
               "target": "Package",
               "version": "[3.8.0, )"
