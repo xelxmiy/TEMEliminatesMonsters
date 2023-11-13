@@ -1,10 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using TEMEliminatesMonsters.TileMap.Tiles;
 
 namespace TEMEliminatesMonsters.TileMap
@@ -14,7 +10,7 @@ namespace TEMEliminatesMonsters.TileMap
 
         private Tile[][,] _tileGrid;
 
-        private const int _tileSize = 32;
+        public static readonly int _tileSize = 32;
 
         /// <summary>
         /// creates a new tilemap without a set tile
@@ -55,25 +51,13 @@ namespace TEMEliminatesMonsters.TileMap
         private void InitializeTileMap(Texture2D defaultTexture = null)
         {
             defaultTexture ??= TEM.Instance.Tiles[$"{TileTexture.Metal_MiddleMiddle}"];
-            int layer = 0;
-            foreach (Tile[,] allLayers in _tileGrid)
-            { 
-                for (int w = 0; w < allLayers.GetLength(0); w++)
-                {
-                    for (int h = 0; h < allLayers.GetLength(1); h++)
-                    {
-                        allLayers[w, h] = new SolidTile(null, new(w * _tileSize, h * _tileSize), Convert.ToInt32($"{layer:000}{w:000}{h:000}", 16));
-                    }
-                }
-                layer++;
-            }
             //initialize base layer
             Tile[,] baseLayer = GetTileLayer(0);
             for (int w = 0; w < baseLayer.GetLength(0); w++)
             {
                 for (int h = 0; h < baseLayer.GetLength(1); h++)
                 {
-                    baseLayer[w, h] = new GroundTile(defaultTexture, new(w * _tileSize, h * _tileSize), Convert.ToInt32($"000{w:000}{h:000}",16)) ;
+                    baseLayer[w, h] = new GroundTile(defaultTexture, w , h , Convert.ToInt32($"000{w:000}{h:000}",16)) ;
                 }
             }
         }
@@ -92,6 +76,7 @@ namespace TEMEliminatesMonsters.TileMap
             }
             return _tileGrid[layer];
         }
+
         /// <summary>
         /// Replaces the Texture tile in the tilegrid
         /// </summary>
@@ -111,6 +96,12 @@ namespace TEMEliminatesMonsters.TileMap
             }
         }
 
+        public void AddTile(Tile tile, int layer) 
+        {
+            int tileX = (int)(tile._position.X / _tileSize * Tile._tileSizeMultiplier);
+            int tileY = (int)(tile._position.Y / _tileSize * Tile._tileSizeMultiplier);
+            _tileGrid[layer][tileX, tileY] = tile;
+        }
         /// <summary>
         /// Replaces a tile in the tilegrid
         /// </summary>
@@ -133,7 +124,7 @@ namespace TEMEliminatesMonsters.TileMap
             {
                 //belive it or not, using 'var' is standard for Monogame projects 
                 var cameraBounds = TEM.Instance._camera.BoundingRectangle;
-                var tSize = (_tileSize * Tile._GlobalTileSizeModifier);
+                var tSize = (_tileSize * Tile._tileSizeMultiplier);
                 //calculates all defaultTexture in frame, much faster than culling not in frame defaultTexture for large (1000*1000) size boards
                 for (int x = (int)Math.Floor(cameraBounds.X / tSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tSize); x++)
                 {
@@ -141,7 +132,7 @@ namespace TEMEliminatesMonsters.TileMap
                     {
                         if (x >= 0 && x <= tileLayer.GetLength(0) - 1 && y >= 0 && y <= tileLayer.GetLength(1) - 1)
                         {
-                            tileLayer[x, y].Render(spriteBatch);
+                            tileLayer[x, y]?.Render(spriteBatch);
                         }
                     }
                 }

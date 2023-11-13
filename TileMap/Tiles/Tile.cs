@@ -1,15 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using System;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace TEMEliminatesMonsters.TileMap.Tiles
 {
     public abstract class Tile
     {
-        public static readonly float _GlobalTileSizeModifier = 1f;
+        public static readonly float _tileSizeMultiplier = 2f;
 
         public Texture2D _texture;
 
@@ -25,7 +22,7 @@ namespace TEMEliminatesMonsters.TileMap.Tiles
         /// <param name="texture"></param>
         /// <param name="position"></param>
         /// <param name="ID"></param>
-        public Tile(Texture2D texture, Vector2 position, int? ID = null)
+        private Tile(Texture2D texture, Vector2 position, int? ID = null)
         {
             ID ??= _id;
             _id = ID;
@@ -36,11 +33,19 @@ namespace TEMEliminatesMonsters.TileMap.Tiles
                 _height = _texture.Height;
                 if (_width != _height)
                 {
-                    throw new Exception($"Tile width must be equal to length! TILE: {ID}");
+                    throw new ArgumentException($"Tile width must be equal to length! TILE: {ID}");
+                }
+                if (_width != TileMap._tileSize)
+                {
+                    throw new ArgumentException($"Tile width/length must be equal to {TileMap._tileSize}! Tile: {ID}");
                 }
             }
             _position = position;
         }
+
+        public Tile(Texture2D texture, int x, int y, int? ID = null)
+            : this(texture, new(x * TileMap._tileSize, y * TileMap._tileSize), ID) { }
+
         /// <summary>
         /// draws this tile to the screen
         /// </summary>
@@ -51,7 +56,7 @@ namespace TEMEliminatesMonsters.TileMap.Tiles
             {
                 return;
             }
-            spriteBatch.Draw(_texture, _position * _GlobalTileSizeModifier, null, Color.White, 0f, new(0, 0), new Vector2(_GlobalTileSizeModifier), SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, _position * _tileSizeMultiplier, null, Color.White, 0f, new(0, 0), new Vector2(_tileSizeMultiplier), SpriteEffects.None, 0f);
         }
 
         /// <summary>
@@ -62,7 +67,7 @@ namespace TEMEliminatesMonsters.TileMap.Tiles
         {
             if (_id == null)
                 return $"Tile ID not set! Falback: {base.ToString()}";
-            return $"Tile {_id} has texture {_texture.Name} and is a {GetType().Name}";
+            return $"Tile {_id} has texture {_texture?.Name} and is a {GetType()?.Name}";
         }
     }
 }
