@@ -41,7 +41,7 @@ namespace TEMEliminatesMonsters
             _graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
-
+            Window.AllowAltF4 = true;
             IsMouseVisible = true;
             Instance = this;
         }
@@ -74,8 +74,8 @@ namespace TEMEliminatesMonsters
             _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
 
             //this won't be done like this in reality, this is just for testing
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)0}"], 0, 0), 1, 0 ,0);
-            _map.SetTile(new GroundTile(Tiles[$"{(TileTexture)0}"], 1, 0), 1, 1 ,0);
+            _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
+            _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 1, 0, 00100100), 1);
         }
 
         /// <summary>
@@ -121,7 +121,10 @@ namespace TEMEliminatesMonsters
         /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.LightBlue);
+            //clear previously drawn stuff, if you see bright magenta, you're out of bounds!
+            GraphicsDevice.Clear(Color.Magenta);
+
+            //begin drawing
             var transformMatrix = _camera.GetViewMatrix();
             _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
@@ -134,6 +137,8 @@ namespace TEMEliminatesMonsters
             _spriteBatch.Draw(_zombie, _zombiePosition, Color.White);
 
             //render the items
+
+            //finish drawing
             _spriteBatch.End();
 
             base.Draw(gameTime);
