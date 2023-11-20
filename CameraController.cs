@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using System;
+using System.Diagnostics;
 using TEMEliminatesMonsters.KeyEvents;
 
 namespace TEMEliminatesMonsters
@@ -35,10 +37,6 @@ namespace TEMEliminatesMonsters
             _previousMouseX = Mouse.GetState().X;
             _previousMouseY = Mouse.GetState().Y;
             (this as Updateables.IUpdateable).AddSelfToUpdateables();
-            KeyboardEventManager.GetEvent(Keys.F) += () =>
-            {
-                _camera.LookAt(TEM.Instance._zombiePosition);
-            };
         }
 
         /// <summary>
@@ -51,7 +49,9 @@ namespace TEMEliminatesMonsters
 
             if (state.RightButton == ButtonState.Pressed)
             {
-                _camera.Move(GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds());
+                Vector2 movementVector = GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds();                
+                    _camera.Move(movementVector);
+                CheckBounds();
             }
             if (state.ScrollWheelValue != _previousScrollValue)
             {
@@ -60,7 +60,30 @@ namespace TEMEliminatesMonsters
             _previousMouseX = (int)MousePosition.X;
             _previousMouseY = (int)MousePosition.Y;
             _previousScrollValue = state.ScrollWheelValue;
+            Debug.WriteLine(string.Concat("campos x ", _camera.Position.X));
+        }
 
+        /// <summary>
+        /// Keeps the camera in bounds of the Tilemap
+        /// </summary>
+        private void CheckBounds()
+        { 
+            if (_camera.Position.X < 0)              
+            {
+                _camera.Position = new Vector2(0, _camera.Position.Y);
+            }
+            if (_camera.Position.Y < 0) 
+            {
+                _camera.Position = new Vector2(_camera.Position.X, 0);
+            }
+            if (_camera.Position.X > TEM.Instance._map.GridWidth)
+            {
+                _camera.Position = new Vector2(TEM.Instance._map.GridWidth, _camera.Position.Y);
+            }
+            if(_camera.Position.Y > TEM.Instance._map.GridLength)
+            {
+                _camera.Position = new Vector2(_camera.Position.X, TEM.Instance._map.GridLength);
+            }
         }
 
         /// <summary>

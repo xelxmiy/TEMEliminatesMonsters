@@ -10,6 +10,9 @@ namespace TEMEliminatesMonsters.TileMap
 
         private Tile[][,] _tileGrid;
 
+        public int GridWidth => _tileGrid[0].GetLength(0);
+        public int GridLength => _tileGrid[0].GetLength(1);
+
         public static readonly int _tileSize = 32;
 
         /// <summary>

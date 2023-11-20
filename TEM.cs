@@ -20,17 +20,13 @@ namespace TEMEliminatesMonsters
         private SpriteBatch _spriteBatch;
         private CameraController _cameraController;
         private Fullscreener _fullscreener;
-        private TileMap.TileMap _map;
 
+        public TileMap.TileMap _map;
         public OrthographicCamera _camera;
-        public Texture2D _zombie;
-        public Vector2 _zombiePosition;
         public Dictionary<string, Texture2D> Tiles = new();
-        public int _tileMapSize = 32;
-       
+        public int _tileMapSize = 256;
 
         public static KeyboardEventChecker _keyEventChecker;
-
         public static TEM Instance { get; private set; }
 
         /// <summary>
@@ -63,7 +59,6 @@ namespace TEMEliminatesMonsters
 
             _keyEventChecker = new();
             _fullscreener = new(_graphics, Window);
-            _zombiePosition = new();
             BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, 1920, 1080);
 
             _camera = new OrthographicCamera(viewportAdapter);
@@ -91,12 +86,10 @@ namespace TEMEliminatesMonsters
         /// </summary>
         protected override void LoadContent()
         {
-            _zombie = Content.Load<Texture2D>("zombie");
-
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
-            { 
+            {
                 Debug.WriteLine(file);
                 string s = "Tiles\\" + file;
                 Texture2D texture = Content.Load<Texture2D>(s);
@@ -112,7 +105,6 @@ namespace TEMEliminatesMonsters
         {
             base.Update(gameTime);
             UpdateableManager.UpdateAll(gameTime);
-            _zombiePosition.X += 1;
         }
 
         /// <summary>
@@ -134,7 +126,6 @@ namespace TEMEliminatesMonsters
             //render the particles
 
             //render the entities
-            _spriteBatch.Draw(_zombie, _zombiePosition, Color.White);
 
             //render the items
 
