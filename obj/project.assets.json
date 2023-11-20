@@ -405,6 +405,18 @@
           }
         }
       },
+      "MonoGame.Extended.Collisions/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "MonoGame.Extended": "3.8.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/MonoGame.Extended.Collisions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MonoGame.Extended.Collisions.dll": {}
+        }
+      },
       "MonoGame.Extended.Content.Pipeline/3.8.0": {
         "type": "package",
         "dependencies": {
@@ -3149,6 +3161,18 @@
         "lib/netstandard2.0/MonoGame.Extended.dll",
         "monogame.extended.3.8.0.nupkg.sha512",
         "monogame.extended.nuspec"
+      ]
+    },
+    "MonoGame.Extended.Collisions/3.8.0": {
+      "sha512": "Ov4xQQm/73/d/JvcwL5FXmuCLcGVEjk+vB2EvhmCtyEIh9ggMXK3sYfyyIKAxG+w01VthGUSwpd3F+AOMLeoSg==",
+      "type": "package",
+      "path": "monogame.extended.collisions/3.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/MonoGame.Extended.Collisions.dll",
+        "monogame.extended.collisions.3.8.0.nupkg.sha512",
+        "monogame.extended.collisions.nuspec"
       ]
     },
     "MonoGame.Extended.Content.Pipeline/3.8.0": {
@@ -7893,6 +7917,7 @@
       "Microsoft.CSharp >= 4.7.0",
       "MonoGame.Content.Builder.Task >= 3.8.1.303",
       "MonoGame.Extended >= 3.8.0",
+      "MonoGame.Extended.Collisions >= 3.8.0",
       "MonoGame.Extended.Content.Pipeline >= 3.8.0",
       "MonoGame.Extended.Entities >= 3.8.0",
       "MonoGame.Extended.Tiled >= 3.8.0",
@@ -7953,6 +7978,10 @@
             "version": "[3.8.1.303, )"
           },
           "MonoGame.Extended": {
+            "target": "Package",
+            "version": "[3.8.0, )"
+          },
+          "MonoGame.Extended.Collisions": {
             "target": "Package",
             "version": "[3.8.0, )"
           },

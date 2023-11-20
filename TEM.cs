@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using TEMEliminatesMonsters.KeyEvents;
 using TEMEliminatesMonsters.TileMap;
+using TEMEliminatesMonsters.TileMap.Tiles;
 using TEMEliminatesMonsters.Updateables;
 
 namespace TEMEliminatesMonsters
@@ -19,17 +20,13 @@ namespace TEMEliminatesMonsters
         private SpriteBatch _spriteBatch;
         private CameraController _cameraController;
         private Fullscreener _fullscreener;
-        private TileMap.TileMap _map;
 
+        public TileMap.TileMap _map;
         public OrthographicCamera _camera;
-        public Texture2D _zombie;
-        public Vector2 _zombiePosition;
         public Dictionary<string, Texture2D> Tiles = new();
-        public int _tileMapSize = 2048;
-       
+        public int _tileMapSize = 256;
 
         public static KeyboardEventChecker _keyEventChecker;
-
         public static TEM Instance { get; private set; }
 
         /// <summary>
@@ -40,7 +37,7 @@ namespace TEMEliminatesMonsters
             _graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
-
+            Window.AllowAltF4 = true;
             IsMouseVisible = true;
             Instance = this;
         }
@@ -62,7 +59,6 @@ namespace TEMEliminatesMonsters
 
             _keyEventChecker = new();
             _fullscreener = new(_graphics, Window);
-            _zombiePosition = new();
             BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, 1920, 1080);
 
             _camera = new OrthographicCamera(viewportAdapter);
@@ -72,16 +68,9 @@ namespace TEMEliminatesMonsters
 
             _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
 
-            _map.SetTile(Tiles[$"{(TileTexture)0}"], 1 ,0 , 0);
-            _map.SetTile(Tiles[$"{(TileTexture)1}"], 1 ,0 , 1);
-            _map.SetTile(Tiles[$"{(TileTexture)2}"], 1 ,0 , 2);
-            _map.SetTile(Tiles[$"{(TileTexture)3}"], 1 ,1 , 0);
-            _map.SetTile(Tiles[$"{(TileTexture)4}"], 1 ,1 , 1);
-            _map.SetTile(Tiles[$"{(TileTexture)5}"], 1 ,1 , 2);
-            _map.SetTile(Tiles[$"{(TileTexture)6}"], 1 ,2 , 0);
-            _map.SetTile(Tiles[$"{(TileTexture)7}"], 1 ,2 , 1);
-            _map.SetTile(Tiles[$"{(TileTexture)8}"], 1 ,2 , 2);
-
+            //this won't be done like this in reality, this is just for testing
+            _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
+            _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 1, 0, 00100100), 1);
         }
 
         /// <summary>
@@ -97,12 +86,10 @@ namespace TEMEliminatesMonsters
         /// </summary>
         protected override void LoadContent()
         {
-            _zombie = Content.Load<Texture2D>("zombie");
-
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
-            { 
+            {
                 Debug.WriteLine(file);
                 string s = "Tiles\\" + file;
                 Texture2D texture = Content.Load<Texture2D>(s);
@@ -118,7 +105,6 @@ namespace TEMEliminatesMonsters
         {
             base.Update(gameTime);
             UpdateableManager.UpdateAll(gameTime);
-            _zombiePosition.X += 1;
         }
 
         /// <summary>
@@ -127,7 +113,10 @@ namespace TEMEliminatesMonsters
         /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.LightBlue);
+            //clear previously drawn stuff, if you see bright magenta, you're out of bounds!
+            GraphicsDevice.Clear(Color.Magenta);
+
+            //begin drawing
             var transformMatrix = _camera.GetViewMatrix();
             _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
@@ -137,9 +126,10 @@ namespace TEMEliminatesMonsters
             //render the particles
 
             //render the entities
-            _spriteBatch.Draw(_zombie, _zombiePosition, Color.White);
 
             //render the items
+
+            //finish drawing
             _spriteBatch.End();
 
             base.Draw(gameTime);
