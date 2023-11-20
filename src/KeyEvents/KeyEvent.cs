@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TEMEliminatesMonsters.KeyEvents
+namespace TEMEliminatesMonsters.src.KeyEvents
 {
     public class KeyEvent
     {
@@ -18,7 +18,7 @@ namespace TEMEliminatesMonsters.KeyEvents
         /// returns a refrence to the encapsulated _event
         /// </summary>
         /// <returns></returns>
-        public ref Action GetEvent() 
+        public ref Action GetEvent()
         {
             return ref Event;
         }

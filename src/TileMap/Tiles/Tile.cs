@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace TEMEliminatesMonsters.TileMap.Tiles
+namespace TEMEliminatesMonsters.src.TileMap.Tiles
 {
     public abstract class Tile
     {

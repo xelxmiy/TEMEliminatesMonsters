@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace TEMEliminatesMonsters
+namespace TEMEliminatesMonsters.src.Controllers
 {
     public class Fullscreener
     {
@@ -18,7 +18,7 @@ namespace TEMEliminatesMonsters
         /// </summary>
         /// <param name="graphicsDeviceManager">this game's Graphics Device Manager</param>
         /// <param name="gameWindow">this game's Game Window</param>
-        public Fullscreener(GraphicsDeviceManager graphicsDeviceManager, GameWindow gameWindow) 
+        public Fullscreener(GraphicsDeviceManager graphicsDeviceManager, GameWindow gameWindow)
         {
             _graphics = graphicsDeviceManager;
             _window = gameWindow;
@@ -86,7 +86,7 @@ namespace TEMEliminatesMonsters
             _graphics.HardwareModeSwitch = !_isBorderless;
             _graphics.ApplyChanges();
         }
-        
+
         /// <summary>
         /// sets the game to fullscreen
         /// </summary>

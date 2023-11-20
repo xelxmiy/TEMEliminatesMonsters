@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEMEliminatesMonsters.Updateables
+namespace TEMEliminatesMonsters.src.Updateables
 {
     public interface IUpdateable
     {
@@ -18,7 +18,7 @@ namespace TEMEliminatesMonsters.Updateables
         /// <summary>
         /// adds this objects to the UpdateableManager so it can be updated
         /// </summary>
-        public void AddSelfToUpdateables() 
+        public void AddSelfToUpdateables()
         {
             UpdateableManager.Updateables.Add(this);
         }

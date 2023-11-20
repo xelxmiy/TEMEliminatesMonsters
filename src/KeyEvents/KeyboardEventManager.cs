@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TEMEliminatesMonsters.KeyEvents
+namespace TEMEliminatesMonsters.src.KeyEvents
 {
     public static class KeyboardEventManager
     {
@@ -12,7 +12,7 @@ namespace TEMEliminatesMonsters.KeyEvents
         /// <summary>
         /// Creates a Keyboard Events Manager and initializes the keyboard events
         /// </summary>
-        static KeyboardEventManager() 
+        static KeyboardEventManager()
         {
             KeyDownEvents = new Dictionary<Keys, KeyEvent>();
             CreateKeyEvents();
@@ -34,7 +34,7 @@ namespace TEMEliminatesMonsters.KeyEvents
         /// </summary>
         /// <param name="key">Key corresponding to a KeyEvent</param>
         /// <returns>a refrence to the _event corresponding to the provided key</returns>
-        public static ref Action GetEvent(Keys key) 
+        public static ref Action GetEvent(Keys key)
         {
             KeyDownEvents.TryGetValue(key, out KeyEvent keyEvent);
             return ref keyEvent.GetEvent();

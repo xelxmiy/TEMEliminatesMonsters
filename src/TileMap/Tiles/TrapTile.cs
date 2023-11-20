@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Collections;
 using MonoGame.Extended.Collisions;
-using TEMEliminatesMonsters.Updateables;
+using TEMEliminatesMonsters.src.Updateables;
 
-namespace TEMEliminatesMonsters.TileMap.Tiles
+namespace TEMEliminatesMonsters.src.TileMap.Tiles
 {
     abstract class TrapTile : Tile, ICollisionActor
     {
@@ -13,7 +13,7 @@ namespace TEMEliminatesMonsters.TileMap.Tiles
         {
             if (texture != null)
             {
-                _bounds = new RectangleF(new(x*32,y*32), new(texture.Width * _tileSizeMultiplier, texture.Height * _tileSizeMultiplier));
+                _bounds = new RectangleF(new(x * 32, y * 32), new(texture.Width * _tileSizeMultiplier, texture.Height * _tileSizeMultiplier));
             }
         }
 

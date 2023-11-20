@@ -7,12 +7,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using TEMEliminatesMonsters.KeyEvents;
-using TEMEliminatesMonsters.TileMap;
-using TEMEliminatesMonsters.TileMap.Tiles;
-using TEMEliminatesMonsters.Updateables;
+using TEMEliminatesMonsters.src.Controllers;
+using TEMEliminatesMonsters.src.KeyEvents;
+using TEMEliminatesMonsters.src.TileMap;
+using TEMEliminatesMonsters.src.Updateables;
+using TEMEliminatesMonsters.src.TileMap.Tiles;
 
-namespace TEMEliminatesMonsters
+namespace TEMEliminatesMonsters.src
 {
     public class TEM : Game
     {

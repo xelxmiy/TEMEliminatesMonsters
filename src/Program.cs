@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace TEMEliminatesMonsters
+namespace TEMEliminatesMonsters.src
 {
     internal class Program
     {
@@ -13,7 +13,7 @@ namespace TEMEliminatesMonsters
             TEM game = new();
             game.Window.Title = "TEM Eliminates Monsters";
             game.Run();
-            if (args.Contains("fullscreen")) 
+            if (args.Contains("fullscreen"))
             {
                 game.GoFullScreen();
             }

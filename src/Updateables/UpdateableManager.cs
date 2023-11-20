@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEMEliminatesMonsters.Updateables
+namespace TEMEliminatesMonsters.src.Updateables
 {
     internal class UpdateableManager
     {
@@ -15,9 +15,9 @@ namespace TEMEliminatesMonsters.Updateables
         /// Runs every frame, updates all Updateable objects
         /// </summary>
         /// <param name="gameTime">Game uptime</param>
-        public static void UpdateAll(GameTime gameTime) 
+        public static void UpdateAll(GameTime gameTime)
         {
-            foreach (IUpdateable updateable in Updateables) 
+            foreach (IUpdateable updateable in Updateables)
             {
                 updateable?.Update(gameTime);
             }

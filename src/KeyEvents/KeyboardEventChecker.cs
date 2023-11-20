@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace TEMEliminatesMonsters.KeyEvents
+namespace TEMEliminatesMonsters.src.KeyEvents
 {
     public class KeyboardEventChecker : Updateables.IUpdateable
     {
@@ -16,11 +16,11 @@ namespace TEMEliminatesMonsters.KeyEvents
         /// <summary>
         /// Creates a KeyboardEventChecker
         /// </summary>
-        public KeyboardEventChecker() 
+        public KeyboardEventChecker()
         {
             (this as Updateables.IUpdateable).AddSelfToUpdateables();
             _allKeys = ((Keys[])Enum.GetValues(typeof(Keys))).ToList();
-            
+
         }
 
         /// <summary>

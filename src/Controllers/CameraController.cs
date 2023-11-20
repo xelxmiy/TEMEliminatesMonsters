@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using System;
 using System.Diagnostics;
-using TEMEliminatesMonsters.KeyEvents;
+using TEMEliminatesMonsters.src.KeyEvents;
 
-namespace TEMEliminatesMonsters
+namespace TEMEliminatesMonsters.src.Controllers
 {
     internal class CameraController : Updateables.IUpdateable
     {
@@ -49,8 +49,8 @@ namespace TEMEliminatesMonsters
 
             if (state.RightButton == ButtonState.Pressed)
             {
-                Vector2 movementVector = GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds();                
-                    _camera.Move(movementVector);
+                Vector2 movementVector = GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds();
+                _camera.Move(movementVector);
                 CheckBounds();
             }
             if (state.ScrollWheelValue != _previousScrollValue)
@@ -67,12 +67,12 @@ namespace TEMEliminatesMonsters
         /// Keeps the camera in bounds of the Tilemap
         /// </summary>
         private void CheckBounds()
-        { 
-            if (_camera.Position.X < 0)              
+        {
+            if (_camera.Position.X < 0)
             {
                 _camera.Position = new Vector2(0, _camera.Position.Y);
             }
-            if (_camera.Position.Y < 0) 
+            if (_camera.Position.Y < 0)
             {
                 _camera.Position = new Vector2(_camera.Position.X, 0);
             }
@@ -80,7 +80,7 @@ namespace TEMEliminatesMonsters
             {
                 _camera.Position = new Vector2(TEM.Instance._map.GridWidth, _camera.Position.Y);
             }
-            if(_camera.Position.Y > TEM.Instance._map.GridLength)
+            if (_camera.Position.Y > TEM.Instance._map.GridLength)
             {
                 _camera.Position = new Vector2(_camera.Position.X, TEM.Instance._map.GridLength);
             }
@@ -93,7 +93,7 @@ namespace TEMEliminatesMonsters
         private void Zoom(float value)
         {
             value /= 960;
-            if ((_camera.Zoom + value) <= _camera.MaximumZoom && (_camera.Zoom + value) >= _camera.MinimumZoom)
+            if (_camera.Zoom + value <= _camera.MaximumZoom && _camera.Zoom + value >= _camera.MinimumZoom)
             {
                 _camera.Zoom += value;
                 _movementSpeed = _baseMovementSpeed / _camera.Zoom;

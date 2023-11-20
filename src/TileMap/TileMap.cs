@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
-using TEMEliminatesMonsters.TileMap.Tiles;
+using TEMEliminatesMonsters.src.TileMap.Tiles;
 
-namespace TEMEliminatesMonsters.TileMap
+namespace TEMEliminatesMonsters.src.TileMap
 {
     public class TileMap
     {
@@ -60,7 +60,7 @@ namespace TEMEliminatesMonsters.TileMap
             {
                 for (int h = 0; h < baseLayer.GetLength(1); h++)
                 {
-                    baseLayer[w, h] = new GroundTile(defaultTexture, w , h , Convert.ToInt32($"000{w:000}{h:000}",16)) ;
+                    baseLayer[w, h] = new GroundTile(defaultTexture, w, h, Convert.ToInt32($"000{w:000}{h:000}", 16));
                 }
             }
         }
@@ -93,13 +93,13 @@ namespace TEMEliminatesMonsters.TileMap
             {
                 _tileGrid[layer][w, h]._texture = texture;
             }
-            else 
+            else
             {
                 Debug.WriteLine($"TILE AT {layer},  {w} , {h} IS NULL, CANNOT SET TILE");
             }
         }
 
-        public void AddTile(Tile tile, int layer) 
+        public void AddTile(Tile tile, int layer)
         {
             int tileX = (int)(tile._position.X / _tileSize * Tile._tileSizeMultiplier);
             int tileY = (int)(tile._position.Y / _tileSize * Tile._tileSizeMultiplier);
@@ -127,7 +127,7 @@ namespace TEMEliminatesMonsters.TileMap
             {
                 //belive it or not, using 'var' is standard for Monogame projects 
                 var cameraBounds = TEM.Instance._camera.BoundingRectangle;
-                var tSize = (_tileSize * Tile._tileSizeMultiplier);
+                var tSize = _tileSize * Tile._tileSizeMultiplier;
                 //calculates all defaultTexture in frame, much faster than culling not in frame defaultTexture for large (1000*1000) size boards
                 for (int x = (int)Math.Floor(cameraBounds.X / tSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tSize); x++)
                 {
