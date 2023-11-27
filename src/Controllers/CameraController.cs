@@ -110,7 +110,7 @@ namespace TEMEliminatesMonsters.src.Controllers
 
             float MouseSpeed = Vector2.Distance(new Vector2(_previousMouseX, _previousMouseY), MousePosition);
 
-            if (Difference == Vector2.Zero) return Vector2.Zero; //can't normalize the zero vector be :(
+            if (Difference == Vector2.Zero) return Vector2.Zero; //can't normalize the zero vector :(
 
             Vector2 movementDirection = Vector2.Normalize(Difference);
 

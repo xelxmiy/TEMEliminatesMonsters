@@ -81,9 +81,9 @@ namespace TEMEliminatesMonsters.src.TileMap
         }
 
         /// <summary>
-        /// Replaces the Texture tile in the tilegrid
+        /// Replaces the _texture tile in the tilegrid
         /// </summary>
-        /// <param name="texture">Texture replacement</param>
+        /// <param name="texture">_texture replacement</param>
         /// <param name="layer">Layer of replaced tile</param>
         /// <param name="w">w of replaced tile</param>
         /// <param name="h">h of replaced tile</param>

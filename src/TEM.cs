@@ -12,16 +12,18 @@ using TEMEliminatesMonsters.src.KeyEvents;
 using TEMEliminatesMonsters.src.TileMap;
 using TEMEliminatesMonsters.src.Updateables;
 using TEMEliminatesMonsters.src.TileMap.Tiles;
+using MonoGame.Extended.Entities;
 
 namespace TEMEliminatesMonsters.src
 {
     public class TEM : Game
     {
         private readonly GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
         private CameraController _cameraController;
         private Fullscreener _fullscreener;
+        private World _world;
 
+        public SpriteBatch _spriteBatch;
         public TileMap.TileMap _map;
         public OrthographicCamera _camera;
         public Dictionary<string, Texture2D> Tiles = new();
@@ -36,7 +38,6 @@ namespace TEMEliminatesMonsters.src
         public TEM()
         {
             _graphics = new GraphicsDeviceManager(this);
-
             Content.RootDirectory = "Content";
             Window.AllowAltF4 = true;
             IsMouseVisible = true;
@@ -68,6 +69,11 @@ namespace TEMEliminatesMonsters.src
             InitializeKeyEvents();
 
             _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
+
+            _world = new WorldBuilder()
+            {
+                // add systems to world here 
+            }.Build();
 
             //this won't be done like this in reality, this is just for testing
             _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
@@ -104,8 +110,9 @@ namespace TEMEliminatesMonsters.src
         /// <param name="gameTime">Game uptime</param>
         protected override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            _world.Update(gameTime);
             UpdateableManager.UpdateAll(gameTime);
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -127,6 +134,7 @@ namespace TEMEliminatesMonsters.src
             //render the particles
 
             //render the entities
+            _world.Draw(gameTime);
 
             //render the items
 
