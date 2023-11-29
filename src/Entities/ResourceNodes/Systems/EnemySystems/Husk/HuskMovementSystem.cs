@@ -30,13 +30,13 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.
             {
                 Position = new Vector2(Position.X, 0);
             }
-            if (Position.X > TEM.Instance._map.GridWidth)
+            if (Position.X > TEM.Instance.Map.GridWidth)
             {
-                Position = new Vector2(TEM.Instance._map.GridWidth, Position.Y);
+                Position = new Vector2(TEM.Instance.Map.GridWidth, Position.Y);
             }
-            if (Position.Y > TEM.Instance._map.GridLength)
+            if (Position.Y > TEM.Instance.Map.GridLength)
             {
-                Position = new Vector2(Position.X, TEM.Instance._map.GridLength);
+                Position = new Vector2(Position.X, TEM.Instance.Map.GridLength);
             }
             return true;
         }

@@ -8,12 +8,12 @@ using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk
 
 namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners
 {
-    internal class HuskFactory
+    public class HuskFactory
     {
         public World _world;
         public Texture2D _huskTexture;
 
-        public HuskFactory(World world, Texture2D texture)
+        public HuskFactory(ref World world, Texture2D texture)
         {
             _world = world;
             _huskTexture = texture;
@@ -27,7 +27,7 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners
 
             // add systems here
             husk.Attach(new HuskMovementSystem(husk.Get<Transform2>()));
-            husk.Attach(new GenericDrawSystem(ref TEM.Instance._spriteBatch, ref position, ref _huskTexture));
+            husk.Attach(new GenericDrawSystem(TEM.Instance.SpriteBatch, position, _huskTexture));
 
             return husk;
         }

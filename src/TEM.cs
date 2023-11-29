@@ -13,6 +13,10 @@ using TEMEliminatesMonsters.src.TileMap;
 using TEMEliminatesMonsters.src.Updateables;
 using TEMEliminatesMonsters.src.TileMap.Tiles;
 using MonoGame.Extended.Entities;
+using TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
+using System;
+using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
+using MonoGame.Extended.Entities.Systems;
 
 namespace TEMEliminatesMonsters.src
 {
@@ -22,14 +26,16 @@ namespace TEMEliminatesMonsters.src
         private CameraController _cameraController;
         private Fullscreener _fullscreener;
         private World _world;
-
-        public SpriteBatch _spriteBatch;
-        public TileMap.TileMap _map;
-        public OrthographicCamera _camera;
+        private Texture2D _zombie;
+        
+        public SpriteBatch SpriteBatch;
+        public TileMap.TileMap Map;
+        public OrthographicCamera Camera;
         public Dictionary<string, Texture2D> Tiles = new();
-        public int _tileMapSize = 256;
+        public int TilemapSize = 256;
+        public static KeyboardEventChecker KeyEventChecker;
+        public HuskFactory HuskFactory;
 
-        public static KeyboardEventChecker _keyEventChecker;
         public static TEM Instance { get; private set; }
 
         /// <summary>
@@ -52,6 +58,7 @@ namespace TEMEliminatesMonsters.src
             _fullscreener.ToggleFullscreen();
         }
 
+        Entity en;
         /// <summary>
         /// initializes non-core objects
         /// </summary>
@@ -59,25 +66,26 @@ namespace TEMEliminatesMonsters.src
         {
             base.Initialize();
 
-            _keyEventChecker = new();
+            KeyEventChecker = new();
             _fullscreener = new(_graphics, Window);
             BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, 1920, 1080);
 
-            _camera = new OrthographicCamera(viewportAdapter);
-            _cameraController = new(_camera);
+            Camera = new OrthographicCamera(viewportAdapter);
+            _cameraController = new(Camera);
 
             InitializeKeyEvents();
 
-            _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
+            Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, TilemapSize, TilemapSize);
 
-            _world = new WorldBuilder()
-            {
-                // add systems to world here 
-            }.Build();
+            _world = new WorldBuilder()  
+            // add systems to world here  
+            // .AddSystem(Isystem system) 
+            .Build();
 
             //this won't be done like this in reality, this is just for testing
-            _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
-            _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 1, 0, 00100100), 1);
+            Map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
+            Map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 1, 0, 00100100), 1);
+            HuskFactory = new HuskFactory(ref _world, _zombie);
         }
 
         /// <summary>
@@ -93,7 +101,9 @@ namespace TEMEliminatesMonsters.src
         /// </summary>
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+
+            _zombie = Content.Load<Texture2D>("zombie");
 
             foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
             {
@@ -111,9 +121,10 @@ namespace TEMEliminatesMonsters.src
         protected override void Update(GameTime gameTime)
         {
             _world.Update(gameTime);
-            UpdateableManager.UpdateAll(gameTime);
+            UpdateableManager.UpdateAll(gameTime);  
             base.Update(gameTime);
         }
+        public List<Entity> zombielist= new();
 
         /// <summary>
         /// draws/renders objects to the screen
@@ -125,21 +136,21 @@ namespace TEMEliminatesMonsters.src
             GraphicsDevice.Clear(Color.Magenta);
 
             //begin drawing
-            var transformMatrix = _camera.GetViewMatrix();
-            _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
+            var transformMatrix = Camera.GetViewMatrix();
+            SpriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
             // render the TileMap
-            _map.Render(_spriteBatch);
+            Map.Render(SpriteBatch);
 
             //render the particles
 
             //render the entities
             _world.Draw(gameTime);
-
+             
             //render the items
 
             //finish drawing
-            _spriteBatch.End();
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }

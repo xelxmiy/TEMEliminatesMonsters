@@ -60,7 +60,6 @@ namespace TEMEliminatesMonsters.src.Controllers
             _previousMouseX = (int)MousePosition.X;
             _previousMouseY = (int)MousePosition.Y;
             _previousScrollValue = state.ScrollWheelValue;
-            Debug.WriteLine(string.Concat("campos x ", _camera.Position.X));
         }
 
         /// <summary>
@@ -76,13 +75,13 @@ namespace TEMEliminatesMonsters.src.Controllers
             {
                 _camera.Position = new Vector2(_camera.Position.X, 0);
             }
-            if (_camera.Position.X > TEM.Instance._map.GridWidth)
+            if (_camera.Position.X > TEM.Instance.Map.GridWidth)
             {
-                _camera.Position = new Vector2(TEM.Instance._map.GridWidth, _camera.Position.Y);
+                _camera.Position = new Vector2(TEM.Instance.Map.GridWidth, _camera.Position.Y);
             }
-            if (_camera.Position.Y > TEM.Instance._map.GridLength)
+            if (_camera.Position.Y > TEM.Instance.Map.GridLength)
             {
-                _camera.Position = new Vector2(_camera.Position.X, TEM.Instance._map.GridLength);
+                _camera.Position = new Vector2(_camera.Position.X, TEM.Instance.Map.GridLength);
             }
         }
 

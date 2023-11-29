@@ -30,7 +30,7 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.AbstractSyste
         protected abstract Vector2 GetMovementDirection();
 
 
-        protected void SetTarget(Vector2 target)
+        public void SetTarget(Vector2 target)
         {
             _target = target;
         }

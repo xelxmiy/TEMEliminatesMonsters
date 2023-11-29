@@ -126,7 +126,7 @@ namespace TEMEliminatesMonsters.src.TileMap
             foreach (Tile[,] tileLayer in _tileGrid)
             {
                 //belive it or not, using 'var' is standard for Monogame projects 
-                var cameraBounds = TEM.Instance._camera.BoundingRectangle;
+                var cameraBounds = TEM.Instance.Camera.BoundingRectangle;
                 var tSize = _tileSize * Tile._tileSizeMultiplier;
                 //calculates all defaultTexture in frame, much faster than culling not in frame defaultTexture for large (1000*1000) size boards
                 for (int x = (int)Math.Floor(cameraBounds.X / tSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tSize); x++)
