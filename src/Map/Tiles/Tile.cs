@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace TEMEliminatesMonsters.src.TileMap.Tiles
+namespace TEMEliminatesMonsters.src.Map.Tiles
 {
     public abstract class Tile
     {
@@ -49,7 +49,7 @@ namespace TEMEliminatesMonsters.src.TileMap.Tiles
         /// <summary>
         /// draws this tile to the screen
         /// </summary>
-        /// <param name="spriteBatch">the SpriteBatch responsible for drawing</param>
+        /// <param name="spriteBatch">the _spriteBatch responsible for drawing</param>
         public void Render(SpriteBatch spriteBatch)
         {
             if (_texture == null)

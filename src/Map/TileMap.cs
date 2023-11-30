@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
-using TEMEliminatesMonsters.src.TileMap.Tiles;
+using TEMEliminatesMonsters.src.Controllers;
+using TEMEliminatesMonsters.src.Map.Tiles;
 
-namespace TEMEliminatesMonsters.src.TileMap
+namespace TEMEliminatesMonsters.src.Map
 {
     public class TileMap
     {
@@ -120,7 +121,7 @@ namespace TEMEliminatesMonsters.src.TileMap
         /// <summary>
         /// Draws this tilemap to the screen
         /// </summary>
-        /// <param name="spriteBatch">The SpriteBatch responsible for drawing</param>
+        /// <param name="spriteBatch">The _spriteBatch responsible for drawing</param>
         public void Render(SpriteBatch spriteBatch)
         {
             foreach (Tile[,] tileLayer in _tileGrid)

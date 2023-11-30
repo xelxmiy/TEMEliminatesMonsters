@@ -9,14 +9,11 @@ using System.IO;
 using System.Linq;
 using TEMEliminatesMonsters.src.Controllers;
 using TEMEliminatesMonsters.src.KeyEvents;
-using TEMEliminatesMonsters.src.TileMap;
 using TEMEliminatesMonsters.src.Updateables;
-using TEMEliminatesMonsters.src.TileMap.Tiles;
 using MonoGame.Extended.Entities;
 using TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
-using System;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
-using MonoGame.Extended.Entities.Systems;
+using TEMEliminatesMonsters.src.Map;
+using TEMEliminatesMonsters.src.Map.Tiles;
 
 namespace TEMEliminatesMonsters.src
 {
@@ -27,14 +24,14 @@ namespace TEMEliminatesMonsters.src
         private Fullscreener _fullscreener;
         private World _world;
         private Texture2D _zombie;
+        private readonly int _TileMapSize = 256;
+        private SpriteBatch _spriteBatch;
+        private HuskFactory _huskFactory;
+        public TileMap Map;
         
-        public SpriteBatch SpriteBatch;
-        public TileMap.TileMap Map;
         public OrthographicCamera Camera;
         public Dictionary<string, Texture2D> Tiles = new();
-        public int TilemapSize = 256;
         public static KeyboardEventChecker KeyEventChecker;
-        public HuskFactory HuskFactory;
 
         public static TEM Instance { get; private set; }
 
@@ -75,7 +72,7 @@ namespace TEMEliminatesMonsters.src
 
             InitializeKeyEvents();
 
-            Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, TilemapSize, TilemapSize);
+            Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _TileMapSize, _TileMapSize);
 
             _world = new WorldBuilder()  
             // add systems to world here  
@@ -85,7 +82,7 @@ namespace TEMEliminatesMonsters.src
             //this won't be done like this in reality, this is just for testing
             Map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
             Map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 1, 0, 00100100), 1);
-            HuskFactory = new HuskFactory(ref _world, _zombie);
+            _huskFactory = new HuskFactory(_world, _zombie, _spriteBatch);
         }
 
         /// <summary>
@@ -101,7 +98,7 @@ namespace TEMEliminatesMonsters.src
         /// </summary>
         protected override void LoadContent()
         {
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _zombie = Content.Load<Texture2D>("zombie");
 
@@ -137,10 +134,10 @@ namespace TEMEliminatesMonsters.src
 
             //begin drawing
             var transformMatrix = Camera.GetViewMatrix();
-            SpriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
+            _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
             // render the TileMap
-            Map.Render(SpriteBatch);
+            Map.Render(_spriteBatch);
 
             //render the particles
 
@@ -150,7 +147,7 @@ namespace TEMEliminatesMonsters.src
             //render the items
 
             //finish drawing
-            SpriteBatch.End();
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

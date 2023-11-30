@@ -10,13 +10,15 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners
 {
     public class HuskFactory
     {
-        public World _world;
-        public Texture2D _huskTexture;
+        private World _world;
+        private Texture2D _huskTexture;
+        private SpriteBatch _spriteBatch;
 
-        public HuskFactory(ref World world, Texture2D texture)
+        public HuskFactory(World world, Texture2D texture, SpriteBatch spriteBatch)
         {
             _world = world;
             _huskTexture = texture;
+            _spriteBatch = spriteBatch;
         }
 
         public Entity CreateHusk(Vector2 position)
@@ -27,7 +29,7 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners
 
             // add systems here
             husk.Attach(new HuskMovementSystem(husk.Get<Transform2>()));
-            husk.Attach(new GenericDrawSystem(TEM.Instance.SpriteBatch, position, _huskTexture));
+            husk.Attach(new GenericDrawSystem(_spriteBatch, position, _huskTexture));
 
             return husk;
         }
