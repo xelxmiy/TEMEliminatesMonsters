@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using TEMEliminatesMonsters.src.Controllers;
+using TEMEliminatesMonsters.src.Systems;
 using TEMEliminatesMonsters.src.KeyEvents;
 using TEMEliminatesMonsters.src.Updateables;
 using MonoGame.Extended.Entities;
@@ -120,7 +120,6 @@ namespace TEMEliminatesMonsters.src
             UpdateableManager.UpdateAll(gameTime);  
             base.Update(gameTime);
         }
-        public List<Entity> zombielist= new();
 
         /// <summary>
         /// draws/renders objects to the screen
