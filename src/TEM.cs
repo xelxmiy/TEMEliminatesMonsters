@@ -55,7 +55,6 @@ namespace TEMEliminatesMonsters.src
             _fullscreener.ToggleFullscreen();
         }
 
-        Entity en;
         /// <summary>
         /// initializes non-core objects
         /// </summary>
