@@ -29,7 +29,6 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners
 
             // add systems here
             husk.Attach(new HuskMovementSystem(husk.Get<Transform2>()));
-            husk.Attach(new GenericDrawSystem(_spriteBatch, position, _huskTexture));
 
             return husk;
         }

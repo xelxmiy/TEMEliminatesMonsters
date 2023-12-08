@@ -5,10 +5,10 @@ using MonoGame.Extended;
 
 namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.AbstractSystems
 {
-    abstract class MovementSystem : UpdateSystem
+    abstract class MovementSystem : EntityUpdateSystem
     {
 
-        protected MovementSystem(Transform2 bounds) 
+        protected MovementSystem(Transform2 bounds) : base(new())
         {
             Position = bounds.Position;
         }

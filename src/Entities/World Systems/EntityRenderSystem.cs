@@ -8,21 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEMEliminatesMonsters.src.Systems
+namespace TEMEliminatesMonsters.src.Entities.WorldSystems
 {
-    internal class EntityDrawSystem : IDrawSystem
+    internal class EntityRenderSystem : EntityDrawSystem
     {
         private SpriteBatch _spriteBatch;
 
         private World _world;
 
-        public EntityDrawSystem(SpriteBatch spriteBatch) { _spriteBatch = spriteBatch; }
-
-        public void Initialize(World world) { _world = world; }
-        public void Dispose() { }
-        public void Draw(GameTime gameTime) 
+        public EntityRenderSystem(GraphicsDevice graphicsDevice) : base(Aspect.All())
         {
-            
+
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+
+        }
+
+        public override void Initialize(IComponentMapperService mapperService)
+        {
+
         }
     }
 }

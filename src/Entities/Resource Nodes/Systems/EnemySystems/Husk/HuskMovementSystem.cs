@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
+using MonoGame.Extended.Entities;
 using System;
 using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.AbstractSystems;
 
@@ -14,6 +15,8 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.
         public HuskMovementSystem(Transform2 bounds) : base(bounds) {}
 
         protected override float MovementSpeed { get; set; } = 1.3f;
+
+        public override void Initialize(IComponentMapperService mapperService) => throw new NotImplementedException();
 
         /// <summary>
         /// Keeps the Husk in-bounds

@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using TEMEliminatesMonsters.src.KeyEvents;
 
-namespace TEMEliminatesMonsters.src.Systems
+namespace TEMEliminatesMonsters.src.Controllers
 {
     internal class CameraController : Updateables.IUpdateable
     {

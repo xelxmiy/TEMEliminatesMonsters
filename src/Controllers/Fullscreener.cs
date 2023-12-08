@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace TEMEliminatesMonsters.src.Systems
+namespace TEMEliminatesMonsters.src.Controllers
 {
     public class Fullscreener
     {
