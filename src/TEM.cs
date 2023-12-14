@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using TEMEliminatesMonsters.src.Controller;
 using TEMEliminatesMonsters.src.KeyEvents;
 using TEMEliminatesMonsters.src.Updateables;
 using MonoGame.Extended.Entities;
@@ -15,25 +14,27 @@ using TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
 using TEMEliminatesMonsters.src.Map;
 using TEMEliminatesMonsters.src.Map.Tiles;
 using TEMEliminatesMonsters.src.Controllers;
+using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems;
 
 namespace TEMEliminatesMonsters.src
 {
     public class TEM : Game
     {
-        private readonly GraphicsDeviceManager _graphics;
         private CameraController _cameraController;
         private Fullscreener _fullscreener;
         private World _world;
         private Texture2D _zombie;
-        private readonly int _TileMapSize = 256;
         private SpriteBatch _spriteBatch;
         private HuskFactory _huskFactory;
+        private readonly GraphicsDeviceManager _graphics;
+        private readonly int _TileMapSize = 256;
+
         public TileMap Map;
-        
         public OrthographicCamera Camera;
         public Dictionary<string, Texture2D> Tiles = new();
-        public static KeyboardEventChecker KeyEventChecker;
 
+        public EntityManager EntityManager { get; private set; }
+        public static KeyboardEventChecker KeyEventChecker { get; private set; }
         public static TEM Instance { get; private set; }
 
         /// <summary>
@@ -74,8 +75,11 @@ namespace TEMEliminatesMonsters.src
 
             Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _TileMapSize, _TileMapSize);
 
-            _world = new WorldBuilder()  
-            // add systems to world here  
+            // doodz would absolutely kill me (he hates dots chains)
+            // doodz i know you have this repo starred on github, if you see this i'm very sorry 
+            _world = new WorldBuilder()
+            .AddSystem(new WorldUpdateSystem())
+            .AddSystem(new WorldRenderSystem())
             // .AddSystem(Isystem system) 
             .Build();
 
@@ -118,7 +122,7 @@ namespace TEMEliminatesMonsters.src
         protected override void Update(GameTime gameTime)
         {
             _world.Update(gameTime);
-            UpdateableManager.UpdateAll(gameTime);  
+            UpdateableManager.UpdateAll(gameTime);
             base.Update(gameTime);
         }
 
@@ -142,7 +146,7 @@ namespace TEMEliminatesMonsters.src
 
             //render the entities
             _world.Draw(gameTime);
-             
+
             //render the items
 
             //finish drawing
