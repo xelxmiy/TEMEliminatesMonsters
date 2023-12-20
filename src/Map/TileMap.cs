@@ -121,7 +121,7 @@ namespace TEMEliminatesMonsters.src.Map
         /// <summary>
         /// Draws this tilemap to the screen
         /// </summary>
-        /// <param name="spriteBatch">The _spriteBatch responsible for drawing</param>
+        /// <param name="spriteBatch">The SpriteBatch responsible for drawing</param>
         public void Render(SpriteBatch spriteBatch)
         {
             foreach (Tile[,] tileLayer in _tileGrid)

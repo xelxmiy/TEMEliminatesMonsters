@@ -15,6 +15,7 @@ using TEMEliminatesMonsters.src.Map;
 using TEMEliminatesMonsters.src.Map.Tiles;
 using TEMEliminatesMonsters.src.Controllers;
 using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems;
+using System;
 
 namespace TEMEliminatesMonsters.src
 {
@@ -24,7 +25,6 @@ namespace TEMEliminatesMonsters.src
         private Fullscreener _fullscreener;
         private World _world;
         private Texture2D _zombie;
-        private SpriteBatch _spriteBatch;
         private HuskFactory _huskFactory;
         private readonly GraphicsDeviceManager _graphics;
         private readonly int _TileMapSize = 256;
@@ -32,8 +32,8 @@ namespace TEMEliminatesMonsters.src
         public TileMap Map;
         public OrthographicCamera Camera;
         public Dictionary<string, Texture2D> Tiles = new();
+        public SpriteBatch SpriteBatch;
 
-        public EntityManager EntityManager { get; private set; }
         public static KeyboardEventChecker KeyEventChecker { get; private set; }
         public static TEM Instance { get; private set; }
 
@@ -64,6 +64,8 @@ namespace TEMEliminatesMonsters.src
         {
             base.Initialize();
 
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+
             KeyEventChecker = new();
             _fullscreener = new(_graphics, Window);
             BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, 1920, 1080);
@@ -86,7 +88,7 @@ namespace TEMEliminatesMonsters.src
             //this won't be done like this in reality, this is just for testing
             Map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
             Map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 1, 0, 00100100), 1);
-            _huskFactory = new HuskFactory(_world, _zombie, _spriteBatch);
+            _huskFactory = new HuskFactory(_world, _zombie, SpriteBatch);
         }
 
         /// <summary>
@@ -102,8 +104,6 @@ namespace TEMEliminatesMonsters.src
         /// </summary>
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             _zombie = Content.Load<Texture2D>("zombie");
 
             foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
@@ -115,6 +115,7 @@ namespace TEMEliminatesMonsters.src
             }
         }
 
+        FastRandom fr = new FastRandom();
         /// <summary>
         /// Runs every frame, updates objects
         /// </summary>
@@ -124,6 +125,12 @@ namespace TEMEliminatesMonsters.src
             _world.Update(gameTime);
             UpdateableManager.UpdateAll(gameTime);
             base.Update(gameTime);
+            if (fr.Next(0, (int)Math.Pow(2, 16)) % 128 == 0)
+            {
+                Vector2 pos = new(fr.Next(32, 2048), fr.Next(32, 2048));
+                Debug.WriteLine($"Making New Husk at {pos}");
+                _huskFactory.Create(pos);
+            }
         }
 
         /// <summary>
@@ -137,10 +144,10 @@ namespace TEMEliminatesMonsters.src
 
             //begin drawing
             var transformMatrix = Camera.GetViewMatrix();
-            _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
+            SpriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
             // render the TileMap
-            Map.Render(_spriteBatch);
+            Map.Render(SpriteBatch);
 
             //render the particles
 
@@ -150,7 +157,7 @@ namespace TEMEliminatesMonsters.src
             //render the items
 
             //finish drawing
-            _spriteBatch.End();
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }

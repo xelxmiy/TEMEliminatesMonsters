@@ -49,7 +49,7 @@ namespace TEMEliminatesMonsters.src.Map.Tiles
         /// <summary>
         /// draws this tile to the screen
         /// </summary>
-        /// <param name="spriteBatch">the _spriteBatch responsible for drawing</param>
+        /// <param name="spriteBatch">the SpriteBatch responsible for drawing</param>
         public void Render(SpriteBatch spriteBatch)
         {
             if (_texture == null)

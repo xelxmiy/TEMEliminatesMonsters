@@ -16,7 +16,10 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.
 
         protected override float MovementSpeed { get; set; } = 1.3f;
 
-        public override void Initialize(IComponentMapperService mapperService) => throw new NotImplementedException();
+        public override void Initialize(IComponentMapperService mapperService) 
+        {
+        
+        } 
 
         /// <summary>
         /// Keeps the Husk in-bounds
