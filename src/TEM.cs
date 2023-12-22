@@ -7,27 +7,34 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using TEMEliminatesMonsters.src.Controllers;
 using TEMEliminatesMonsters.src.KeyEvents;
-using TEMEliminatesMonsters.src.TileMap;
 using TEMEliminatesMonsters.src.Updateables;
-using TEMEliminatesMonsters.src.TileMap.Tiles;
+using MonoGame.Extended.Entities;
+using TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
+using TEMEliminatesMonsters.src.Map;
+using TEMEliminatesMonsters.src.Map.Tiles;
+using TEMEliminatesMonsters.src.Controllers;
+using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems;
+using System;
 
 namespace TEMEliminatesMonsters.src
 {
     public class TEM : Game
     {
-        private readonly GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
         private CameraController _cameraController;
         private Fullscreener _fullscreener;
+        private World _world;
+        private Texture2D _zombie;
+        private HuskFactory _huskFactory;
+        private readonly GraphicsDeviceManager _graphics;
+        private readonly int _TileMapSize = 256;
 
-        public TileMap.TileMap _map;
-        public OrthographicCamera _camera;
+        public TileMap Map;
+        public OrthographicCamera Camera;
         public Dictionary<string, Texture2D> Tiles = new();
-        public int _tileMapSize = 256;
+        public SpriteBatch SpriteBatch;
 
-        public static KeyboardEventChecker _keyEventChecker;
+        public static KeyboardEventChecker KeyEventChecker { get; private set; }
         public static TEM Instance { get; private set; }
 
         /// <summary>
@@ -36,7 +43,6 @@ namespace TEMEliminatesMonsters.src
         public TEM()
         {
             _graphics = new GraphicsDeviceManager(this);
-
             Content.RootDirectory = "Content";
             Window.AllowAltF4 = true;
             IsMouseVisible = true;
@@ -58,20 +64,31 @@ namespace TEMEliminatesMonsters.src
         {
             base.Initialize();
 
-            _keyEventChecker = new();
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+
+            KeyEventChecker = new();
             _fullscreener = new(_graphics, Window);
             BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, 1920, 1080);
 
-            _camera = new OrthographicCamera(viewportAdapter);
-            _cameraController = new(_camera);
+            Camera = new OrthographicCamera(viewportAdapter);
+            _cameraController = new(Camera);
 
             InitializeKeyEvents();
 
-            _map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _tileMapSize, _tileMapSize);
+            Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _TileMapSize, _TileMapSize);
+
+            // doodz would absolutely kill me (he hates dots chains)
+            // doodz i know you have this repo starred on github, if you see this i'm very sorry 
+            _world = new WorldBuilder()
+            .AddSystem(new WorldUpdateSystem())
+            .AddSystem(new WorldRenderSystem())
+            // .AddSystem(Isystem system) 
+            .Build();
 
             //this won't be done like this in reality, this is just for testing
-            _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
-            _map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 1, 0, 00100100), 1);
+            Map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 0, 0, 00100000), 1);
+            Map.AddTile(new GroundTile(Tiles[$"{(TileTexture)13}"], 1, 0, 00100100), 1);
+            _huskFactory = new HuskFactory(_world, _zombie, SpriteBatch);
         }
 
         /// <summary>
@@ -87,7 +104,7 @@ namespace TEMEliminatesMonsters.src
         /// </summary>
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _zombie = Content.Load<Texture2D>("zombie");
 
             foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
             {
@@ -98,14 +115,22 @@ namespace TEMEliminatesMonsters.src
             }
         }
 
+        FastRandom fr = new FastRandom();
         /// <summary>
         /// Runs every frame, updates objects
         /// </summary>
         /// <param name="gameTime">Game uptime</param>
         protected override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            _world.Update(gameTime);
             UpdateableManager.UpdateAll(gameTime);
+            base.Update(gameTime);
+            if (fr.Next(0, (int)Math.Pow(2, 16)) % 128 == 0)
+            {
+                Vector2 pos = new(fr.Next(32, 2048), fr.Next(32, 2048));
+                Debug.WriteLine($"Making New Husk at {pos}");
+                _huskFactory.Create(pos);
+            }
         }
 
         /// <summary>
@@ -118,20 +143,21 @@ namespace TEMEliminatesMonsters.src
             GraphicsDevice.Clear(Color.Magenta);
 
             //begin drawing
-            var transformMatrix = _camera.GetViewMatrix();
-            _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
+            var transformMatrix = Camera.GetViewMatrix();
+            SpriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
             // render the TileMap
-            _map.Render(_spriteBatch);
+            Map.Render(SpriteBatch);
 
             //render the particles
 
             //render the entities
+            _world.Draw(gameTime);
 
             //render the items
 
             //finish drawing
-            _spriteBatch.End();
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }

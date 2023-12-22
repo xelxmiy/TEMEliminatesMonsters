@@ -17,7 +17,7 @@ namespace TEMEliminatesMonsters.src.Controllers
 
         private int _previousScrollValue;
 
-        private readonly OrthographicCamera _camera;
+        public readonly OrthographicCamera Camera;
 
         public static MouseState state;
         public static Vector2 MousePosition { get { return new Vector2(state.X, state.Y); } }
@@ -31,9 +31,9 @@ namespace TEMEliminatesMonsters.src.Controllers
         public CameraController(OrthographicCamera camera, int minZoom = 1, int maxZoom = 5)
         {
             _movementSpeed = _baseMovementSpeed;
-            _camera = camera;
-            _camera.MaximumZoom = maxZoom;
-            _camera.MinimumZoom = minZoom;
+            Camera = camera;
+            Camera.MaximumZoom = maxZoom;
+            Camera.MinimumZoom = minZoom;
             _previousMouseX = Mouse.GetState().X;
             _previousMouseY = Mouse.GetState().Y;
             (this as Updateables.IUpdateable).AddSelfToUpdateables();
@@ -50,7 +50,7 @@ namespace TEMEliminatesMonsters.src.Controllers
             if (state.RightButton == ButtonState.Pressed)
             {
                 Vector2 movementVector = GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds();
-                _camera.Move(movementVector);
+                Camera.Move(movementVector);
                 CheckBounds();
             }
             if (state.ScrollWheelValue != _previousScrollValue)
@@ -60,7 +60,6 @@ namespace TEMEliminatesMonsters.src.Controllers
             _previousMouseX = (int)MousePosition.X;
             _previousMouseY = (int)MousePosition.Y;
             _previousScrollValue = state.ScrollWheelValue;
-            Debug.WriteLine(string.Concat("campos x ", _camera.Position.X));
         }
 
         /// <summary>
@@ -68,21 +67,21 @@ namespace TEMEliminatesMonsters.src.Controllers
         /// </summary>
         private void CheckBounds()
         {
-            if (_camera.Position.X < 0)
+            if (Camera.Position.X < 0)
             {
-                _camera.Position = new Vector2(0, _camera.Position.Y);
+                Camera.Position = new Vector2(0, Camera.Position.Y);
             }
-            if (_camera.Position.Y < 0)
+            if (Camera.Position.Y < 0)
             {
-                _camera.Position = new Vector2(_camera.Position.X, 0);
+                Camera.Position = new Vector2(Camera.Position.X, 0);
             }
-            if (_camera.Position.X > TEM.Instance._map.GridWidth)
+            if (Camera.Position.X > TEM.Instance.Map.GridWidth)
             {
-                _camera.Position = new Vector2(TEM.Instance._map.GridWidth, _camera.Position.Y);
+                Camera.Position = new Vector2(TEM.Instance.Map.GridWidth, Camera.Position.Y);
             }
-            if (_camera.Position.Y > TEM.Instance._map.GridLength)
+            if (Camera.Position.Y > TEM.Instance.Map.GridLength)
             {
-                _camera.Position = new Vector2(_camera.Position.X, TEM.Instance._map.GridLength);
+                Camera.Position = new Vector2(Camera.Position.X, TEM.Instance.Map.GridLength);
             }
         }
 
@@ -93,10 +92,10 @@ namespace TEMEliminatesMonsters.src.Controllers
         private void Zoom(float value)
         {
             value /= 960;
-            if (_camera.Zoom + value <= _camera.MaximumZoom && _camera.Zoom + value >= _camera.MinimumZoom)
+            if (Camera.Zoom + value <= Camera.MaximumZoom && Camera.Zoom + value >= Camera.MinimumZoom)
             {
-                _camera.Zoom += value;
-                _movementSpeed = _baseMovementSpeed / _camera.Zoom;
+                Camera.Zoom += value;
+                _movementSpeed = _baseMovementSpeed / Camera.Zoom;
             }
         }
 
@@ -110,7 +109,7 @@ namespace TEMEliminatesMonsters.src.Controllers
 
             float MouseSpeed = Vector2.Distance(new Vector2(_previousMouseX, _previousMouseY), MousePosition);
 
-            if (Difference == Vector2.Zero) return Vector2.Zero; //can't normalize the zero vector be :(
+            if (Difference == Vector2.Zero) return Vector2.Zero; //can't normalize the zero vector :(
 
             Vector2 movementDirection = Vector2.Normalize(Difference);
 

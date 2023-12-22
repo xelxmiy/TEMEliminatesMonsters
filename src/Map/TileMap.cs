@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
-using TEMEliminatesMonsters.src.TileMap.Tiles;
+using TEMEliminatesMonsters.src.Controllers;
+using TEMEliminatesMonsters.src.Map.Tiles;
 
-namespace TEMEliminatesMonsters.src.TileMap
+namespace TEMEliminatesMonsters.src.Map
 {
     public class TileMap
     {
@@ -81,9 +82,9 @@ namespace TEMEliminatesMonsters.src.TileMap
         }
 
         /// <summary>
-        /// Replaces the Texture tile in the tilegrid
+        /// Replaces the _texture tile in the tilegrid
         /// </summary>
-        /// <param name="texture">Texture replacement</param>
+        /// <param name="texture">_texture replacement</param>
         /// <param name="layer">Layer of replaced tile</param>
         /// <param name="w">w of replaced tile</param>
         /// <param name="h">h of replaced tile</param>
@@ -126,7 +127,7 @@ namespace TEMEliminatesMonsters.src.TileMap
             foreach (Tile[,] tileLayer in _tileGrid)
             {
                 //belive it or not, using 'var' is standard for Monogame projects 
-                var cameraBounds = TEM.Instance._camera.BoundingRectangle;
+                var cameraBounds = TEM.Instance.Camera.BoundingRectangle;
                 var tSize = _tileSize * Tile._tileSizeMultiplier;
                 //calculates all defaultTexture in frame, much faster than culling not in frame defaultTexture for large (1000*1000) size boards
                 for (int x = (int)Math.Floor(cameraBounds.X / tSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tSize); x++)

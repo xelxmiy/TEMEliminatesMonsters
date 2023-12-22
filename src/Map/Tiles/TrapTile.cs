@@ -5,7 +5,7 @@ using MonoGame.Extended.Collections;
 using MonoGame.Extended.Collisions;
 using TEMEliminatesMonsters.src.Updateables;
 
-namespace TEMEliminatesMonsters.src.TileMap.Tiles
+namespace TEMEliminatesMonsters.src.Map.Tiles
 {
     abstract class TrapTile : Tile, ICollisionActor
     {

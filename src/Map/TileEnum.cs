@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEMEliminatesMonsters.src.TileMap
+namespace TEMEliminatesMonsters.src.Map
 {
 
     //this enum is so i can load Maps from a file for set maps, and later so i can use it to randomly generate worlds.
