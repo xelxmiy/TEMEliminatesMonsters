@@ -4,6 +4,8 @@ using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.AbstractSystems;
 using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 
@@ -15,7 +17,9 @@ namespace TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems
         {
         }
 
-        ComponentMapper<HuskMovementSystem> _movementSystemMapper;
+        List<MovementSystem> MovementSystems;
+
+        List<ComponentMapper<MovementSystem>> MovementSystemMappers;
 
         /// <summary>
         /// initializes this system, called automatically
@@ -23,7 +27,17 @@ namespace TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems
         /// <param name="componentMapperService">component mapper, maps components</param>
         public override void Initialize(IComponentMapperService componentMapperService)
         {
-            _movementSystemMapper = componentMapperService.GetMapper<HuskMovementSystem>();
+            foreach (var movementSystem in MovementSystems)
+            {
+                MethodInfo method = typeof(IComponentMapperService).GetMethod("GetMapper",
+                                BindingFlags.Public | BindingFlags.Instance);
+
+                method = method.MakeGenericMethod(movementSystem.GetType());
+
+                var v = (ComponentMapper<MovementSystem>)method.Invoke(componentMapperService, null);
+
+                MovementSystemMappers.Add(v);
+            }
         }
 
         /// <summary>
@@ -32,9 +46,12 @@ namespace TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            foreach (int id in ActiveEntities)
+            foreach (var componentMapper in MovementSystemMappers)
             {
-                _movementSystemMapper.Get(id).Update(gameTime);
+                foreach (int id in ActiveEntities)
+                {
+                    componentMapper.Get(id).Update(gameTime);
+                }
             }
         }
     }
