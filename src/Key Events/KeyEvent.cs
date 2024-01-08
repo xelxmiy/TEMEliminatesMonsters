@@ -1,26 +1,25 @@
 ﻿using System;
 
-namespace TEMEliminatesMonsters.src.KeyEvents
+namespace TEMEliminatesMonsters.src.KeyEvents;
+
+public class KeyEvent
 {
-    public class KeyEvent
+    private event Action Event;
+
+    /// <summary>
+    /// invokes the encapsulated _event
+    /// </summary>
+    public void Invoke()
     {
-        private event Action Event;
+        Event?.Invoke();
+    }
 
-        /// <summary>
-        /// invokes the encapsulated _event
-        /// </summary>
-        public void Invoke()
-        {
-            Event?.Invoke();
-        }
-
-        /// <summary>
-        /// returns a refrence to the encapsulated _event
-        /// </summary>
-        /// <returns></returns>
-        public ref Action GetEvent()
-        {
-            return ref Event;
-        }
+    /// <summary>
+    /// returns a refrence to the encapsulated _event
+    /// </summary>
+    /// <returns></returns>
+    public ref Action GetEvent()
+    {
+        return ref Event;
     }
 }
