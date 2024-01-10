@@ -80,4 +80,10 @@
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
   </Target>
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\a.belski\source\repos\TEM\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\a.belski\source\repos\TEM\.editorconfig" />
+  </ItemGroup>
 </Project>
