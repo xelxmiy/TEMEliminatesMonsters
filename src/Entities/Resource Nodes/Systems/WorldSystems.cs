@@ -5,7 +5,9 @@ using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
+using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Spawners.Concrete;
 using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.AbstractSystems;
 using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 
@@ -18,6 +20,7 @@ public class WorldUpdateSystem : EntityUpdateSystem
     }
 
     ComponentMapper<HuskMovementSystem> _huskMovementSystem;
+	ComponentMapper<HuskSpawner> _huskSpawnerSystem;
 
     /// <summary>
     /// initializes this system, called automatically
@@ -26,7 +29,9 @@ public class WorldUpdateSystem : EntityUpdateSystem
     public override void Initialize(IComponentMapperService componentMapperService)
     {
         _huskMovementSystem = componentMapperService.GetMapper<HuskMovementSystem>();
-    }
+		_huskSpawnerSystem = componentMapperService.GetMapper<HuskSpawner>();
+
+	}
 
     /// <summary>
     /// updates all entities in the world
@@ -37,7 +42,8 @@ public class WorldUpdateSystem : EntityUpdateSystem
         foreach (int id in ActiveEntities)
         {
             _huskMovementSystem.Get(id)?.Update(gameTime);
-        }
+			_huskSpawnerSystem.Get(id)?.Update(gameTime);
+		}
     }
 }
 
@@ -67,8 +73,10 @@ public class WorldRenderSystem : EntityDrawSystem
             Texture2D entityTexture = _textureMapper.Get(id);
             if (entityTexture is null)
             {
-                throw new NullReferenceException($"entityTexture is null! id: {entityTexture}");
+                Debug.Fail($"entityTexture is null! id: {entityTexture}");
+                continue;
             }
+
             Vector2 entityPosition = _transformMapper.Get(id).Position;
 
             _spriteBatch.Draw(entityTexture, entityPosition, Color.White);
@@ -81,8 +89,6 @@ public class WorldRenderSystem : EntityDrawSystem
     /// <param name="componentMapperService">mapper service to map components</param>
     public override void Initialize(IComponentMapperService componentMapperService)
     {
-        // this is bad for several reasons, but it works for now and i promise i'll fix it later
-        // see the funny thing is if you're reading this it means i haven't fixed it, feel free to yell at me if so
         _spriteBatch = TEM.Instance.SpriteBatch;
         _textureMapper = componentMapperService.GetMapper<Texture2D>();
         _transformMapper = componentMapperService.GetMapper<Transform2>();

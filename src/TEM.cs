@@ -16,6 +16,7 @@ using TEMEliminatesMonsters.src.Map.Tiles;
 using TEMEliminatesMonsters.src.Controllers;
 using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems;
 using System;
+using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
 
 namespace TEMEliminatesMonsters.src;
 
@@ -24,8 +25,8 @@ public class TEM : Game
     private CameraController _cameraController;
     private Fullscreener _fullscreener;
     private World _world;
-    private Texture2D _zombie;
-    private HuskFactory _huskFactory;
+    public Texture2D _zombie;
+    private HuskSpawnerFactory _huskSpawnerFactory;
     private readonly GraphicsDeviceManager _graphics;
     private readonly int _TileMapSize = 256;
 
@@ -77,15 +78,21 @@ public class TEM : Game
 
         Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _TileMapSize, _TileMapSize);
 
-        // doodz would absolutely kill me (he hates dots chains)
-        // doodz i know you have this repo starred on github, if you see this i'm very sorry 
         _world = new WorldBuilder()
         .AddSystem(new WorldUpdateSystem())
         .AddSystem(new WorldRenderSystem())
         // .AddSystem(Isystem system) 
         .Build();
-    }
 
+        _huskSpawnerFactory = new(_world, Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"]);
+        {
+            FastRandom fr = new();
+            for (int i = 0; i < 10; i++)
+            {
+                _huskSpawnerFactory.Create(new(fr.Next(1920), fr.Next(1080)));
+            }
+        }
+    }
     /// <summary>
     /// Adds methods to key press events 
     /// </summary>

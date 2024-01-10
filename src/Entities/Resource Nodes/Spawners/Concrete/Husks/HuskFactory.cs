@@ -10,19 +10,18 @@ namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
 
 public class HuskFactory : IEntityFactory
 {
-    private World _world;
-    private Texture2D _huskTexture;
-    private SpriteBatch _spriteBatch;
+    private readonly World _world;
+    private readonly Texture2D _huskTexture;
 
-    public HuskFactory(World world, Texture2D texture, SpriteBatch spriteBatch)
+    public HuskFactory(World world, Texture2D texture)
     {
         _world = world;
         _huskTexture = texture;
-        _spriteBatch = spriteBatch;
     }
 
     public Entity Create(Vector2 position)
     {
+        //Creates a husk entity
         Entity husk = _world.CreateEntity();
         husk.Attach(new Transform2(position));
         husk.Attach(_huskTexture);
