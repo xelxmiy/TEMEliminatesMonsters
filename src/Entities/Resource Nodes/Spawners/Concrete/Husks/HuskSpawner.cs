@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 
 namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
 
@@ -33,8 +34,10 @@ internal class HuskSpawner : EntityUpdateSystem
 		_factory = factory;
 		_position = position;
 	}
+
 	public override void Initialize (IComponentMapperService mapperService)
 	{
+
 	}
 
 	public override void Update (GameTime gameTime)
@@ -44,14 +47,15 @@ internal class HuskSpawner : EntityUpdateSystem
 		{
 			for (int i = 0; i < _spawnCount; _spawnCount--)
 			{
-				_factory.Create(_position
+				Entity ent = _factory.Create(_position
 					+ new Vector2(_fr.NextSingle(-_spawnRadius, _spawnRadius), _fr.NextSingle(-_spawnRadius, _spawnRadius))
 					+ new Vector2(5, 5)); //5px offset from spawner
+
 			}
 		}
 
 		// add 1-3 enemies to the next spawn cycle if it's been 5 seconds
-		if (gameTime.GetElapsedSeconds() % 5 == 0)
+		if (gameTime.TotalGameTime.TotalSeconds % 5 < 0.02)
 		{
 			_spawnCount += _fr.Next(1, 3);
 		}

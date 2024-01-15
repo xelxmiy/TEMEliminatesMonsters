@@ -27,22 +27,6 @@ internal class HuskMovementSystem : MovementSystem
 	/// <returns></returns>
 	protected override bool CanMove (Vector2 movementVector) // to be expanded upon
 	{
-		if (Position.X < 0)
-		{
-			Position = new Vector2(0, Position.Y);
-		}
-		if (Position.Y < 0)
-		{
-			Position = new Vector2(Position.X, 0);
-		}
-		if (Position.X > TEM.Instance.Map.GridWidth)
-		{
-			Position = new Vector2(TEM.Instance.Map.GridWidth, Position.Y);
-		}
-		if (Position.Y > TEM.Instance.Map.GridLength)
-		{
-			Position = new Vector2(Position.X, TEM.Instance.Map.GridLength);
-		}
 		return true;
 	}
 	/// <summary>
@@ -51,11 +35,10 @@ internal class HuskMovementSystem : MovementSystem
 	/// <returns></returns>
 	protected override Vector2 GetMovementDirection ()
 	{
-		Vector2 Difference = _target - Position;
+		Vector2 difference = _target - Position;
 
-		if (Difference == Vector2.Zero) return Vector2.Zero; //can't normalize the zero vector :(
-
-		Vector2 movementDirection = Vector2.Normalize(Difference);
+		if (difference == Vector2.Zero) return Vector2.Zero; //can't normalize the zero vector :(
+		Vector2 movementDirection = Vector2.Normalize(difference);
 
 		return movementDirection * MovementSpeed;
 	}

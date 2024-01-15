@@ -35,6 +35,8 @@ public class TEM : Game
 	public Dictionary<string, Texture2D> Tiles = new();
 	public SpriteBatch SpriteBatch;
 
+	public static Vector2 MousePosition { get => Mouse.GetState().Position.ToVector2(); }
+
 	public static KeyboardEventChecker KeyEventChecker { get; private set; }
 	public static TEM Instance { get; private set; }
 
@@ -86,7 +88,7 @@ public class TEM : Game
 
 		_huskSpawnerFactory = new(_world, Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"]);
 		{
-			FastRandom fr = new();
+			FastRandom fr = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
 			for (int i = 0; i < 10; i++)
 			{
 				_huskSpawnerFactory.Create(new(fr.Next(1920), fr.Next(1080)));
@@ -123,6 +125,10 @@ public class TEM : Game
 	/// <param name="gameTime">Game uptime</param>
 	protected override void Update (GameTime gameTime)
 	{
+		// Debug
+		Debug.WriteLine(gameTime.TotalGameTime);
+
+		// Game Updates
 		_world.Update(gameTime);
 		UpdateableManager.UpdateAll(gameTime);
 		base.Update(gameTime);

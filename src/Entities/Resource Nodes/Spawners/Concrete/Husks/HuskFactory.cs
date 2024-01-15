@@ -19,6 +19,11 @@ public class HuskFactory : IEntityFactory
 		_huskTexture = texture;
 	}
 
+	/// <summary>
+	/// creats a new Husk entity
+	/// </summary>
+	/// <param name="position">position this husk spawns at</param>
+	/// <returns>the created husk</returns>
 	public Entity Create (Vector2 position)
 	{
 		//Creates a husk entity
@@ -27,6 +32,9 @@ public class HuskFactory : IEntityFactory
 		husk.Attach(_huskTexture);
 		// add systems here
 		husk.Attach(new HuskMovementSystem(husk.Get<Transform2>()));
+
+		husk.Get<HuskMovementSystem>().SetTarget(TEM.MousePosition);
+
 		return husk;
 	}
 }
