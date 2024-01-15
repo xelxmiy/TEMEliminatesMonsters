@@ -105,14 +105,13 @@ internal class CameraController : Updateables.IUpdateable
     /// <returns></returns>
     private Vector2 GetMovementDirection()
     {
-        Vector2 Difference = new Vector2(_previousMouseX, _previousMouseY) - MousePosition;
+        Vector2 difference = new Vector2(_previousMouseX, _previousMouseY) - MousePosition;
+        float mouseSpeed = Vector2.Distance(new Vector2(_previousMouseX, _previousMouseY), MousePosition);
 
-        float MouseSpeed = Vector2.Distance(new Vector2(_previousMouseX, _previousMouseY), MousePosition);
+        if (difference == Vector2.Zero) 
+			return Vector2.Zero; //can't normalize the zero vector :(
+        Vector2 movementDirection = Vector2.Normalize(difference);
 
-        if (Difference == Vector2.Zero) return Vector2.Zero; //can't normalize the zero vector :(
-
-        Vector2 movementDirection = Vector2.Normalize(Difference);
-
-        return movementDirection * MouseSpeed;
+        return movementDirection * mouseSpeed;
     }
 }
