@@ -7,11 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Spawners.Concrete;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.AbstractSystems;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
+using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 
-namespace TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems;
+namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
 
 public class WorldUpdateSystem : EntityUpdateSystem
 {

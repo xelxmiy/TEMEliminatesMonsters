@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using System;
 using System.Diagnostics;
-using TEMEliminatesMonsters.src.KeyEvents;
+using TEMEliminatesMonsters.Src.KeyEvents;
 
-namespace TEMEliminatesMonsters.src.Controllers;
+namespace TEMEliminatesMonsters.Src.Controllers;
 
 internal class CameraController : Updateables.IUpdateable
 {
@@ -17,23 +17,23 @@ internal class CameraController : Updateables.IUpdateable
 
 	private int _previousScrollValue;
 
-	public readonly OrthographicCamera Camera;
+	public readonly OrthographicCamera _camera;
 
-	public static MouseState state;
-	public static Vector2 MousePosition { get { return new Vector2(state.X, state.Y); } }
+	public static MouseState s_state;
+	public static Vector2 MousePosition { get { return new Vector2(s_state.X, s_state.Y); } }
 
 	/// <summary>
 	/// Creates a new CameraController
 	/// </summary>
-	/// <param name="camera">Camera object</param>
+	/// <param name="camera">_camera object</param>
 	/// <param name="minZoom">Maximum screen zoom for this camera</param>
 	/// <param name="maxZoom">Minimum screen zoom for this camera</param>
 	public CameraController (OrthographicCamera camera, int minZoom = 1, int maxZoom = 5)
 	{
 		_movementSpeed = _baseMovementSpeed;
-		Camera = camera;
-		Camera.MaximumZoom = maxZoom;
-		Camera.MinimumZoom = minZoom;
+		_camera = camera;
+		_camera.MaximumZoom = maxZoom;
+		_camera.MinimumZoom = minZoom;
 		_previousMouseX = Mouse.GetState().X;
 		_previousMouseY = Mouse.GetState().Y;
 		(this as Updateables.IUpdateable).AddSelfToUpdateables();
@@ -45,21 +45,21 @@ internal class CameraController : Updateables.IUpdateable
 	/// <param name="gameTime">The current gametime</param>
 	public void Update (GameTime gameTime)
 	{
-		state = Mouse.GetState();
+		s_state = Mouse.GetState();
 
-		if (state.RightButton == ButtonState.Pressed)
+		if (s_state.RightButton == ButtonState.Pressed)
 		{
 			Vector2 movementVector = GetMovementDirection() * _movementSpeed * gameTime.GetElapsedSeconds();
-			Camera.Move(movementVector);
+			_camera.Move(movementVector);
 			CheckBounds();
 		}
-		if (state.ScrollWheelValue != _previousScrollValue)
+		if (s_state.ScrollWheelValue != _previousScrollValue)
 		{
-			Zoom(state.ScrollWheelValue - _previousScrollValue);
+			Zoom(s_state.ScrollWheelValue - _previousScrollValue);
 		}
 		_previousMouseX = (int)MousePosition.X;
 		_previousMouseY = (int)MousePosition.Y;
-		_previousScrollValue = state.ScrollWheelValue;
+		_previousScrollValue = s_state.ScrollWheelValue;
 	}
 
 	/// <summary>
@@ -67,21 +67,21 @@ internal class CameraController : Updateables.IUpdateable
 	/// </summary>
 	private void CheckBounds ()
 	{
-		if (Camera.Position.X < 0)
+		if (_camera.Position.X < 0)
 		{
-			Camera.Position = new Vector2(0, Camera.Position.Y);
+			_camera.Position = new Vector2(0, _camera.Position.Y);
 		}
-		if (Camera.Position.Y < 0)
+		if (_camera.Position.Y < 0)
 		{
-			Camera.Position = new Vector2(Camera.Position.X, 0);
+			_camera.Position = new Vector2(_camera.Position.X, 0);
 		}
-		if (Camera.Position.X > TEM.Instance.Map.GridWidth)
+		if (_camera.Position.X > TEM.Instance.Map.GridWidth)
 		{
-			Camera.Position = new Vector2(TEM.Instance.Map.GridWidth, Camera.Position.Y);
+			_camera.Position = new Vector2(TEM.Instance.Map.GridWidth, _camera.Position.Y);
 		}
-		if (Camera.Position.Y > TEM.Instance.Map.GridLength)
+		if (_camera.Position.Y > TEM.Instance.Map.GridLength)
 		{
-			Camera.Position = new Vector2(Camera.Position.X, TEM.Instance.Map.GridLength);
+			_camera.Position = new Vector2(_camera.Position.X, TEM.Instance.Map.GridLength);
 		}
 	}
 
@@ -92,10 +92,10 @@ internal class CameraController : Updateables.IUpdateable
 	private void Zoom (float value)
 	{
 		value /= 960;
-		if (Camera.Zoom + value <= Camera.MaximumZoom && Camera.Zoom + value >= Camera.MinimumZoom)
+		if (_camera.Zoom + value <= _camera.MaximumZoom && _camera.Zoom + value >= _camera.MinimumZoom)
 		{
-			Camera.Zoom += value;
-			_movementSpeed = _baseMovementSpeed / Camera.Zoom;
+			_camera.Zoom += value;
+			_movementSpeed = _baseMovementSpeed / _camera.Zoom;
 		}
 	}
 

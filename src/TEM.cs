@@ -7,18 +7,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using TEMEliminatesMonsters.src.KeyEvents;
-using TEMEliminatesMonsters.src.Updateables;
+using TEMEliminatesMonsters.Src.KeyEvents;
+using TEMEliminatesMonsters.Src.Updateables;
 using MonoGame.Extended.Entities;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
-using TEMEliminatesMonsters.src.Map;
-using TEMEliminatesMonsters.src.Map.Tiles;
-using TEMEliminatesMonsters.src.Controllers;
-using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Systems;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
+using TEMEliminatesMonsters.Src.Map;
+using TEMEliminatesMonsters.Src.Map.Tiles;
+using TEMEliminatesMonsters.Src.Controllers;
+using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
 using System;
-using TEMEliminatesMonsters.src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
+using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
 
-namespace TEMEliminatesMonsters.src;
+namespace TEMEliminatesMonsters.Src;
 
 public class TEM : Game
 {

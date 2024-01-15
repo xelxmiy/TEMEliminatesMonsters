@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEMEliminatesMonsters.src.Updateables;
+namespace TEMEliminatesMonsters.Src.Updateables;
 
 internal class UpdateableManager
 {

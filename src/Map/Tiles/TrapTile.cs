@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Collections;
 using MonoGame.Extended.Collisions;
-using TEMEliminatesMonsters.src.Updateables;
+using TEMEliminatesMonsters.Src.Updateables;
 
-namespace TEMEliminatesMonsters.src.Map.Tiles;
+namespace TEMEliminatesMonsters.Src.Map.Tiles;
 
 abstract class TrapTile : Tile, ICollisionActor
 {

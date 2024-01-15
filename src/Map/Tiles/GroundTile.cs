@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace TEMEliminatesMonsters.src.Map.Tiles;
+namespace TEMEliminatesMonsters.Src.Map.Tiles;
 
 public class GroundTile : Tile
 {

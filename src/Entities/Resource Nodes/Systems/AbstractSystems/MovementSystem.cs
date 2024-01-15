@@ -4,7 +4,7 @@ using MonoGame.Extended.Entities.Systems;
 using MonoGame.Extended;
 using System.Diagnostics;
 
-namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.AbstractSystems;
+namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
 
 abstract class MovementSystem : EntityUpdateSystem
 {

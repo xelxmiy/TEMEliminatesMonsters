@@ -2,9 +2,9 @@
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using System;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.AbstractSystems;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
 
-namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
+namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 internal class HuskMovementSystem : MovementSystem
 {
 	/// <summary>

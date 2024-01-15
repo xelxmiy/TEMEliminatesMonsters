@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 
-namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
+namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
 
 public class HuskFactory : IEntityFactory
 {

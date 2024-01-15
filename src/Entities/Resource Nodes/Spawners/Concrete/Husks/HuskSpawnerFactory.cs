@@ -1,11 +1,11 @@
 ﻿using MonoGame.Extended.Entities;
 using MonoGame.Extended;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace TEMEliminatesMonsters.src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
+namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
 
 // ._. this is a factory that creates an entity that has a factory that creates a huskSpawner..
 // maybe trying to teach myself patterns was a mistake

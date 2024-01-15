@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TEMEliminatesMonsters.src.KeyEvents;
+namespace TEMEliminatesMonsters.Src.KeyEvents;
 
 public class KeyEvent
 {

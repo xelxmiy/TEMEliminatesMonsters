@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TEMEliminatesMonsters.src.KeyEvents;
+namespace TEMEliminatesMonsters.Src.KeyEvents;
 
 public static class KeyboardEventManager
 {

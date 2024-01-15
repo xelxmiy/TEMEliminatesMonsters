@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace TEMEliminatesMonsters.src.KeyEvents;
+namespace TEMEliminatesMonsters.Src.KeyEvents;
 
 public class KeyboardEventChecker : Updateables.IUpdateable
 {
@@ -24,9 +24,9 @@ public class KeyboardEventChecker : Updateables.IUpdateable
 	}
 
 	/// <summary>
-	/// returns the current keyboard state and updates the previous and current key states
+	/// returns the current keyboard s_state and updates the previous and current key states
 	/// </summary>
-	/// <returns>The current keyboard state</returns>
+	/// <returns>The current keyboard s_state</returns>
 	public KeyboardState GetState ()
 	{
 		_previousKeyState = _currentKeyState;

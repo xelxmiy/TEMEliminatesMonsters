@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
 
-namespace TEMEliminatesMonsters.src;
+namespace TEMEliminatesMonsters.Src;
 
 internal class Program
 {

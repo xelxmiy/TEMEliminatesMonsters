@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
 
-namespace TEMEliminatesMonsters.src.Entities.Resource_Nodes.Spawners.Concrete;
+namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
 
 internal class HuskSpawner : EntityUpdateSystem
 {

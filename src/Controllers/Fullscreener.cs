@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace TEMEliminatesMonsters.src.Controllers;
+namespace TEMEliminatesMonsters.Src.Controllers;
 
 /// <summary>
 /// fullscreens the game, i totally stole all this and it doesn't even work right, sorry!
@@ -62,7 +62,7 @@ public class Fullscreener
 	/// <summary>
 	/// toggles fullscreen change
 	/// </summary>
-	/// <param name="oldIsFullscreen">if the current state is non-borderless fullscreen</param>
+	/// <param name="oldIsFullscreen">if the current s_state is non-borderless fullscreen</param>
 	private void ApplyFullscreenChange (bool oldIsFullscreen)
 	{
 		if (_isFullscreen)

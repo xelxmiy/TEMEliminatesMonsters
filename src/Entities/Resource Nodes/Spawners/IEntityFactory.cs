@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
 
-namespace TEMEliminatesMonsters.src.Entities.ResourceNodes.Spawners;
+namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
 
 public interface IEntityFactory
 {

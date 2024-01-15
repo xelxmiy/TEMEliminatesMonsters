@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
-using TEMEliminatesMonsters.src.Controllers;
-using TEMEliminatesMonsters.src.Map.Tiles;
+using TEMEliminatesMonsters.Src.Controllers;
+using TEMEliminatesMonsters.Src.Map.Tiles;
 
-namespace TEMEliminatesMonsters.src.Map;
+namespace TEMEliminatesMonsters.Src.Map;
 
 public class TileMap
 {
