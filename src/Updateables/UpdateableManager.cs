@@ -9,17 +9,17 @@ namespace TEMEliminatesMonsters.src.Updateables;
 
 internal class UpdateableManager
 {
-    public static List<IUpdateable> Updateables { get; set; } = new();
+	public static List<IUpdateable> Updateables { get; set; } = new();
 
-    /// <summary>
-    /// Runs every frame, updates all Updateable objects
-    /// </summary>
-    /// <param name="gameTime">Game uptime</param>
-    public static void UpdateAll(GameTime gameTime)
-    {
-        foreach (IUpdateable updateable in Updateables)
-        {
-            updateable?.Update(gameTime);
-        }
-    }
+	/// <summary>
+	/// Runs every frame, updates all Updateable objects
+	/// </summary>
+	/// <param name="gameTime">Game uptime</param>
+	public static void UpdateAll (GameTime gameTime)
+	{
+		foreach (IUpdateable updateable in Updateables)
+		{
+			updateable?.Update(gameTime);
+		}
+	}
 }
