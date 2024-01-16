@@ -28,12 +28,9 @@ public class HuskFactory : IEntityFactory
 	{
 		//Creates a husk entity
 		Entity husk = _world.CreateEntity();
-		husk.Attach(new Transform2(position));
 		husk.Attach(_huskTexture);
 		// add systems here
-		husk.Attach(new HuskMovementSystem(husk.Get<Transform2>()));
-
-		husk.Get<HuskMovementSystem>().SetTarget(TEM.MousePosition);
+		husk.Attach(new HuskMovementSystem(position));
 
 		return husk;
 	}

@@ -13,13 +13,14 @@ using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk
 
 namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
 
-internal class HuskSpawner : EntityUpdateSystem
+internal class HuskSpawner : EntityUpdateSystem, IEntitySpawner
 {
-	private FastRandom _fr = new();
+	private readonly FastRandom _fastRandom = new();
 
 	//spawner controll
-	private HuskFactory _factory;
+
 	private Vector2 _position;
+	private HuskFactory _factory;
 
 	#region constants
 	// husk spawning control
@@ -28,6 +29,13 @@ internal class HuskSpawner : EntityUpdateSystem
 	#endregion
 
 	private int _spawnCount = _maxSpawnCount;
+
+	public Vector2 Position => _position;
+	public IEntityFactory Factory 
+	{ 
+		get => _factory;
+		private set => _factory = (HuskFactory)value;
+	}
 
 	public HuskSpawner (HuskFactory factory, Vector2 position) : base(default)
 	{
@@ -47,8 +55,8 @@ internal class HuskSpawner : EntityUpdateSystem
 		{
 			for (int i = 0; i < _spawnCount; _spawnCount--)
 			{
-				Entity ent = _factory.Create(_position
-					+ new Vector2(_fr.NextSingle(-_spawnRadius, _spawnRadius), _fr.NextSingle(-_spawnRadius, _spawnRadius))
+				Entity ent = Factory.Create(_position
+					+ new Vector2(_fastRandom.NextSingle(-_spawnRadius, _spawnRadius), _fastRandom.NextSingle(-_spawnRadius, _spawnRadius))
 					+ new Vector2(5, 5)); //5px offset from spawner
 
 			}
@@ -57,7 +65,7 @@ internal class HuskSpawner : EntityUpdateSystem
 		// add 1-3 enemies to the next spawn cycle if it's been 5 seconds
 		if (gameTime.TotalGameTime.TotalSeconds % 5 < 0.02)
 		{
-			_spawnCount += _fr.Next(1, 3);
+			_spawnCount += _fastRandom.Next(1, 3);
 		}
 	}
 }

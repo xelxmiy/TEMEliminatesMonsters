@@ -2,6 +2,7 @@
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using System;
+using System.Diagnostics;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
 
 namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
@@ -10,20 +11,28 @@ internal class HuskMovementSystem : MovementSystem
 	/// <summary>
 	/// Creates a Husk Movement System based on this husk's location
 	/// </summary>
-	/// <param name="bounds"></param>
-	public HuskMovementSystem (Transform2 bounds) : base(bounds) { }
+	/// <param name="position"></param>
+	public HuskMovementSystem (Vector2 position) : base(position) { }
 
-	protected override float MovementSpeed { get; set; } = 1.3f;
+	protected override float MovementSpeed { get; set; } = 13f;
 
 	public override void Initialize (IComponentMapperService mapperService)
 	{
 
 	}
 
+	public override void Update (GameTime gameTime) 
+	{
+		//Debug.WriteLine("Husk Moved!");
+		Vector2 mv = GetMovementDirection();
+		//if (CanMove(mv))
+			Move(mv);
+	}
+
 	/// <summary>
-	/// Keeps the Husk in-bounds
+	/// Keeps the Husk in-position
 	/// </summary>
-	/// <param name="movementVector">verifies that the movement vector keeps the husk in-bounds</param>
+	/// <param name="movementVector">verifies that the movement vector keeps the husk in-position</param>
 	/// <returns></returns>
 	protected override bool CanMove (Vector2 movementVector) // to be expanded upon
 	{

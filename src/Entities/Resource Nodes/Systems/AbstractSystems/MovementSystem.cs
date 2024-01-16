@@ -6,29 +6,18 @@ using System.Diagnostics;
 
 namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
 
-abstract class MovementSystem : EntityUpdateSystem
+internal abstract class MovementSystem : EntityUpdateSystem
 {
 
-	protected MovementSystem (Transform2 bounds) : base(new())
+	protected MovementSystem (Vector2 position) : base(new())
 	{
-		Position = bounds.Position;
+		Position = position;
 	}
 
 	public Vector2 Position { get; protected set; }
 
 	private protected Vector2 _target;
 	protected abstract float MovementSpeed { get; set; }
-
-	/// <summary>
-	/// runs continously, updates this enitity
-	/// </summary>
-	/// <param name="gameTime">current game time</param>
-	public override void Update (GameTime gameTime)
-	{
-		Vector2 mv = GetMovementDirection();
-		if (CanMove(mv))
-			Move(mv);
-	}
 
 	/// <summary>
 	/// displaces this entity

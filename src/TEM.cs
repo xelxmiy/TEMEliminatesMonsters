@@ -17,6 +17,8 @@ using TEMEliminatesMonsters.Src.Controllers;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
 using System;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
+using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
+using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
 
 namespace TEMEliminatesMonsters.Src;
 
@@ -81,8 +83,10 @@ public class TEM : Game
 		Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _TileMapSize, _TileMapSize);
 
 		_world = new WorldBuilder()
-		.AddSystem(new WorldUpdateSystem())
-		.AddSystem(new WorldRenderSystem())
+		.AddSystem(new WorldUpdateSystem<HuskMovementSystem>())
+		.AddSystem(new EnemyRenderSystem<HuskMovementSystem>())
+		.AddSystem(new WorldUpdateSystem<HuskSpawner>())
+		.AddSystem(new SpawnerRenderSystem<HuskSpawner>())
 		// .AddSystem(Isystem system) 
 		.Build();
 
