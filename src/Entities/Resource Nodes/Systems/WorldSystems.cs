@@ -1,17 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners;
-using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
-using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
-using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 
 namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
 
@@ -75,9 +68,14 @@ internal class EnemyRenderSystem<T> : EntityDrawSystem where T : MovementSystem
 				continue;
 			}
 
-			Vector2 entityPosition = _movementSystemMapper.Get(id).Position;
+			MovementSystem movementSystem = _movementSystemMapper.Get(id);
 
-			_spriteBatch.Draw(entityTexture, entityPosition, Color.White);
+			if (movementSystem is not null)
+			{
+				Vector2 entityPosition = movementSystem.Position;
+
+				_spriteBatch.Draw(entityTexture, entityPosition, Color.White);
+			}
 		}
 	}
 
@@ -93,7 +91,7 @@ internal class EnemyRenderSystem<T> : EntityDrawSystem where T : MovementSystem
 	}
 }
 
-// TODO, remove this whole thing , it's literally a copy of the thing above it but only for the spawners
+// TODO, remove/rework this whole thing , it's literally a copy of the thing above it but only for the spawners
 internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntitySpawner
 {
 	private SpriteBatch _spriteBatch;
@@ -124,9 +122,14 @@ internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntit
 				continue;
 			}
 
-			Vector2 entityPosition = _entitySpawnerMapper.Get(id).Position;
+			IEntitySpawner entitySpawner = _entitySpawnerMapper.Get(id);
 
-			_spriteBatch.Draw(entityTexture, entityPosition, Color.White);
+			if (entitySpawner is not null)
+			{
+				Vector2 entityPosition = entitySpawner.Position;
+
+				_spriteBatch.Draw(entityTexture, entityPosition, Color.White);
+			}
 		}
 	}
 

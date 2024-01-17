@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using MonoGame.Extended.Entities;
-using MonoGame.Extended.Entities.Systems;
-using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 
 namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
@@ -26,11 +23,14 @@ public class HuskFactory : IEntityFactory
 	/// <returns>the created husk</returns>
 	public Entity Create (Vector2 position)
 	{
-		//Creates a husk entity
+		//Creates a husk entity and attack a texture
 		Entity husk = _world.CreateEntity();
 		husk.Attach(_huskTexture);
+
 		// add systems here
 		husk.Attach(new HuskMovementSystem(position));
+		// TODO: Add a health system
+		// TODO: Add an attack system so they can bite things
 
 		return husk;
 	}

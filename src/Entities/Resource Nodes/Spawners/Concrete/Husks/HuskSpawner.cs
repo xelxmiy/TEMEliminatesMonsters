@@ -1,15 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
-using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 
 namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
 
@@ -36,18 +29,18 @@ internal class HuskSpawner : EntityUpdateSystem, IEntitySpawner
 		get => _factory;
 		private set => _factory = (HuskFactory)value;
 	}
-
 	public HuskSpawner (HuskFactory factory, Vector2 position) : base(default)
 	{
 		_factory = factory;
 		_position = position;
 	}
 
-	public override void Initialize (IComponentMapperService mapperService)
-	{
+	public override void Initialize (IComponentMapperService mapperService) { }
 
-	}
-
+	/// <summary>
+	/// Update this Spawner
+	/// </summary>
+	/// <param name="gameTime">current game time</param>
 	public override void Update (GameTime gameTime)
 	{
 		//spawn all available enemies

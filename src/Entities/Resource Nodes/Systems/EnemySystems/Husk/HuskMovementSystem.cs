@@ -2,7 +2,6 @@
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using System;
-using System.Diagnostics;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
 
 namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
@@ -14,19 +13,35 @@ internal class HuskMovementSystem : MovementSystem
 	/// <param name="position"></param>
 	public HuskMovementSystem (Vector2 position) : base(position) { }
 
-	protected override float MovementSpeed { get; set; } = 13f;
+	protected override float MovementSpeed { get; set; } = 130f;
 
+	/// <summary>
+	/// initializes this system
+	/// </summary>
+	/// <param name="mapperService">mapper serverices to map components</param>
 	public override void Initialize (IComponentMapperService mapperService)
 	{
-
+		MovementSpeed += Random.Shared.NextSingle(-20, 20);
 	}
 
-	public override void Update (GameTime gameTime) 
+	/// <summary>
+	/// Updates this husk
+	/// </summary>
+	/// <param name="gameTime">current gametime</param>
+	public override void Update (GameTime gameTime)
 	{
-		//Debug.WriteLine("Husk Moved!");
+		UpdateTargetPosition();
 		Vector2 mv = GetMovementDirection();
-		//if (CanMove(mv))
-			Move(mv);
+		if (CanMove(mv))
+			Move(mv * gameTime.GetElapsedSeconds());
+	}
+
+	/// <summary>
+	/// updates the movement target for this husk
+	/// </summary>
+	private void UpdateTargetPosition ()
+	{
+		_target = TEM.MousePosition;
 	}
 
 	/// <summary>
