@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using MonoGame.Extended.Entities.Systems;
-using MonoGame.Extended;
-using System.Diagnostics;
 
 namespace TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
 
