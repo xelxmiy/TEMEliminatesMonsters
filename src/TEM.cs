@@ -31,8 +31,8 @@ public class TEM : Game
 	private readonly GraphicsDeviceManager _graphics;
 	private readonly int _TileMapSize = 256;
 
-	private static readonly int s_screenWidth = 1920;
-	private static readonly int s_screenHeight = 1080;
+	public static int ScreenWidth { get => 1920; }
+	public static int ScreenHeight { get => 1080; }
 
 	public TileMap Map;
 	public Texture2D _zombie; // TODO: this is a test texture, remove this and replace it 
@@ -49,8 +49,8 @@ public class TEM : Game
 
 			//this is done because despite us registering the screen width as 1920x1080 the mouse doesn't recognize that, so it still thinks the screen is 800x480 
 			// and this property outputs the wrong value otherwise
-			width *= s_screenWidth / 800f;
-			height *= s_screenHeight / 480f;
+			width *= ScreenWidth / 800f;
+			height *= ScreenHeight / 480f;
 
 			return new Vector2(width, height);
 		}
@@ -90,7 +90,7 @@ public class TEM : Game
 
 		KeyEventChecker = new();
 		_screenController = new(_graphics, Window);
-		BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, s_screenWidth, s_screenHeight);
+		BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, ScreenWidth, ScreenHeight);
 
 		Camera = new OrthographicCamera(viewportAdapter);
 		_cameraController = new(Camera);
@@ -112,7 +112,7 @@ public class TEM : Game
 			FastRandom fr = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
 			for (int i = 0; i < 10; i++)
 			{
-				_huskSpawnerFactory.Create(new(fr.Next(s_screenWidth), fr.Next(s_screenHeight)));
+				_huskSpawnerFactory.Create(new(fr.Next(ScreenWidth), fr.Next(ScreenHeight)));
 			}
 		}
 	}

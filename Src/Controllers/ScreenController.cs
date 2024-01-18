@@ -95,8 +95,8 @@ public class ScreenController
 	/// </summary>
 	private void SetFullscreen ()
 	{
-		_width = _window.ClientBounds.Width;
-		_height = _window.ClientBounds.Height;
+		_width = 800;
+		_height = 450;
 
 		_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 		_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
