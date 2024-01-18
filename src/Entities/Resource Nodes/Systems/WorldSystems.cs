@@ -80,7 +80,7 @@ internal class EnemyRenderSystem<T> : EntityDrawSystem where T : MovementSystem
 	}
 
 	/// <summary>
-	/// initializes this system, called automatically
+	/// initializes this system, called automaticallyA
 	/// </summary>
 	/// <param name="componentMapperService">mapper service to map components</param>
 	public override void Initialize (IComponentMapperService componentMapperService)

@@ -25,11 +25,14 @@ namespace TEMEliminatesMonsters.Src;
 public class TEM : Game
 {
 	private CameraController _cameraController;
-	private Fullscreener _fullscreener;
+	private ScreenController _screenController;
 	private World _world;
 	private HuskSpawnerFactory _huskSpawnerFactory;
 	private readonly GraphicsDeviceManager _graphics;
 	private readonly int _TileMapSize = 256;
+
+	private static readonly int s_screenWidth = 1920;
+	private static readonly int s_screenHeight = 1080;
 
 	public TileMap Map;
 	public Texture2D _zombie; // TODO: this is a test texture, remove this and replace it 
@@ -37,7 +40,21 @@ public class TEM : Game
 	public Dictionary<string, Texture2D> Tiles = new();
 	public SpriteBatch SpriteBatch;
 
-	public static Vector2 MousePosition { get => Mouse.GetState().Position.ToVector2(); }
+	public static Vector2 MousePosition 
+	{
+		get
+		{
+			float width = Mouse.GetState().X;
+			float height = Mouse.GetState().Y;
+
+			//this is done because despite us registering the screen width as 1920x1080 the mouse doesn't recognize that, so it still thinks the screen is 800x480 
+			// and this property outputs the wrong value otherwise
+			width *= s_screenWidth / 800f;
+			height *= s_screenHeight / 480f;
+
+			return new Vector2(width, height);
+		}
+	}
 
 	public static KeyboardEventChecker KeyEventChecker { get; private set; }
 	public static TEM Instance { get; private set; }
@@ -59,7 +76,7 @@ public class TEM : Game
 	/// </summary>
 	public void GoFullScreen ()
 	{
-		_fullscreener.ToggleFullscreen();
+		_screenController.ToggleFullscreen();
 	}
 
 	/// <summary>
@@ -72,8 +89,8 @@ public class TEM : Game
 		SpriteBatch = new SpriteBatch(GraphicsDevice);
 
 		KeyEventChecker = new();
-		_fullscreener = new(_graphics, Window);
-		BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, 1920, 1080);
+		_screenController = new(_graphics, Window);
+		BoxingViewportAdapter viewportAdapter = new(Window, GraphicsDevice, s_screenWidth, s_screenHeight);
 
 		Camera = new OrthographicCamera(viewportAdapter);
 		_cameraController = new(Camera);
@@ -95,7 +112,7 @@ public class TEM : Game
 			FastRandom fr = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
 			for (int i = 0; i < 10; i++)
 			{
-				_huskSpawnerFactory.Create(new(fr.Next(1920), fr.Next(1080)));
+				_huskSpawnerFactory.Create(new(fr.Next(s_screenWidth), fr.Next(s_screenHeight)));
 			}
 		}
 	}
@@ -132,6 +149,8 @@ public class TEM : Game
 		// Debug
 		Debug.WriteLine(gameTime.TotalGameTime);
 
+		Debug.Write(MousePosition);
+
 		// Game Updates
 		_world.Update(gameTime);
 		UpdateableManager.UpdateAll(gameTime);
@@ -160,6 +179,8 @@ public class TEM : Game
 		_world.Draw(gameTime);
 
 		//render the items
+
+		SpriteBatch.DrawCircle(new(MousePosition, 5), 8, Color.White, 2.5f);
 
 		//finish drawing
 		SpriteBatch.End();

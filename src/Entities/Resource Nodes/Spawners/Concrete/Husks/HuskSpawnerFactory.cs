@@ -34,7 +34,7 @@ internal class HuskSpawnerFactory : IEntityFactory
 		huskSpawner.Attach(new Transform2(position));
 
 		// Add systems here
-		huskSpawner.Attach(new HuskSpawner(new(_world, TEM.Instance._zombie), position))
+		huskSpawner.Attach(new HuskSpawner(new(_world, TEM.Instance._zombie), position));
 
 		return huskSpawner;
 	}

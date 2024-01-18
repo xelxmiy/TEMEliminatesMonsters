@@ -6,7 +6,7 @@ namespace TEMEliminatesMonsters.Src.Controllers;
 /// <summary>
 /// fullscreens the game, i totally stole all this and it doesn't even work right, sorry!
 /// </summary>
-public class Fullscreener
+public class ScreenController
 {
 
 	bool _isFullscreen = false;
@@ -17,11 +17,11 @@ public class Fullscreener
 	private readonly GameWindow _window;
 
 	/// <summary>
-	/// initializes the Fullscreener
+	/// initializes the ScreenController
 	/// </summary>
 	/// <param name="graphicsDeviceManager">this game's Graphics Device Manager</param>
 	/// <param name="gameWindow">this game's Game Window</param>
-	public Fullscreener (GraphicsDeviceManager graphicsDeviceManager, GameWindow gameWindow)
+	public ScreenController (GraphicsDeviceManager graphicsDeviceManager, GameWindow gameWindow)
 	{
 		_graphics = graphicsDeviceManager;
 		_window = gameWindow;
@@ -39,7 +39,7 @@ public class Fullscreener
 			_isBorderless = false;
 		}
 		else
-		{
+		{	
 			_isFullscreen = !_isFullscreen;
 		}
 
