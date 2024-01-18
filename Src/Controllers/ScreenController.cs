@@ -9,10 +9,11 @@ namespace TEMEliminatesMonsters.Src.Controllers;
 public class ScreenController
 {
 
-	bool _isFullscreen = false;
-	bool _isBorderless = false;
-	int _width = 0;
-	int _height = 0;
+	private bool _isFullscreen = false;
+	private bool _isBorderless = false;
+	private int _windowLipSize = 30;
+	private int _width = 0;
+	private int _height = 0;
 	private readonly GraphicsDeviceManager _graphics;
 	private readonly GameWindow _window;
 
@@ -95,8 +96,8 @@ public class ScreenController
 	/// </summary>
 	private void SetFullscreen ()
 	{
-		_width = 800;
-		_height = 450;
+		_width = _window.ClientBounds.Width;
+		_height = _window.ClientBounds.Height - _windowLipSize; 
 
 		_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 		_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
