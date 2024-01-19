@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Diagnostics;
 using System.Collections.Generic;
 using MonoGame.Extended;
@@ -13,10 +11,11 @@ using TEMEliminatesMonsters.Src.KeyEvents;
 using TEMEliminatesMonsters.Src.Updateables;
 using TEMEliminatesMonsters.Src.Map;
 using TEMEliminatesMonsters.Src.Controllers;
-using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
+using TEMEliminatesMonsters.Src.FileLoading;
+using TEMEliminatesMonsters.Src.Entities;
 
 namespace TEMEliminatesMonsters.Src;
 
@@ -32,10 +31,11 @@ public class TEM : Game
 	public static int ScreenWidth { get => 1920; }
 	public static int ScreenHeight { get => 1080; }
 
+	public AssetLoader Loader;
 	public TileMap Map;
 	public Texture2D _zombie; // TODO: this is a test texture, remove this and replace it 
 	public OrthographicCamera Camera;
-	public Dictionary<string, Texture2D> Tiles = new();
+	public Dictionary<string, GameTexture> Tiles = new();
 	public SpriteBatch SpriteBatch;
 
 	public static Vector2 MousePosition 
@@ -98,7 +98,7 @@ public class TEM : Game
 
 		InitializeKeyEvents();
 
-		Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _TileMapSize, _TileMapSize);
+		Map = new(Tiles[$"Tiles\\Grass Flat"].Texture, 2, _TileMapSize, _TileMapSize);
 
 		_world = new WorldBuilder()
 		.AddSystem(new WorldUpdateSystem<HuskMovementSystem>())
@@ -108,7 +108,7 @@ public class TEM : Game
 		// .AddSystem(Isystem system) 
 		.Build();
 
-		_huskSpawnerFactory = new(_world, Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"]);
+		_huskSpawnerFactory = new(_world, Tiles[$"Tiles\\Husk Spawner"].Texture);
 		{
 			FastRandom fr = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
 			for (int i = 0; i < 10; i++)
@@ -130,14 +130,14 @@ public class TEM : Game
 	/// </summary>
 	protected override void LoadContent ()
 	{
+		Loader = new(Content);
+
 		_zombie = Content.Load<Texture2D>("zombie");
 
-		foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
+		foreach (GameTexture texture in Loader.LoadAllTiles()) 
 		{
-			Debug.WriteLine(file);
-			string s = "Tiles\\" + file;
-			Texture2D texture = Content.Load<Texture2D>(s);
-			Tiles.Add(file, texture);
+			Debug.WriteLine(texture.Texture.Name);
+			Tiles.Add(texture.Texture.Name, texture);
 		}
 	}
 

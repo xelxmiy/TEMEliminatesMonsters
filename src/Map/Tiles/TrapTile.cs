@@ -3,17 +3,19 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Collections;
 using MonoGame.Extended.Collisions;
+using TEMEliminatesMonsters.Src.FileLoading;
 using TEMEliminatesMonsters.Src.Updateables;
 
 namespace TEMEliminatesMonsters.Src.Map.Tiles;
 
+//todo make this work + reqrite this
 abstract class TrapTile : Tile, ICollisionActor
 {
-	public TrapTile (Texture2D texture, int x, int y, int? ID = null) : base(texture, x, y, ID)
+	public TrapTile (GameTexture texture, int x, int y, int? ID = null) : base(texture, x, y, ID)
 	{
 		if (texture != null)
 		{
-			_bounds = new RectangleF(new(x * 32, y * 32), new(texture.Width * _tileSizeMultiplier, texture.Height * _tileSizeMultiplier));
+			_bounds = new RectangleF(new(x * 32, y * 32), new(texture.Texture.Width * texture.ScaleFactor, texture.Texture.Height * texture.ScaleFactor));
 		}
 	}
 

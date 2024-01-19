@@ -6,7 +6,7 @@ using System.Diagnostics;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
 
-namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
+namespace TEMEliminatesMonsters.Src.Entities;
 
 internal class WorldUpdateSystem<T> : EntityUpdateSystem where T : EntityUpdateSystem
 {
@@ -111,7 +111,7 @@ internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntit
 	/// <param name="gameTime">current gametime</param>
 	public override void Draw (GameTime gameTime)
 	{
-		TEM.Instance.GraphicsDevice.Clear(Color.Magenta);	
+		TEM.Instance.GraphicsDevice.Clear(Color.Magenta);
 		foreach (int id in ActiveEntities)
 		{
 

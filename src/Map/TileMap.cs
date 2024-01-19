@@ -14,7 +14,7 @@ public class TileMap
 	public int GridWidth => _tileGrid[0].GetLength(0);
 	public int GridLength => _tileGrid[0].GetLength(1);
 
-	public static readonly int _tileSize = 32;
+	public static readonly int TileSize = 32;
 
 	/// <summary>
 	/// creates a new tilemap without a set tile
@@ -54,14 +54,14 @@ public class TileMap
 	/// <param name="defaultTexture">the tile this tilemap is composed of</param>
 	private void InitializeTileMap (Texture2D defaultTexture = null)
 	{
-		defaultTexture ??= TEM.Instance.Tiles[$"{TileTexture.Metal_MiddleMiddle}"];
+		defaultTexture ??= TEM.Instance.Tiles[$"Tiles\\Metal_MiddleMiddle"].Texture;
 		//initialize base layer
 		Tile[,] baseLayer = GetTileLayer(0);
 		for (int w = 0; w < baseLayer.GetLength(0); w++)
 		{
 			for (int h = 0; h < baseLayer.GetLength(1); h++)
 			{
-				baseLayer[w, h] = new GroundTile(defaultTexture, w, h, Convert.ToInt32($"000{w:000}{h:000}", 16));
+				baseLayer[w, h] = new GroundTile(new(defaultTexture), w, h, Convert.ToInt32($"000{w:000}{h:000}", 16));
 			}
 		}
 	}
@@ -102,8 +102,8 @@ public class TileMap
 
 	public void AddTile (Tile tile, int layer)
 	{
-		int tileX = (int)(tile._position.X / _tileSize * Tile._tileSizeMultiplier);
-		int tileY = (int)(tile._position.Y / _tileSize * Tile._tileSizeMultiplier);
+		int tileX = (int)(tile._position.X / TileSize * tile.TileSizeMultiplier);
+		int tileY = (int)(tile._position.Y / TileSize * tile.TileSizeMultiplier);
 		_tileGrid[layer][tileX, tileY] = tile;
 	}
 	/// <summary>
@@ -128,7 +128,7 @@ public class TileMap
 		{
 			//belive it or not, using 'var' is standard for Monogame projects 
 			var cameraBounds = TEM.Instance.Camera.BoundingRectangle;
-			var tSize = _tileSize * Tile._tileSizeMultiplier;
+			var tSize = TileSize /* tile.TileSizeMultiplier*/ ;
 			//calculates all defaultTexture in frame, much faster than culling not in frame defaultTexture for large (1000*1000) size boards
 			for (int x = (int)Math.Floor(cameraBounds.X / tSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tSize); x++)
 			{

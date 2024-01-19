@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using TEMEliminatesMonsters.Src.FileLoading;
 
 namespace TEMEliminatesMonsters.Src.Map.Tiles;
 
 public abstract class Tile
 {
-	public static readonly float _tileSizeMultiplier = 2f;
+	public float TileSizeMultiplier = 2f;
 
 	public Texture2D _texture;
 
@@ -22,11 +23,12 @@ public abstract class Tile
 	/// <param name="texture"></param>
 	/// <param name="position"></param>
 	/// <param name="ID"></param>
-	private Tile (Texture2D texture, Vector2 position, int? ID = null)
+	private Tile (GameTexture texture, Vector2 position, int? ID = null)
 	{
 		ID ??= _id;
 		_id = ID;
-		_texture = texture;
+		_texture = texture.Texture;
+		TileSizeMultiplier = texture.ScaleFactor;
 		if (_texture != null)
 		{
 			_width = _texture.Width;
@@ -35,16 +37,16 @@ public abstract class Tile
 			{
 				throw new ArgumentException($"Tile width must be equal to length! TILE: {ID}");
 			}
-			if (_width != TileMap._tileSize || _width == 33) // TODO: remove the 33 line, it's not supposed to be there i just have to rebuild the files
-			{
-				throw new ArgumentException($"Tile width/length must be equal to {TileMap._tileSize}, it's {_width}! Tile: {ID}");
-			}
+			//if (_width != TileMap.TileSize) // TODO: remove the 33 line, it's not supposed to be there i just have to rebuild the files
+			//{
+			//	throw new ArgumentException($"Tile width/length must be equal to {TileMap.TileSize}, it's {_width}! Tile: {ID}");
+			//}
 		}
 		_position = position;
 	}
 
-	public Tile (Texture2D texture, int x, int y, int? ID = null)
-		: this(texture, new(x * TileMap._tileSize, y * TileMap._tileSize), ID) { }
+	public Tile (GameTexture texture, int x, int y, int? ID = null)
+		: this(texture, new(x * TileMap.TileSize, y * TileMap.TileSize), ID) { }
 
 	/// <summary>
 	/// draws this tile to the screen
@@ -56,7 +58,7 @@ public abstract class Tile
 		{
 			return;
 		}
-		spriteBatch.Draw(_texture, _position * _tileSizeMultiplier, null, Color.White, 0f, new(0, 0), new Vector2(_tileSizeMultiplier), SpriteEffects.None, 0f);
+		spriteBatch.Draw(_texture, _position * TileSizeMultiplier, null, Color.White, 0f, new(0, 0), new Vector2(TileSizeMultiplier), SpriteEffects.None, 0f);
 	}
 
 	/// <summary>
