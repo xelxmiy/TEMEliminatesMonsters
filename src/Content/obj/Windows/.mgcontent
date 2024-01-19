@@ -4,25 +4,185 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-0.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-1.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-2.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-0.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-1.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-2.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-0.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-1.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-2.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-0.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-1.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-2.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-0.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-1.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-2.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-0.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-1.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-2.png</File>
-    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/zombie.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-0-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-1-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-0-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-1-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-0.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-1.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal/Metal-2-2.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Arrow Down.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Arrow Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Arrow Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Arrow Up.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Beehive.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Black Stripes.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Blackstone Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Bomb.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Bush.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Circle Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Circle Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Circle Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt Grass Bottom Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Bottom Left Corner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Bottom Right Corner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Center Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Center Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Top Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Top Left Corner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Top Right Corner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt-Grass Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Dirt.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Gold Coin.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Grass Flat.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Grass Flowers.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Grass Stones.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Grass Varied.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Grass.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Half Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Half Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Plus Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Plus Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Plus Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Quarter Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Quarter Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Quarter Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Quarter Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Small.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Green Tree Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Horizontal Bar.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Husk Spawner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Lock.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Log.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Mushrooms.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Stone Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Tile Selected.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Verticle Bar.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Stripes.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Half Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Half Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Plus Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Plus Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Plus Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Quarter Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Quarter Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Quarter Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Quarter Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Small.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/New Tiles/Yellow Tree Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/zombie.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Arrow Down.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Arrow Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Arrow Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Arrow Up.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Beehive.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Black Stripes.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Blackstone Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Bomb.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Bush.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Circle Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Circle Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Circle Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt Grass Bottom Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Bottom Left Corner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Bottom Right Corner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Center Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Center Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Top Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Top Left Corner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Top Right Corner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt-Grass Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Dirt.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Gold Coin.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Grass Flat.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Grass Flowers.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Grass Stones.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Grass Varied.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Grass.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Half Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Half Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Plus Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Plus Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Plus Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Quarter Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Quarter Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Quarter Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Quarter Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Small.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Green Tree Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Horizontal Bar.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Husk Spawner.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Lock.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Log.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Mushrooms.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Stone Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Tile Selected.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Verticle Bar.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Stripes.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Half Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Half Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Plus Bottom.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Plus Center.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Plus Top.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Quarter Bottom Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Quarter Bottom Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Quarter Top Left.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Quarter Top Right.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Small.png</File>
+    <File>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/New Tiles/Yellow Tree Top.png</File>
   </SourceFiles>
   <DestFiles>
     <File>Metal_Blocked-0-0.png</File>
@@ -43,6 +203,166 @@
     <File>Metal-2-0.png</File>
     <File>Metal-2-1.png</File>
     <File>Metal-2-2.png</File>
+    <File>New Tiles/Arrow Down.png</File>
+    <File>New Tiles/Arrow Left.png</File>
+    <File>New Tiles/Arrow Right.png</File>
+    <File>New Tiles/Arrow Up.png</File>
+    <File>New Tiles/Beehive.png</File>
+    <File>New Tiles/Black Stripes.png</File>
+    <File>New Tiles/Blackstone Bottom Left.png</File>
+    <File>New Tiles/Blackstone Bottom Right.png</File>
+    <File>New Tiles/Blackstone Bottom.png</File>
+    <File>New Tiles/Blackstone Center.png</File>
+    <File>New Tiles/Blackstone Left.png</File>
+    <File>New Tiles/Blackstone Right.png</File>
+    <File>New Tiles/Blackstone Top Left.png</File>
+    <File>New Tiles/Blackstone Top Right.png</File>
+    <File>New Tiles/Blackstone Top.png</File>
+    <File>New Tiles/Bomb.png</File>
+    <File>New Tiles/Bush.png</File>
+    <File>New Tiles/Circle Bottom Left.png</File>
+    <File>New Tiles/Circle Top Left.png</File>
+    <File>New Tiles/Circle Top Right.png</File>
+    <File>New Tiles/Dirt Grass Bottom Center.png</File>
+    <File>New Tiles/Dirt-Grass Bottom Left Corner.png</File>
+    <File>New Tiles/Dirt-Grass Bottom Left.png</File>
+    <File>New Tiles/Dirt-Grass Bottom Right Corner.png</File>
+    <File>New Tiles/Dirt-Grass Bottom Right.png</File>
+    <File>New Tiles/Dirt-Grass Center Left.png</File>
+    <File>New Tiles/Dirt-Grass Center Right.png</File>
+    <File>New Tiles/Dirt-Grass Top Center.png</File>
+    <File>New Tiles/Dirt-Grass Top Left Corner.png</File>
+    <File>New Tiles/Dirt-Grass Top Left.png</File>
+    <File>New Tiles/Dirt-Grass Top Right Corner.png</File>
+    <File>New Tiles/Dirt-Grass Top Right.png</File>
+    <File>New Tiles/Dirt.png</File>
+    <File>New Tiles/Gold Coin.png</File>
+    <File>New Tiles/Grass Flat.png</File>
+    <File>New Tiles/Grass Flowers.png</File>
+    <File>New Tiles/Grass Stones.png</File>
+    <File>New Tiles/Grass Varied.png</File>
+    <File>New Tiles/Grass.png</File>
+    <File>New Tiles/Green Tree Bottom.png</File>
+    <File>New Tiles/Green Tree Half Left.png</File>
+    <File>New Tiles/Green Tree Half Right.png</File>
+    <File>New Tiles/Green Tree Plus Bottom.png</File>
+    <File>New Tiles/Green Tree Plus Center.png</File>
+    <File>New Tiles/Green Tree Plus Top.png</File>
+    <File>New Tiles/Green Tree Quarter Bottom Left.png</File>
+    <File>New Tiles/Green Tree Quarter Bottom Right.png</File>
+    <File>New Tiles/Green Tree Quarter Top Left.png</File>
+    <File>New Tiles/Green Tree Quarter Top Right.png</File>
+    <File>New Tiles/Green Tree Small.png</File>
+    <File>New Tiles/Green Tree Top.png</File>
+    <File>New Tiles/Horizontal Bar.png</File>
+    <File>New Tiles/Husk Spawner.png</File>
+    <File>New Tiles/Lock.png</File>
+    <File>New Tiles/Log.png</File>
+    <File>New Tiles/Mushrooms.png</File>
+    <File>New Tiles/Stone Bottom Left.png</File>
+    <File>New Tiles/Stone Bottom Right.png</File>
+    <File>New Tiles/Stone Bottom.png</File>
+    <File>New Tiles/Stone Center.png</File>
+    <File>New Tiles/Stone Left.png</File>
+    <File>New Tiles/Stone Right.png</File>
+    <File>New Tiles/Stone Top Left.png</File>
+    <File>New Tiles/Stone Top Right.png</File>
+    <File>New Tiles/Stone Top.png</File>
+    <File>New Tiles/Tile Selected.png</File>
+    <File>New Tiles/Verticle Bar.png</File>
+    <File>New Tiles/Yellow Stripes.png</File>
+    <File>New Tiles/Yellow Tree Bottom.png</File>
+    <File>New Tiles/Yellow Tree Half Left.png</File>
+    <File>New Tiles/Yellow Tree Half Right.png</File>
+    <File>New Tiles/Yellow Tree Plus Bottom.png</File>
+    <File>New Tiles/Yellow Tree Plus Center.png</File>
+    <File>New Tiles/Yellow Tree Plus Top.png</File>
+    <File>New Tiles/Yellow Tree Quarter Bottom Left.png</File>
+    <File>New Tiles/Yellow Tree Quarter Bottom Right.png</File>
+    <File>New Tiles/Yellow Tree Quarter Top Left.png</File>
+    <File>New Tiles/Yellow Tree Quarter Top Right.png</File>
+    <File>New Tiles/Yellow Tree Small.png</File>
+    <File>New Tiles/Yellow Tree Top.png</File>
     <File>zombie.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

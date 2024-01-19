@@ -9,7 +9,8 @@ namespace TEMEliminatesMonsters.Src.Controllers;
 public class ScreenController
 {
 
-	private bool _isFullscreen = false;
+	public bool IsFullscreen = false;
+
 	private bool _isBorderless = false;
 	private int _windowLipSize = 30;
 	private int _width = 0;
@@ -33,7 +34,7 @@ public class ScreenController
 	/// </summary>
 	public void ToggleFullscreen ()
 	{
-		bool oldIsFullscreen = _isFullscreen;
+		bool oldIsFullscreen = IsFullscreen;
 
 		if (_isBorderless)
 		{
@@ -41,7 +42,7 @@ public class ScreenController
 		}
 		else
 		{	
-			_isFullscreen = !_isFullscreen;
+			IsFullscreen = !IsFullscreen;
 		}
 
 		ApplyFullscreenChange(oldIsFullscreen);
@@ -52,10 +53,10 @@ public class ScreenController
 	/// </summary>
 	public void ToggleBorderless ()
 	{
-		bool oldIsFullscreen = _isFullscreen;
+		bool oldIsFullscreen = IsFullscreen;
 
 		_isBorderless = !_isBorderless;
-		_isFullscreen = _isBorderless;
+		IsFullscreen = _isBorderless;
 
 		ApplyFullscreenChange(oldIsFullscreen);
 	}
@@ -66,7 +67,7 @@ public class ScreenController
 	/// <param name="oldIsFullscreen">if the current s_state is non-borderless fullscreen</param>
 	private void ApplyFullscreenChange (bool oldIsFullscreen)
 	{
-		if (_isFullscreen)
+		if (IsFullscreen)
 		{
 			if (oldIsFullscreen)
 			{

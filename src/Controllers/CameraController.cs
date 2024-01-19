@@ -17,10 +17,10 @@ internal class CameraController : Updateables.IUpdateable
 
 	private int _previousScrollValue;
 
-	public readonly OrthographicCamera _camera;
+	private readonly OrthographicCamera _camera;
 
-	public static MouseState s_state;
-	public static Vector2 MousePosition { get { return new Vector2(s_state.X, s_state.Y); } }
+	private static MouseState s_state;
+	private static Vector2 MousePosition { get { return new Vector2(s_state.X, s_state.Y); } }
 
 	/// <summary>
 	/// Creates a new CameraController

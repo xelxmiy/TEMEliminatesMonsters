@@ -1,21 +1,19 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
-using MonoGame.Extended.ViewportAdapters;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
+using System.Collections.Generic;
+using MonoGame.Extended;
+using MonoGame.Extended.ViewportAdapters;
+using MonoGame.Extended.Entities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using TEMEliminatesMonsters.Src.KeyEvents;
 using TEMEliminatesMonsters.Src.Updateables;
-using MonoGame.Extended.Entities;
-using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
 using TEMEliminatesMonsters.Src.Map;
-using TEMEliminatesMonsters.Src.Map.Tiles;
 using TEMEliminatesMonsters.Src.Controllers;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
-using System;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
@@ -49,10 +47,13 @@ public class TEM : Game
 
 			//this is done because despite us registering the screen width as 1920x1080 the mouse doesn't recognize that, so it still thinks the screen is 800x480 
 			// and this property outputs the wrong value otherwise
-			width *= ScreenWidth / 800f;
-			height *= ScreenHeight / 480f;
+			if (!Instance._screenController.IsFullscreen)
+			{
+				width *= ScreenWidth / 800f;
+				height *= ScreenHeight / 480f;
+			}
 
-			return new Vector2(width, height);
+			return new Vector2(width, height) + Instance.Camera.Position;
 		}
 	}
 

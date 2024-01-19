@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-0.png</SourceFile>
-  <SourceTime>2023-10-22T14:10:40.6848472-05:00</SourceTime>
-  <DestFile>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Content/bin/Windows/Metal_Blocked-2-0.xnb</DestFile>
-  <DestTime>2023-10-22T15:03:45.2253377-05:00</DestTime>
+  <SourceFile>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/../Assets/TemTiled/Assets/Images/Individual Tiles/Metal-Blocked/Metal_Blocked-2-0.png</SourceFile>
+  <SourceTime>2024-01-18T18:25:42.0456815-06:00</SourceTime>
+  <DestFile>C:/Users/zelzm/GitHub/TEMEliminatesMonsters/Src/Content/bin/Windows/Metal_Blocked-2-0.xnb</DestFile>
+  <DestTime>2024-01-18T22:52:28.0964677-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T06:44:56-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
