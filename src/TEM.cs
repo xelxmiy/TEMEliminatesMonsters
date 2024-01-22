@@ -31,11 +31,8 @@ public class TEM : Game
 	public static int ScreenWidth { get => 1920; }
 	public static int ScreenHeight { get => 1080; }
 
-	public AssetLoader Loader;
 	public TileMap Map;
-	public Texture2D _zombie; // TODO: this is a test texture, remove this and replace it 
 	public OrthographicCamera Camera;
-	public Dictionary<string, GameTexture> Tiles = new();
 	public SpriteBatch SpriteBatch;
 
 	public static Vector2 MousePosition 
@@ -98,7 +95,7 @@ public class TEM : Game
 
 		InitializeKeyEvents();
 
-		Map = new(Tiles[$"Tiles\\Grass Flat"].Texture, 2, _TileMapSize, _TileMapSize);
+		Map = new(FileManager.Tiles[$"Tiles\\Grass Flat"].Texture, 2, _TileMapSize, _TileMapSize);
 
 		_world = new WorldBuilder()
 		.AddSystem(new WorldUpdateSystem<HuskMovementSystem>())
@@ -108,7 +105,7 @@ public class TEM : Game
 		// .AddSystem(Isystem system) 
 		.Build();
 
-		_huskSpawnerFactory = new(_world, Tiles[$"Tiles\\Husk Spawner"].Texture);
+		_huskSpawnerFactory = new(_world, FileManager.Icons["Icons\\Husk Spawner"]);
 		{
 			FastRandom fr = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
 			for (int i = 0; i < 10; i++)
@@ -130,15 +127,10 @@ public class TEM : Game
 	/// </summary>
 	protected override void LoadContent ()
 	{
-		Loader = new(Content);
-
-		_zombie = Content.Load<Texture2D>("zombie");
-
-		foreach (GameTexture texture in Loader.LoadAllTiles()) 
-		{
-			Debug.WriteLine(texture.Texture.Name);
-			Tiles.Add(texture.Texture.Name, texture);
-		}
+		FileManager.LoadEvilsToDictionary();
+		FileManager.LoadIconsToDictionary();
+		FileManager.LoadItemsToDictionary();
+		FileManager.LoadTilesToDictionary();
 	}
 
 	/// <summary>

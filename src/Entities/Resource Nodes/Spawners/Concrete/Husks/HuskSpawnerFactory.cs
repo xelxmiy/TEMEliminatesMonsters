@@ -3,6 +3,7 @@ using MonoGame.Extended;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Spawners;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using TEMEliminatesMonsters.Src.FileLoading;
 
 namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
 
@@ -34,7 +35,7 @@ internal class HuskSpawnerFactory : IEntityFactory
 		huskSpawner.Attach(new Transform2(position));
 
 		// Add systems here
-		huskSpawner.Attach(new HuskSpawner(new(_world, TEM.Instance._zombie), position));
+		huskSpawner.Attach(new HuskSpawner(new(_world, FileManager.Enemies["Enemies\\Husk"]), position));
 
 		return huskSpawner;
 	}

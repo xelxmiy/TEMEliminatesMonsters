@@ -8,12 +8,12 @@ using TEMEliminatesMonsters.Src.Updateables;
 
 namespace TEMEliminatesMonsters.Src.Map.Tiles;
 
-//todo make this work + reqrite this
+//Todo: make this work + rewrite this
 abstract class TrapTile : Tile, ICollisionActor
 {
 	public TrapTile (GameTexture texture, int x, int y, int? ID = null) : base(texture, x, y, ID)
 	{
-		if (texture != null)
+		if (texture.Texture != null)
 		{
 			_bounds = new RectangleF(new(x * 32, y * 32), new(texture.Texture.Width * texture.ScaleFactor, texture.Texture.Height * texture.ScaleFactor));
 		}

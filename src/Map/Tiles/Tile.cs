@@ -37,10 +37,6 @@ public abstract class Tile
 			{
 				throw new ArgumentException($"Tile width must be equal to length! TILE: {ID}");
 			}
-			//if (_width != TileMap.TileSize) // TODO: remove the 33 line, it's not supposed to be there i just have to rebuild the files
-			//{
-			//	throw new ArgumentException($"Tile width/length must be equal to {TileMap.TileSize}, it's {_width}! Tile: {ID}");
-			//}
 		}
 		_position = position;
 	}

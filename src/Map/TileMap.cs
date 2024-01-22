@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using TEMEliminatesMonsters.Src.Controllers;
+using TEMEliminatesMonsters.Src.FileLoading;
 using TEMEliminatesMonsters.Src.Map.Tiles;
 
 namespace TEMEliminatesMonsters.Src.Map;
@@ -54,7 +55,7 @@ public class TileMap
 	/// <param name="defaultTexture">the tile this tilemap is composed of</param>
 	private void InitializeTileMap (Texture2D defaultTexture = null)
 	{
-		defaultTexture ??= TEM.Instance.Tiles[$"Tiles\\Metal_MiddleMiddle"].Texture;
+		defaultTexture ??= FileManager.Tiles[$"Metal_MiddleMiddle"].Texture;
 		//initialize base layer
 		Tile[,] baseLayer = GetTileLayer(0);
 		for (int w = 0; w < baseLayer.GetLength(0); w++)
@@ -128,11 +129,10 @@ public class TileMap
 		{
 			//belive it or not, using 'var' is standard for Monogame projects 
 			var cameraBounds = TEM.Instance.Camera.BoundingRectangle;
-			var tSize = TileSize /* tile.TileSizeMultiplier*/ ;
 			//calculates all defaultTexture in frame, much faster than culling not in frame defaultTexture for large (1000*1000) size boards
-			for (int x = (int)Math.Floor(cameraBounds.X / tSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tSize); x++)
+			for (int x = (int)Math.Floor(cameraBounds.X / TileSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / TileSize); x++)
 			{
-				for (int y = (int)Math.Floor(cameraBounds.Y / tSize); y <= (int)Math.Floor((cameraBounds.Height + cameraBounds.Y) / tSize); y++)
+				for (int y = (int)Math.Floor(cameraBounds.Y / TileSize); y <= (int)Math.Floor((cameraBounds.Height + cameraBounds.Y) / TileSize); y++)
 				{
 					if (x >= 0 && x <= tileLayer.GetLength(0) - 1 && y >= 0 && y <= tileLayer.GetLength(1) - 1)
 					{
