@@ -74,7 +74,13 @@ internal class EnemyRenderSystem<T> : EntityDrawSystem where T : MovementSystem
 			{
 				Vector2 entityPosition = movementSystem.Position;
 
-				_spriteBatch.Draw(entityTexture, entityPosition, Color.White);
+				_spriteBatch.Draw(
+					entityTexture,
+					entityPosition,
+					null, Color.White, 0f,
+					new(0, 0),
+					new Vector2(1),
+					SpriteEffects.None, 1f);
 			}
 		}
 	}
@@ -128,7 +134,13 @@ internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntit
 			{
 				Vector2 entityPosition = entitySpawner.Position;
 
-				_spriteBatch.Draw(entityTexture, entityPosition, Color.White);
+				_spriteBatch.Draw(
+					entityTexture, 
+					entityPosition, 
+					null, Color.White, 0f, 
+					new(0, 0), 
+					new Vector2(2), 
+					SpriteEffects.None, 1f); 
 			}
 		}
 	}

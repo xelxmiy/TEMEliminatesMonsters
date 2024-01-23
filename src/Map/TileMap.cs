@@ -22,7 +22,7 @@ public class TileMap
 	/// </summary>
 	/// <param name="width">width of tilemap</param>
 	/// <param name="width">width of tilemap</param>
-	public TileMap (int width, int height) : this(null, 1, width, height) { }
+	public TileMap (int width, int height) : this(default, 1, width, height) { }
 	/// <summary>
 	/// Creates a new Tilemap from a Tile Grid
 	/// </summary>
@@ -35,7 +35,7 @@ public class TileMap
 	/// <param name="defaultTexture">Tile this tilemap is made of</param>
 	/// <param name="length">width of tilemap</param>
 	/// <param name="width">width of tilemap</param>
-	public TileMap (Texture2D defaultTexture, int layers, int width, int height)
+	public TileMap (GameTexture defaultTexture, int layers, int width, int height)
 	{
 		if (!(layers > 0))
 		{
@@ -53,16 +53,19 @@ public class TileMap
 	/// Initialized the defaultTexture in the tilemap
 	/// </summary>
 	/// <param name="defaultTexture">the tile this tilemap is composed of</param>
-	private void InitializeTileMap (Texture2D defaultTexture = null)
+	private void InitializeTileMap (GameTexture defaultTexture = default)
 	{
-		defaultTexture ??= FileManager.Tiles[$"Metal_MiddleMiddle"].Texture;
+		if (defaultTexture.Equals(default(GameTexture)))
+		{
+			defaultTexture = FileManager.Tiles["Tiles\\Metal_MiddleMiddle"];
+		}
 		//initialize base layer
 		Tile[,] baseLayer = GetTileLayer(0);
 		for (int w = 0; w < baseLayer.GetLength(0); w++)
 		{
 			for (int h = 0; h < baseLayer.GetLength(1); h++)
 			{
-				baseLayer[w, h] = new GroundTile(new(defaultTexture), w, h, Convert.ToInt32($"000{w:000}{h:000}", 16));
+				baseLayer[w, h] = new GroundTile(defaultTexture, w, h, Convert.ToInt32($"000{w:000}{h:000}", 16));
 			}
 		}
 	}
@@ -82,29 +85,10 @@ public class TileMap
 		return _tileGrid[layer];
 	}
 
-	/// <summary>
-	/// Replaces the _texture tile in the tilegrid
-	/// </summary>
-	/// <param name="texture">_texture replacement</param>
-	/// <param name="layer">Layer of replaced tile</param>
-	/// <param name="w">w of replaced tile</param>
-	/// <param name="h">h of replaced tile</param>
-	public void SetTile (Texture2D texture, int layer, int w, int h)
-	{
-		if (_tileGrid[layer][w, h] != null)
-		{
-			_tileGrid[layer][w, h]._texture = texture;
-		}
-		else
-		{
-			Debug.WriteLine($"TILE AT {layer},  {w} , {h} IS NULL, CANNOT SET TILE");
-		}
-	}
-
 	public void AddTile (Tile tile, int layer)
 	{
-		int tileX = (int)(tile._position.X / TileSize * tile.TileSizeMultiplier);
-		int tileY = (int)(tile._position.Y / TileSize * tile.TileSizeMultiplier);
+		int tileX = (int)(tile._position.X / TileSize * tile.TileTexture.ScaleFactor);
+		int tileY = (int)(tile._position.Y / TileSize * tile.TileTexture.ScaleFactor);
 		_tileGrid[layer][tileX, tileY] = tile;
 	}
 	/// <summary>
@@ -112,11 +96,11 @@ public class TileMap
 	/// </summary>
 	/// <param name="tile">Tile replacement</param>
 	/// <param name="layer">layer of replaced tile</param>
-	/// <param name="w">w of replaced tile</param>
-	/// <param name="h">h of replaced tile</param>
-	public void SetTile (Tile tile, int layer, int w, int h)
+	/// <param name="width">width of replaced tile</param>
+	/// <param name="height">height of replaced tile</param>
+	public void SetTile (Tile tile, int layer, int width, int height)
 	{
-		_tileGrid[layer][w, h] = tile;
+		_tileGrid[layer][width, height] = tile;
 	}
 
 	/// <summary>
@@ -129,10 +113,11 @@ public class TileMap
 		{
 			//belive it or not, using 'var' is standard for Monogame projects 
 			var cameraBounds = TEM.Instance.Camera.BoundingRectangle;
-			//calculates all defaultTexture in frame, much faster than culling not in frame defaultTexture for large (1000*1000) size boards
-			for (int x = (int)Math.Floor(cameraBounds.X / TileSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / TileSize); x++)
+			var tileSize = TileSize * 2; // TODO: fix this so it's more general
+			//calculates all defaultTexture in frame, much faster than culling not in frame textures for large (1000*1000) size boards
+			for (int x = (int)Math.Floor(cameraBounds.X / tileSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tileSize); x++)
 			{
-				for (int y = (int)Math.Floor(cameraBounds.Y / TileSize); y <= (int)Math.Floor((cameraBounds.Height + cameraBounds.Y) / TileSize); y++)
+				for (int y = (int)Math.Floor(cameraBounds.Y / tileSize); y <= (int)Math.Floor((cameraBounds.Height + cameraBounds.Y) / tileSize); y++)
 				{
 					if (x >= 0 && x <= tileLayer.GetLength(0) - 1 && y >= 0 && y <= tileLayer.GetLength(1) - 1)
 					{

@@ -1,15 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Diagnostics;
 using TEMEliminatesMonsters.Src.FileLoading;
 
 namespace TEMEliminatesMonsters.Src.Map.Tiles;
 
 public abstract class Tile
 {
-	public float TileSizeMultiplier = 2f;
-
-	public Texture2D _texture;
+	public GameTexture TileTexture;
 
 	public Vector2 _position;
 
@@ -20,19 +19,18 @@ public abstract class Tile
 	/// <summary>
 	/// initializes this tile
 	/// </summary>
-	/// <param name="texture"></param>
-	/// <param name="position"></param>
-	/// <param name="ID"></param>
-	private Tile (GameTexture texture, Vector2 position, int? ID = null)
+	/// <param name="gameTexture">TileTexture of this tile</param>
+	/// <param name="position">this tile's position</param>
+	/// <param name="ID">this tile's ID</param>
+	private Tile (GameTexture gameTexture, Vector2 position, int? ID = null)
 	{
 		ID ??= _id;
 		_id = ID;
-		_texture = texture.Texture;
-		TileSizeMultiplier = texture.ScaleFactor;
-		if (_texture != null)
+		TileTexture = gameTexture;
+		if (TileTexture.Texture != null)
 		{
-			_width = _texture.Width;
-			_height = _texture.Height;
+			_width = TileTexture.Texture.Width;
+			_height = TileTexture.Texture.Height;
 			if (_width != _height)
 			{
 				throw new ArgumentException($"Tile width must be equal to length! TILE: {ID}");
@@ -50,11 +48,17 @@ public abstract class Tile
 	/// <param name="spriteBatch">the SpriteBatch responsible for drawing</param>
 	public void Render (SpriteBatch spriteBatch)
 	{
-		if (_texture == null)
+		if (TileTexture.Texture == null)
 		{
 			return;
 		}
-		spriteBatch.Draw(_texture, _position * TileSizeMultiplier, null, Color.White, 0f, new(0, 0), new Vector2(TileSizeMultiplier), SpriteEffects.None, 0f);
+
+		spriteBatch.Draw(
+			TileTexture.Texture, _position * TileTexture.ScaleFactor
+			, null, Color.White, 0f,
+			new(0, 0),
+			new Vector2(TileTexture.ScaleFactor*2), 
+			SpriteEffects.None, 0f);
 	}
 
 	/// <summary>
@@ -65,6 +69,6 @@ public abstract class Tile
 	{
 		if (_id == null)
 			return $"Tile ID not set! Falback: {base.ToString()}";
-		return $"Tile {_id} has texture {_texture?.Name} and is a {GetType()?.Name}";
+		return $"Tile {_id} has texture {TileTexture.Texture?.Name} and is a {GetType()?.Name}";
 	}
 }

@@ -95,7 +95,7 @@ public class TEM : Game
 
 		InitializeKeyEvents();
 
-		Map = new(FileManager.Tiles[$"Tiles\\Grass Flat"].Texture, 2, _TileMapSize, _TileMapSize);
+		Map = new(FileManager.Tiles[$"Tiles\\Grass Flat"], 2, _TileMapSize, _TileMapSize);
 
 		_world = new WorldBuilder()
 		.AddSystem(new WorldUpdateSystem<HuskMovementSystem>())
@@ -139,10 +139,10 @@ public class TEM : Game
 	/// <param name="gameTime">Game uptime</param>
 	protected override void Update (GameTime gameTime)
 	{
-		// Debug
-		Debug.WriteLine(gameTime.TotalGameTime);
+		//For Debug
+		//Debug.WriteLine(gameTime.TotalGameTime);
 
-		Debug.Write(MousePosition);
+		//Debug.WriteLine(MousePosition);
 
 		// Game Updates
 		_world.Update(gameTime);

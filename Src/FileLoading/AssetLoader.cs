@@ -49,6 +49,7 @@ internal class AssetLoader
 	{
 		foreach (Texture2D texture in LoadAllObjectsOfKind(TilePath))
 		{
+			Debug.WriteLine($"Tile has Scaling Factor of { TileMap.TileSize / texture.Width}");
 			yield return new GameTexture(texture, TileMap.TileSize / texture.Width);
 		}
 	}
@@ -61,7 +62,7 @@ internal class AssetLoader
 			string filePath = path + file;
 			Texture2D texture = _content.Load<Texture2D>(filePath);
 
-			Debug.WriteLine($"{file}");
+			Debug.WriteLine($"Loaded File with Name {file}");
 
 			yield return texture;
 		}
