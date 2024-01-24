@@ -8,6 +8,11 @@ namespace TEMEliminatesMonsters.Src.Map.Tiles;
 
 public abstract class Tile
 {
+
+	private static int s_tileLayerDepth = 1; // todo: organize layer depth so things render properly
+
+	public static readonly float UniversalScaleFactor = 2; 
+
 	public GameTexture TileTexture;
 
 	public Vector2 _position;
@@ -54,11 +59,13 @@ public abstract class Tile
 		}
 
 		spriteBatch.Draw(
-			TileTexture.Texture, _position * TileTexture.ScaleFactor
-			, null, Color.White, 0f,
-			new(0, 0),
-			new Vector2(TileTexture.ScaleFactor*2), 
-			SpriteEffects.None, 0f);
+			TileTexture.Texture,
+			_position * TileTexture.ScaleFactor,
+			null, Color.White, default,
+			Vector2.Zero,
+			new Vector2(TileTexture.ScaleFactor * UniversalScaleFactor), 
+			SpriteEffects.None,
+			s_tileLayerDepth);
 	}
 
 	/// <summary>

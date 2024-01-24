@@ -113,7 +113,7 @@ public class TileMap
 		{
 			//belive it or not, using 'var' is standard for Monogame projects 
 			var cameraBounds = TEM.Instance.Camera.BoundingRectangle;
-			var tileSize = TileSize * 2; // TODO: fix this so it's more general
+			var tileSize = TileSize * Tile.UniversalScaleFactor; // TODO: fix this so it's more general
 			//calculates all defaultTexture in frame, much faster than culling not in frame textures for large (1000*1000) size boards
 			for (int x = (int)Math.Floor(cameraBounds.X / tileSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tileSize); x++)
 			{

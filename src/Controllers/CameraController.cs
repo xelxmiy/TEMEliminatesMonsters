@@ -1,23 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using System;
-using System.Diagnostics;
-using TEMEliminatesMonsters.Src.KeyEvents;
 
 namespace TEMEliminatesMonsters.Src.Controllers;
 
 internal class CameraController : Updateables.IUpdateable
 {
-	private const float _baseMovementSpeed = 150f;
+	private readonly float _baseMovementSpeed = 150f;
+
+	private readonly OrthographicCamera _camera;
 
 	private float _movementSpeed;
 
 	private int _previousMouseX, _previousMouseY;
 
 	private int _previousScrollValue;
-
-	private readonly OrthographicCamera _camera;
 
 	private static MouseState s_state;
 	private static Vector2 MousePosition { get { return new Vector2(s_state.X, s_state.Y); } }
@@ -85,13 +82,15 @@ internal class CameraController : Updateables.IUpdateable
 		}
 	}
 
+	private int _zoomConastant = 960;
+
 	/// <summary>
 	/// Zooms in/out
 	/// </summary>
 	/// <param name="value">The Amount to zoom in</param>
 	private void Zoom (float value)
 	{
-		value /= 960;
+		value /= _zoomConastant;
 		if (_camera.Zoom + value <= _camera.MaximumZoom && _camera.Zoom + value >= _camera.MinimumZoom)
 		{
 			_camera.Zoom += value;

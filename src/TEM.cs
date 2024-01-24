@@ -21,21 +21,26 @@ namespace TEMEliminatesMonsters.Src;
 
 public class TEM : Game
 {
-	private CameraController _cameraController;
-	private ScreenController _screenController;
-	private World _world;
-	private HuskSpawnerFactory _huskSpawnerFactory;
+	// Graphics
 	private readonly GraphicsDeviceManager _graphics;
-	private readonly int _TileMapSize = 256;
-
+	private ScreenController _screenController;
+	private CameraController _cameraController;
+	public OrthographicCamera Camera;
+	public SpriteBatch SpriteBatch;
 	public static int ScreenWidth { get => 1920; }
 	public static int ScreenHeight { get => 1080; }
 
-	public TileMap Map;
-	public OrthographicCamera Camera;
-	public SpriteBatch SpriteBatch;
 
-	public static Vector2 MousePosition 
+
+	// World
+	public TileMap Map;
+	private World _world;
+	private HuskSpawnerFactory _huskSpawnerFactory;
+	private readonly int _TileMapSize = 256;
+
+	// Other
+	public static FastRandom Random;
+	public static Vector2 MousePosition
 	{
 		get
 		{
@@ -53,7 +58,6 @@ public class TEM : Game
 			return new Vector2(width, height) + Instance.Camera.Position;
 		}
 	}
-
 	public static KeyboardEventChecker KeyEventChecker { get; private set; }
 	public static TEM Instance { get; private set; }
 
@@ -105,14 +109,16 @@ public class TEM : Game
 		// .AddSystem(Isystem system) 
 		.Build();
 
-		_huskSpawnerFactory = new(_world, FileManager.Icons["Icons\\Husk Spawner"]);
+		_huskSpawnerFactory = new(_world);
+
+		Random = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
+
+		//spawns 10 random spawners, for demonstration
+		for (int i = 0; i < 10; i++)
 		{
-			FastRandom fr = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
-			for (int i = 0; i < 10; i++)
-			{
-				_huskSpawnerFactory.Create(new(fr.Next(ScreenWidth), fr.Next(ScreenHeight)));
-			}
+			_huskSpawnerFactory.Create(new(Random.Next(ScreenWidth), Random.Next(ScreenHeight)));
 		}
+
 	}
 	/// <summary>
 	/// Adds methods to key press events 
@@ -139,11 +145,6 @@ public class TEM : Game
 	/// <param name="gameTime">Game uptime</param>
 	protected override void Update (GameTime gameTime)
 	{
-		//For Debug
-		//Debug.WriteLine(gameTime.TotalGameTime);
-
-		//Debug.WriteLine(MousePosition);
-
 		// Game Updates
 		_world.Update(gameTime);
 		UpdateableManager.UpdateAll(gameTime);
@@ -167,13 +168,13 @@ public class TEM : Game
 		Map.Render(SpriteBatch);
 
 		//render the particles
+		// TODO
 
 		//render the entities
 		_world.Draw(gameTime);
 
 		//render the items
-
-		SpriteBatch.DrawCircle(new(MousePosition, 5), 8, Color.White, 2.5f);
+		// TODO
 
 		//finish drawing
 		SpriteBatch.End();

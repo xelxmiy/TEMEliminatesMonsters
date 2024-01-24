@@ -44,6 +44,8 @@ internal class EnemyRenderSystem<T> : EntityDrawSystem where T : MovementSystem
 	private ComponentMapper<Texture2D> _textureMapper;
 	private ComponentMapper<T> _movementSystemMapper;
 
+	private static readonly int s_layerDepth = 0; // todo: organize layer depth so things render properly
+
 	/// <summary>
 	/// Creates a EnemyRenderSystem
 	/// </summary>
@@ -77,10 +79,11 @@ internal class EnemyRenderSystem<T> : EntityDrawSystem where T : MovementSystem
 				_spriteBatch.Draw(
 					entityTexture,
 					entityPosition,
-					null, Color.White, 0f,
-					new(0, 0),
-					new Vector2(1),
-					SpriteEffects.None, 1f);
+					null, Color.White, default,
+					Vector2.Zero,
+					Vector2.One,
+					SpriteEffects.None,
+					s_layerDepth);
 			}
 		}
 	}
@@ -103,6 +106,10 @@ internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntit
 	private SpriteBatch _spriteBatch;
 	private ComponentMapper<Texture2D> _textureMapper;
 	private ComponentMapper<T> _entitySpawnerMapper;
+
+	private static readonly int s_layerDepth = 1;  // todo: organize layer depth so things render properly
+
+	private static readonly int s_spawnerScaleFactor = 2;
 
 	/// <summary>
 	/// Creates a EnemyRenderSystem
@@ -138,9 +145,10 @@ internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntit
 					entityTexture, 
 					entityPosition, 
 					null, Color.White, 0f, 
-					new(0, 0), 
-					new Vector2(2), 
-					SpriteEffects.None, 1f); 
+					Vector2.Zero, 
+					Vector2.One * s_spawnerScaleFactor, 
+					SpriteEffects.None,
+					s_layerDepth); 
 			}
 		}
 	}

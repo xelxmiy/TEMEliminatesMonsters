@@ -15,11 +15,11 @@ internal class HuskSpawnerFactory : IEntityFactory
 {
 	private readonly World _world;
 	private readonly Texture2D _spawnerTexture;
-
-	public HuskSpawnerFactory (World world, Texture2D texture)
+	private readonly string TextureName = "Icons\\Husk Spawner";
+	public HuskSpawnerFactory (World world)
 	{
 		_world = world;
-		_spawnerTexture = texture;
+		_spawnerTexture = FileManager.Icons[TextureName];
 	}
 
 	/// <summary>
