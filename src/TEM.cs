@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Diagnostics;
 using System.Collections.Generic;
 using MonoGame.Extended;
@@ -13,32 +11,36 @@ using TEMEliminatesMonsters.Src.KeyEvents;
 using TEMEliminatesMonsters.Src.Updateables;
 using TEMEliminatesMonsters.Src.Map;
 using TEMEliminatesMonsters.Src.Controllers;
-using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete.Husks;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.EnemySystems.Husk;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners.Concrete;
+using TEMEliminatesMonsters.Src.FileLoading;
+using TEMEliminatesMonsters.Src.Entities;
 
 namespace TEMEliminatesMonsters.Src;
 
 public class TEM : Game
 {
-	private CameraController _cameraController;
-	private ScreenController _screenController;
-	private World _world;
-	private HuskSpawnerFactory _huskSpawnerFactory;
+	// Graphics
 	private readonly GraphicsDeviceManager _graphics;
-	private readonly int _TileMapSize = 256;
-
+	private ScreenController _screenController;
+	private CameraController _cameraController;
+	public OrthographicCamera Camera;
+	public SpriteBatch SpriteBatch;
 	public static int ScreenWidth { get => 1920; }
 	public static int ScreenHeight { get => 1080; }
 
-	public TileMap Map;
-	public Texture2D _zombie; // TODO: this is a test texture, remove this and replace it 
-	public OrthographicCamera Camera;
-	public Dictionary<string, Texture2D> Tiles = new();
-	public SpriteBatch SpriteBatch;
 
-	public static Vector2 MousePosition 
+
+	// World
+	public TileMap Map;
+	private World _world;
+	private HuskSpawnerFactory _huskSpawnerFactory;
+	private readonly int _TileMapSize = 256;
+
+	// Other
+	public static FastRandom Random;
+	public static Vector2 MousePosition
 	{
 		get
 		{
@@ -56,7 +58,6 @@ public class TEM : Game
 			return new Vector2(width, height) + Instance.Camera.Position;
 		}
 	}
-
 	public static KeyboardEventChecker KeyEventChecker { get; private set; }
 	public static TEM Instance { get; private set; }
 
@@ -98,7 +99,7 @@ public class TEM : Game
 
 		InitializeKeyEvents();
 
-		Map = new(Tiles[$"{TileTexture.Metal_MiddleMiddle}"], 2, _TileMapSize, _TileMapSize);
+		Map = new(FileManager.Tiles[$"Tiles\\Grass Flat"], 2, _TileMapSize, _TileMapSize);
 
 		_world = new WorldBuilder()
 		.AddSystem(new WorldUpdateSystem<HuskMovementSystem>())
@@ -108,14 +109,16 @@ public class TEM : Game
 		// .AddSystem(Isystem system) 
 		.Build();
 
-		_huskSpawnerFactory = new(_world, Tiles[$"{TileTexture.Metal_Blocked_MiddleMiddle}"]);
+		_huskSpawnerFactory = new(_world);
+
+		Random = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
+
+		//spawns 10 random spawners, for demonstration
+		for (int i = 0; i < 10; i++)
 		{
-			FastRandom fr = new(Math.Abs((int)(DateTime.UtcNow.Ticks + Environment.UserName.GetHashCode())));
-			for (int i = 0; i < 10; i++)
-			{
-				_huskSpawnerFactory.Create(new(fr.Next(ScreenWidth), fr.Next(ScreenHeight)));
-			}
+			_huskSpawnerFactory.Create(new(Random.Next(ScreenWidth), Random.Next(ScreenHeight)));
 		}
+
 	}
 	/// <summary>
 	/// Adds methods to key press events 
@@ -130,15 +133,10 @@ public class TEM : Game
 	/// </summary>
 	protected override void LoadContent ()
 	{
-		_zombie = Content.Load<Texture2D>("zombie");
-
-		foreach (string file in Directory.GetFiles("Content\\Tiles\\").Select(Path.GetFileNameWithoutExtension))
-		{
-			Debug.WriteLine(file);
-			string s = "Tiles\\" + file;
-			Texture2D texture = Content.Load<Texture2D>(s);
-			Tiles.Add(file, texture);
-		}
+		FileManager.LoadEvilsToDictionary();
+		FileManager.LoadIconsToDictionary();
+		FileManager.LoadItemsToDictionary();
+		FileManager.LoadTilesToDictionary();
 	}
 
 	/// <summary>
@@ -147,11 +145,6 @@ public class TEM : Game
 	/// <param name="gameTime">Game uptime</param>
 	protected override void Update (GameTime gameTime)
 	{
-		// Debug
-		Debug.WriteLine(gameTime.TotalGameTime);
-
-		Debug.Write(MousePosition);
-
 		// Game Updates
 		_world.Update(gameTime);
 		UpdateableManager.UpdateAll(gameTime);
@@ -175,13 +168,13 @@ public class TEM : Game
 		Map.Render(SpriteBatch);
 
 		//render the particles
+		// TODO
 
 		//render the entities
 		_world.Draw(gameTime);
 
 		//render the items
-
-		SpriteBatch.DrawCircle(new(MousePosition, 5), 8, Color.White, 2.5f);
+		// TODO
 
 		//finish drawing
 		SpriteBatch.End();

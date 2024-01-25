@@ -1,14 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Diagnostics;
+using TEMEliminatesMonsters.Src.FileLoading;
 
 namespace TEMEliminatesMonsters.Src.Map.Tiles;
 
 public abstract class Tile
 {
-	public static readonly float _tileSizeMultiplier = 2f;
 
-	public Texture2D _texture;
+	private static int s_tileLayerDepth = 1; // todo: organize layer depth so things render properly
+
+	public static readonly float UniversalScaleFactor = 2; 
+
+	public GameTexture TileTexture;
 
 	public Vector2 _position;
 
@@ -19,32 +24,28 @@ public abstract class Tile
 	/// <summary>
 	/// initializes this tile
 	/// </summary>
-	/// <param name="texture"></param>
-	/// <param name="position"></param>
-	/// <param name="ID"></param>
-	private Tile (Texture2D texture, Vector2 position, int? ID = null)
+	/// <param name="gameTexture">TileTexture of this tile</param>
+	/// <param name="position">this tile's position</param>
+	/// <param name="ID">this tile's ID</param>
+	private Tile (GameTexture gameTexture, Vector2 position, int? ID = null)
 	{
 		ID ??= _id;
 		_id = ID;
-		_texture = texture;
-		if (_texture != null)
+		TileTexture = gameTexture;
+		if (TileTexture.Texture != null)
 		{
-			_width = _texture.Width;
-			_height = _texture.Height;
+			_width = TileTexture.Texture.Width;
+			_height = TileTexture.Texture.Height;
 			if (_width != _height)
 			{
 				throw new ArgumentException($"Tile width must be equal to length! TILE: {ID}");
-			}
-			if (_width != TileMap._tileSize || _width == 33) // TODO: remove the 33 line, it's not supposed to be there i just have to rebuild the files
-			{
-				throw new ArgumentException($"Tile width/length must be equal to {TileMap._tileSize}, it's {_width}! Tile: {ID}");
 			}
 		}
 		_position = position;
 	}
 
-	public Tile (Texture2D texture, int x, int y, int? ID = null)
-		: this(texture, new(x * TileMap._tileSize, y * TileMap._tileSize), ID) { }
+	public Tile (GameTexture texture, int x, int y, int? ID = null)
+		: this(texture, new(x * TileMap.TileSize, y * TileMap.TileSize), ID) { }
 
 	/// <summary>
 	/// draws this tile to the screen
@@ -52,11 +53,19 @@ public abstract class Tile
 	/// <param name="spriteBatch">the SpriteBatch responsible for drawing</param>
 	public void Render (SpriteBatch spriteBatch)
 	{
-		if (_texture == null)
+		if (TileTexture.Texture == null)
 		{
 			return;
 		}
-		spriteBatch.Draw(_texture, _position * _tileSizeMultiplier, null, Color.White, 0f, new(0, 0), new Vector2(_tileSizeMultiplier), SpriteEffects.None, 0f);
+
+		spriteBatch.Draw(
+			TileTexture.Texture,
+			_position * TileTexture.ScaleFactor,
+			null, Color.White, default,
+			Vector2.Zero,
+			new Vector2(TileTexture.ScaleFactor * UniversalScaleFactor), 
+			SpriteEffects.None,
+			s_tileLayerDepth);
 	}
 
 	/// <summary>
@@ -67,6 +76,6 @@ public abstract class Tile
 	{
 		if (_id == null)
 			return $"Tile ID not set! Falback: {base.ToString()}";
-		return $"Tile {_id} has texture {_texture?.Name} and is a {GetType()?.Name}";
+		return $"Tile {_id} has texture {TileTexture.Texture?.Name} and is a {GetType()?.Name}";
 	}
 }

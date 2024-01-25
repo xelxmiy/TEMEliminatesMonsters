@@ -6,7 +6,7 @@ using System.Diagnostics;
 using TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Spawners;
 using TEMEliminatesMonsters.Src.Entities.ResourceNodes.Systems.AbstractSystems;
 
-namespace TEMEliminatesMonsters.Src.Entities.Resource_Nodes.Systems;
+namespace TEMEliminatesMonsters.Src.Entities;
 
 internal class WorldUpdateSystem<T> : EntityUpdateSystem where T : EntityUpdateSystem
 {
@@ -44,6 +44,8 @@ internal class EnemyRenderSystem<T> : EntityDrawSystem where T : MovementSystem
 	private ComponentMapper<Texture2D> _textureMapper;
 	private ComponentMapper<T> _movementSystemMapper;
 
+	private static readonly int s_layerDepth = 0; // todo: organize layer depth so things render properly
+
 	/// <summary>
 	/// Creates a EnemyRenderSystem
 	/// </summary>
@@ -74,7 +76,14 @@ internal class EnemyRenderSystem<T> : EntityDrawSystem where T : MovementSystem
 			{
 				Vector2 entityPosition = movementSystem.Position;
 
-				_spriteBatch.Draw(entityTexture, entityPosition, Color.White);
+				_spriteBatch.Draw(
+					entityTexture,
+					entityPosition,
+					null, Color.White, default,
+					Vector2.Zero,
+					Vector2.One,
+					SpriteEffects.None,
+					s_layerDepth);
 			}
 		}
 	}
@@ -98,6 +107,10 @@ internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntit
 	private ComponentMapper<Texture2D> _textureMapper;
 	private ComponentMapper<T> _entitySpawnerMapper;
 
+	private static readonly int s_layerDepth = 1;  // todo: organize layer depth so things render properly
+
+	private static readonly int s_spawnerScaleFactor = 2;
+
 	/// <summary>
 	/// Creates a EnemyRenderSystem
 	/// </summary>
@@ -111,7 +124,7 @@ internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntit
 	/// <param name="gameTime">current gametime</param>
 	public override void Draw (GameTime gameTime)
 	{
-		TEM.Instance.GraphicsDevice.Clear(Color.Magenta);	
+		TEM.Instance.GraphicsDevice.Clear(Color.Magenta);
 		foreach (int id in ActiveEntities)
 		{
 
@@ -128,7 +141,14 @@ internal class SpawnerRenderSystem<T> : EntityDrawSystem where T : class, IEntit
 			{
 				Vector2 entityPosition = entitySpawner.Position;
 
-				_spriteBatch.Draw(entityTexture, entityPosition, Color.White);
+				_spriteBatch.Draw(
+					entityTexture, 
+					entityPosition, 
+					null, Color.White, 0f, 
+					Vector2.Zero, 
+					Vector2.One * s_spawnerScaleFactor, 
+					SpriteEffects.None,
+					s_layerDepth); 
 			}
 		}
 	}

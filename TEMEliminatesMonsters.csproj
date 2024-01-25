@@ -75,6 +75,7 @@
     <PackageReference Include="MonoGame.Extended.Tiled" Version="3.8.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />
@@ -85,5 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\a.belski\source\repos\TEM\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Src\Content\bin\Windows\Content\Items\" />
+    <Folder Include="Src\Content\bin\Windows\Content\Icons\" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using TEMEliminatesMonsters.Src.Controllers;
+using TEMEliminatesMonsters.Src.FileLoading;
 using TEMEliminatesMonsters.Src.Map.Tiles;
 
 namespace TEMEliminatesMonsters.Src.Map;
@@ -14,14 +15,14 @@ public class TileMap
 	public int GridWidth => _tileGrid[0].GetLength(0);
 	public int GridLength => _tileGrid[0].GetLength(1);
 
-	public static readonly int _tileSize = 32;
+	public static readonly int TileSize = 32;
 
 	/// <summary>
 	/// creates a new tilemap without a set tile
 	/// </summary>
 	/// <param name="width">width of tilemap</param>
 	/// <param name="width">width of tilemap</param>
-	public TileMap (int width, int height) : this(null, 1, width, height) { }
+	public TileMap (int width, int height) : this(default, 1, width, height) { }
 	/// <summary>
 	/// Creates a new Tilemap from a Tile Grid
 	/// </summary>
@@ -34,7 +35,7 @@ public class TileMap
 	/// <param name="defaultTexture">Tile this tilemap is made of</param>
 	/// <param name="length">width of tilemap</param>
 	/// <param name="width">width of tilemap</param>
-	public TileMap (Texture2D defaultTexture, int layers, int width, int height)
+	public TileMap (GameTexture defaultTexture, int layers, int width, int height)
 	{
 		if (!(layers > 0))
 		{
@@ -52,9 +53,12 @@ public class TileMap
 	/// Initialized the defaultTexture in the tilemap
 	/// </summary>
 	/// <param name="defaultTexture">the tile this tilemap is composed of</param>
-	private void InitializeTileMap (Texture2D defaultTexture = null)
+	private void InitializeTileMap (GameTexture defaultTexture = default)
 	{
-		defaultTexture ??= TEM.Instance.Tiles[$"{TileTexture.Metal_MiddleMiddle}"];
+		if (defaultTexture.Equals(default(GameTexture)))
+		{
+			defaultTexture = FileManager.Tiles["Tiles\\Metal_MiddleMiddle"];
+		}
 		//initialize base layer
 		Tile[,] baseLayer = GetTileLayer(0);
 		for (int w = 0; w < baseLayer.GetLength(0); w++)
@@ -81,29 +85,10 @@ public class TileMap
 		return _tileGrid[layer];
 	}
 
-	/// <summary>
-	/// Replaces the _texture tile in the tilegrid
-	/// </summary>
-	/// <param name="texture">_texture replacement</param>
-	/// <param name="layer">Layer of replaced tile</param>
-	/// <param name="w">w of replaced tile</param>
-	/// <param name="h">h of replaced tile</param>
-	public void SetTile (Texture2D texture, int layer, int w, int h)
-	{
-		if (_tileGrid[layer][w, h] != null)
-		{
-			_tileGrid[layer][w, h]._texture = texture;
-		}
-		else
-		{
-			Debug.WriteLine($"TILE AT {layer},  {w} , {h} IS NULL, CANNOT SET TILE");
-		}
-	}
-
 	public void AddTile (Tile tile, int layer)
 	{
-		int tileX = (int)(tile._position.X / _tileSize * Tile._tileSizeMultiplier);
-		int tileY = (int)(tile._position.Y / _tileSize * Tile._tileSizeMultiplier);
+		int tileX = (int)(tile._position.X / TileSize * tile.TileTexture.ScaleFactor);
+		int tileY = (int)(tile._position.Y / TileSize * tile.TileTexture.ScaleFactor);
 		_tileGrid[layer][tileX, tileY] = tile;
 	}
 	/// <summary>
@@ -111,11 +96,11 @@ public class TileMap
 	/// </summary>
 	/// <param name="tile">Tile replacement</param>
 	/// <param name="layer">layer of replaced tile</param>
-	/// <param name="w">w of replaced tile</param>
-	/// <param name="h">h of replaced tile</param>
-	public void SetTile (Tile tile, int layer, int w, int h)
+	/// <param name="width">width of replaced tile</param>
+	/// <param name="height">height of replaced tile</param>
+	public void SetTile (Tile tile, int layer, int width, int height)
 	{
-		_tileGrid[layer][w, h] = tile;
+		_tileGrid[layer][width, height] = tile;
 	}
 
 	/// <summary>
@@ -128,11 +113,11 @@ public class TileMap
 		{
 			//belive it or not, using 'var' is standard for Monogame projects 
 			var cameraBounds = TEM.Instance.Camera.BoundingRectangle;
-			var tSize = _tileSize * Tile._tileSizeMultiplier;
-			//calculates all defaultTexture in frame, much faster than culling not in frame defaultTexture for large (1000*1000) size boards
-			for (int x = (int)Math.Floor(cameraBounds.X / tSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tSize); x++)
+			var tileSize = TileSize * Tile.UniversalScaleFactor; // TODO: fix this so it's more general
+			//calculates all defaultTexture in frame, much faster than culling not in frame textures for large (1000*1000) size boards
+			for (int x = (int)Math.Floor(cameraBounds.X / tileSize); x <= (int)Math.Floor((cameraBounds.Width + cameraBounds.X) / tileSize); x++)
 			{
-				for (int y = (int)Math.Floor(cameraBounds.Y / tSize); y <= (int)Math.Floor((cameraBounds.Height + cameraBounds.Y) / tSize); y++)
+				for (int y = (int)Math.Floor(cameraBounds.Y / tileSize); y <= (int)Math.Floor((cameraBounds.Height + cameraBounds.Y) / tileSize); y++)
 				{
 					if (x >= 0 && x <= tileLayer.GetLength(0) - 1 && y >= 0 && y <= tileLayer.GetLength(1) - 1)
 					{
