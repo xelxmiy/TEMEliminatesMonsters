@@ -4,6 +4,7 @@
 also; it's my final project for computer science 40S 
 
 # Building
-todo: rewrite this lol 
+todo: rewrite this lol
+
 Requires Newtonsoft.Json and and Monogame.Framework packages as well as Monogame.Extended 
 To build assets also requires Monogame Visual Studio Extention
