@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 namespace TEMEliminatesMonsters.Src.FileLoading;
+// technically this is just what ContentManager is, but this removes a lot of the stuff i don't need from it :3
 public static class FileManager
 {
 	private static AssetLoader s_assetLoader { get; }

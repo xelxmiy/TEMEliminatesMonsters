@@ -29,14 +29,15 @@ public class TEM : Game
 	public SpriteBatch SpriteBatch;
 	public static int ScreenWidth { get => 1920; }
 	public static int ScreenHeight { get => 1080; }
-
+	
 
 
 	// World
 	public TileMap Map;
 	private World _world;
 	private HuskSpawnerFactory _huskSpawnerFactory;
-	private readonly int _TileMapSize = 256;
+	private readonly int _tileMapSize = 256;
+	private readonly int _tileMapLayers = 2;
 
 	// Other
 	public static FastRandom Random;
@@ -99,7 +100,7 @@ public class TEM : Game
 
 		InitializeKeyEvents();
 
-		Map = new(FileManager.Tiles[$"Tiles\\Grass Flat"], 2, _TileMapSize, _TileMapSize);
+		Map = new(FileManager.Tiles[$"Tiles\\Grass Flat"], _tileMapLayers, _tileMapSize, _tileMapSize);
 
 		_world = new WorldBuilder()
 		.AddSystem(new WorldUpdateSystem<HuskMovementSystem>())

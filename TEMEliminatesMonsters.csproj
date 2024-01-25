@@ -87,8 +87,4 @@
   <ItemGroup>
     <None Include="C:\Users\a.belski\source\repos\TEM\.editorconfig" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Src\Content\bin\Windows\Content\Items\" />
-    <Folder Include="Src\Content\bin\Windows\Content\Icons\" />
-  </ItemGroup>
 </Project>
